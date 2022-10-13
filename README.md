@@ -2,6 +2,8 @@
 
 The platform to keep track of the Learning Journey of the E2Lers.
 
+This is the Frontend of the E2L platform.
+
 Here is the [backend of the E2L](https://github.com/rex-9/E2L-BE)
 
 ## Getting Started
