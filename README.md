@@ -35,7 +35,7 @@ To get a local copy up and running
 | 👤 Name | Github | LinkedIn | Facebook |
 |------|--------|---------|----------|
 |Htet Naing|[@rex-9](https://github.com/rex-9)|[@rex9](https://www.linkedin.com/in/rex9/)|[@htetnaing0814](https://facebook.com/htetnaing0814)|
-|Sai La Min Oak|[@macabrepanpapakhin](https://github.com/macabrepanpapakhin)|||
+|Sai La Min Oak|[@macabrepanpapakhin](https://github.com/macabrepanpapakhin)||[Sai La Min Oak](https://facebook.com/sailaminoak)|
 |Swan Htet|[@Swanhtet18](https://github.com/Swanhtet18)|||
 
 ## 🤝 Contributing
