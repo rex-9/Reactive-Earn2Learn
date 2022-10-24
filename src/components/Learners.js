@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import github from '../assets/github.svg'
 import linkedin from '../assets/linkedin.svg'
 
-const Home = () => {
+const Learners = () => {
   const learners = useSelector(state => state.learners)
 
   return (
@@ -36,4 +36,4 @@ const Home = () => {
   )
 };
 
-export default Home;
+export default Learners;

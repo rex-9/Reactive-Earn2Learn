@@ -1,12 +1,16 @@
-import Home from './components/Home';
-import Nav from './components/Nav';
-import Panel from './components/Panel';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Home from './pages/Home';
+import Profile from './pages/Profile';
 
 const App = () => (
   <>
-    <Nav />
-    <Panel />
-    <Home />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </Router>
   </>
 );
 
