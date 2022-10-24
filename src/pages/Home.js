@@ -1,9 +1,9 @@
-import Nav from '../components/Nav';
+import HomeNav from '../components/HomeNav';
 import Learners from '../components/Learners';
 
 const Home = () => (
   <>
-    <Nav />
+    <HomeNav />
     <Learners />
   </>
 )

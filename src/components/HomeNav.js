@@ -1,4 +1,4 @@
-const Nav = () => (
+const HomeNav = () => (
   <>
     <nav className="flex items-center justify-between px-24 py-3 bg-nav">
       <div className="text-2xl font-extrabold text-white">E2L</div>
@@ -10,12 +10,13 @@ const Nav = () => (
       </div>
 
       {/* User */}
-      <div className="flex items-center justify-between px-2 py-1 bg-gray-200 rounded-lg w-60">
-        <div>Image</div>
+      <div className="flex items-center justify-between px-2 py-1 bg-gray-200 rounded-lg w-52">
+        <img className="w-12 h-12 object-cover rounded-full" src="https://static.zerochan.net/Dante.full.2952055.jpg" alt="" />
         <div className="font-bold">Name</div>
       </div>
+      <a href="/profile" className="text-white">My Study</a>
     </nav>
   </>
 );
 
-export default Nav;
+export default HomeNav;

@@ -1,5 +1,3 @@
-// import { learners } from '../data'
-
 import { useSelector } from 'react-redux';
 
 import github from '../assets/github.svg'
@@ -13,7 +11,7 @@ const Learners = () => {
       {
         learners.map(learner =>
           <div className="flex flex-col items-center py-2 m-2 bg-white rounded-lg w-80 hover:shadow-2xl">
-            <div>Student Image</div>
+            <img className="w-24 h-24 object-cover rounded-full" src={learner.image} alt="" />
             <div className="flex justify-center border-b-[1px] w-[80%] font-bold border-b-gray-600 py-1 px-2">
               {learner.name}
             </div>
