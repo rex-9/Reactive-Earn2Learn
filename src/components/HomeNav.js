@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const HomeNav = () => (
   <>
     <nav className="flex items-center justify-between px-24 py-3 bg-nav">
@@ -14,7 +16,7 @@ const HomeNav = () => (
         <img className="w-12 h-12 object-cover rounded-full" src="https://static.zerochan.net/Dante.full.2952055.jpg" alt="" />
         <div className="font-bold">Name</div>
       </div>
-      <a href="/profile" className="text-white">My Study</a>
+      <Link to="/profile/1" className="text-white">My Study</Link>
     </nav>
   </>
 );

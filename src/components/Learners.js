@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import github from '../assets/github.svg'
 import linkedin from '../assets/linkedin.svg'
@@ -18,14 +19,14 @@ const Learners = () => {
             <div className="p-2">
               Learning fields under construction...
             </div>
-            <button type="button" className="w-40 px-4 py-2 text-gray-900 bg-yellow-500 rounded-lg hover:bg-yellow-300">Explore More</button>
+            <button type="button" className="w-40 px-4 py-2 text-gray-900 bg-yellow-500 rounded-lg hover:bg-yellow-300"><Link to={`/profile/${learner.id}`}>Explore More</Link></button>
             <div className="flex flex-wrap justify-around w-40 mt-2">
-              <a href={learner.github} className="p-1 rounded-lg hover:bg-gray-300" target="_blank">
+              <Link to={learner.github} className="p-1 rounded-lg hover:bg-gray-300" target="_blank">
                 <img src={github} alt="GitHub Profile" />
-              </a>
-              <a href={learner.linkedin} className="p-1 rounded-lg hover:bg-gray-300" target="_blank">
+              </Link>
+              <Link to={learner.linkedin} className="p-1 rounded-lg hover:bg-gray-300" target="_blank">
                 <img src={linkedin} alt="LinkedIn Profile" />
-              </a>
+              </Link>
             </div>
           </div>
         )
