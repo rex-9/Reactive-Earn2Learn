@@ -7,38 +7,35 @@ const initialState = [
     name: 'Rex',
     image: 'https://static.zerochan.net/Dante.full.2952055.jpg',
     github: 'https://github.com/rex-9',
-    linkedin: 'https://www.linkedin.com/in/rex-9'
+    linkedin: 'https://www.linkedin.com/in/rex-9',
   },
   {
     id: 2,
     name: 'Jerry',
     image: 'https://static.zerochan.net/Dante.full.2952055.jpg',
     github: 'https://github.com/macabrepanpapakhin',
-    linkedin: 'https://www.linkedin.com/in/macabrepanpapakhin'
+    linkedin: 'https://www.linkedin.com/in/macabrepanpapakhin',
   },
   {
     id: 3,
     name: 'Ko Swan',
     image: 'https://static.zerochan.net/Dante.full.2952055.jpg',
     github: 'https://github.com/Swanhtet18',
-    linkedin: 'https://www.linkedin.com/in/Swanhtet18'
-  }
+    linkedin: 'https://www.linkedin.com/in/Swanhtet18',
+  },
 ];
 
 const learnersXer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_LEARNERS:
-      return [...action.payload]
-      break;
+      return [...action.payload];
 
     case ADD_LEARNERS:
-      return [...action.payload]
-      break;
+      return [...action.payload];
 
     default:
       return state;
-      break;
   }
-}
+};
 
 export default learnersXer;

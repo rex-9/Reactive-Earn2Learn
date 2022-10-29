@@ -14,5 +14,5 @@ root.render(
     <Provider store={store}>
       <App className="font-qs" />
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

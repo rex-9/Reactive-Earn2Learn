@@ -1,17 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
       colors: {
-        'nav': '#023047',
-        'primary': '#ADE8F4',
-        'dark': '#0a0502',
-        'btn': '#0fbbbb',
+        nav: '#023047',
+        primary: '#ADE8F4',
+        dark: '#0a0502',
+        btn: '#0fbbbb',
         'btn-hover': '#0fbfff',
-        'input': '#111111',
+        input: '#111111',
       },
       fontFamily: {
         qs: ['Quicksand'],
@@ -22,7 +22,7 @@ module.exports = {
   variants: {
     backgroundColor: ['responsive', 'hover', 'focus', 'active'],
     fontSize: ['responsive', 'hover'],
-    fontFamily: ['responsive', 'hover']
+    fontFamily: ['responsive', 'hover'],
   },
   plugins: [],
-}
+};

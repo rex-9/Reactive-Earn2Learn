@@ -5,13 +5,13 @@
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": ["tailwind", "apply", "variants", "responsive", "screen"]
+        "ignoreAtRules": ["layer", "tailwind", "apply", "variants", "responsive", "screen"]
       }
     ],
-    "scss/at-rule-no-unknown":  [
+    "scss/at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": ["tailwind", "apply", "variants", "responsive", "screen"]
+        "ignoreAtRules": ["layer", "tailwind", "apply", "variants", "responsive", "screen"]
       }
     ],
     "csstree/validator": true

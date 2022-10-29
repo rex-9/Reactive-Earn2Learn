@@ -6,9 +6,16 @@ const Login = () => (
       <div className="flex flex-col items-center">
         <div className="header">Log In</div>
         <form>
-          <input className="input" type="text" placeholder="Email or Username" /> <br />
-          <input className="input" type="password" placeholder="Password" /> <br />
-          <input type="checkbox" /><span>Remember me</span> <br />
+          <input className="input" type="text" placeholder="Email or Username" />
+          {' '}
+          <br />
+          <input className="input" type="password" placeholder="Password" />
+          {' '}
+          <br />
+          <input type="checkbox" />
+          <span>Remember me</span>
+          {' '}
+          <br />
           <div className="flex justify-center w-full"><button type="button" className="btn">Log In</button></div>
         </form>
         <div className="flex items-center justify-center">
@@ -19,6 +26,6 @@ const Login = () => (
       </div>
     </div>
   </>
-)
+);
 
 export default Login;

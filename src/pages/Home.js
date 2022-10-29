@@ -6,6 +6,6 @@ const Home = () => (
     <HomeNav />
     <Learners />
   </>
-)
+);
 
 export default Home;

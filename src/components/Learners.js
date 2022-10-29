@@ -1,18 +1,18 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import github from '../assets/github.svg'
-import linkedin from '../assets/linkedin.svg'
+import github from '../assets/github.svg';
+import linkedin from '../assets/linkedin.svg';
 
 const Learners = () => {
-  const learners = useSelector(state => state.learners)
+  const learners = useSelector((state) => state.learners);
 
   return (
     <div className="flex flex-wrap justify-center bg-primary">
       {
-        learners.map(learner =>
-          <div className="flex flex-col items-center py-2 m-2 bg-white rounded-lg w-80 hover:shadow-2xl">
-            <img className="w-24 h-24 object-cover rounded-full" src={learner.image} alt="" />
+        learners.map((learner) => (
+          <div key={learner.id} className="flex flex-col items-center py-2 m-2 bg-white rounded-lg w-80 hover:shadow-2xl">
+            <img className="object-cover w-24 h-24 rounded-full" src={learner.image} alt="" />
             <div className="flex justify-center border-b-[1px] w-[80%] font-bold border-b-gray-600 py-1 px-2">
               {learner.name}
             </div>
@@ -29,10 +29,10 @@ const Learners = () => {
               </Link>
             </div>
           </div>
-        )
+        ))
       }
     </div>
-  )
+  );
 };
 
 export default Learners;
