@@ -1,7 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Quicksand', sans-serif;
+@layer components {
+  .header {
+    @apply text-xl font-bold font-lato;
+  }
+
+  .input {
+    @apply rounded-lg px-4 py-2 bg-input
+  }
+
+  .btn {
+    @apply px-4 py-2 text-lg text-white rounded bg-btn;
+  }
+
+  .btn:hover {
+    @apply shadow-lg bg-btn-hover shadow-white;
+  }
+
+  .link {
+    @apply text-white underline;
+  }
+
+  .vertical-line {
+    @apply h-5 mx-4 border-l-2 border-gray-300;
+  }
 }

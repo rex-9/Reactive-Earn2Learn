@@ -1,4 +1,5 @@
 const FETCH_LEARNERS = 'e2l-fe/learners/FETCH_LEARNERS';
+const ADD_LEARNERS = 'e2l-fe/learners/ADD_LEARNERS';
 
 const initialState = [
   {
@@ -27,6 +28,10 @@ const initialState = [
 const learnersXer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_LEARNERS:
+      return [...action.payload]
+      break;
+
+    case ADD_LEARNERS:
       return [...action.payload]
       break;
 
