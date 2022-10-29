@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Login = () => (
   <>
-    <div className="flex justify-center pt-12 text-white bg-dark">
+    <div className="flex justify-center h-screen pt-12 text-white bg-dark">
       <div className="flex flex-col items-center">
         <div className="header">Log In</div>
         <form>
@@ -12,7 +12,7 @@ const Login = () => (
           <input className="input" type="password" placeholder="Password" />
           {' '}
           <br />
-          <input type="checkbox" />
+          <input type="checkbox" className="checkbox" />
           <span>Remember me</span>
           {' '}
           <br />
