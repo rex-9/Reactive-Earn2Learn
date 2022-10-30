@@ -1,5 +1,5 @@
 const FETCH_LEARNERS = 'e2l-fe/learners/FETCH_LEARNERS';
-const ADD_LEARNERS = 'e2l-fe/learners/ADD_LEARNERS';
+const ADD_LEARNER = 'e2l-fe/learners/ADD_LEARNER';
 
 const initialState = [
   {
@@ -48,7 +48,7 @@ const learnersXer = (state = initialState, action) => {
     case FETCH_LEARNERS:
       return [...action.payload];
 
-    case ADD_LEARNERS:
+    case ADD_LEARNER:
       return [...action.payload];
 
     default:

@@ -5,14 +5,14 @@ import github from '../../assets/github-black.svg';
 import linkedin from '../../assets/linkedin-black.svg';
 import edit from '../../assets/edit.png';
 
-const DisplayProfile = ({ learner }) => (
+const DisplayProfile = ({ learner, setEdit }) => (
   <>
     <div className="flex justify-center m-4 font-qs">
       <div className="bg-box rounded-md shadow-inner shadow-black p-4 w-[90%] flex items-start">
 
         {/* Learner Profile Picture */}
         <div className="w-[20%]">
-          <img className="object-cover w-48 h-48" src={learner.image} alt="" />
+          <img className="object-cover w-48 h-48" src={learner.image} alt="Profile of the Learner" />
           <div className="flex justify-around w-48 mt-2">
             <Link to={learner.github} className="p-1 rounded-lg hover:bg-white" target="_blank">
               <img src={github} alt="GitHub Profile" />
@@ -45,7 +45,7 @@ const DisplayProfile = ({ learner }) => (
             {learner.phone}
           </div>
         </div>
-        <button type="button">
+        <button type="button" onClick={() => setEdit(true)}>
           <img src={edit} alt="Edit Your Profile" />
         </button>
       </div>
@@ -65,6 +65,7 @@ DisplayProfile.propTypes = {
     github: PropTypes.string.isRequired,
     linkedin: PropTypes.string.isRequired,
   }).isRequired,
+  setEdit: PropTypes.func.isRequired,
 };
 
 export default DisplayProfile;

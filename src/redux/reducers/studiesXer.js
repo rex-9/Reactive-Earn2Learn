@@ -1,5 +1,5 @@
 const FETCH_STUDIES = 'e2l-fe/studies/FETCH_STUDIES';
-const ADD_STUDIES = 'e2l-fe/studies/ADD_STUDIES';
+const ADD_STUDY = 'e2l-fe/studies/ADD_STUDY';
 
 const initialState = [
   {
@@ -21,7 +21,7 @@ const studiesXer = (state = initialState, action) => {
     case FETCH_STUDIES:
       return [...action.payload];
 
-    case ADD_STUDIES:
+    case ADD_STUDY:
       return [...action.payload];
 
     default:

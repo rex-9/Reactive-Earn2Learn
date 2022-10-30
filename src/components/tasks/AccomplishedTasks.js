@@ -3,12 +3,8 @@ import PropTypes from 'prop-types';
 const AccomplishedTasks = ({ studies }) => (
   <>
     <div className="flex justify-center m-4 font-qs">
-      <div className="w-[90%] p-4">
-        <div>
-          <button type="button" className="mr-4 text-black bg-box rounded-xl btn">Accomplished Study</button>
-          <button type="button" className="mr-4 rounded-xl btn bg-dark">On Going Study</button>
-        </div>
-        <table className="w-full mt-4 border-collapse">
+      <div className="w-[90%]">
+        <table className="w-full border-collapse">
           <thead>
             <tr>
               <th className="w-[20%] bg-box py-2 border border-slate-500">Tech</th>
