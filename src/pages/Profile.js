@@ -16,7 +16,7 @@ const Profile = () => {
       {/* Learner Data Section */}
       <section id="learner-data">
         <div className="flex justify-center m-4 font-qs">
-          <div className="bg-[#DEE2E6] rounded-md shadow-inner shadow-black p-4 w-[90%] flex items-start">
+          <div className="bg-box rounded-md shadow-inner shadow-black p-4 w-[90%] flex items-start">
 
             {/* Learner Profile Picture */}
             <div className="w-[20%]">
@@ -63,26 +63,26 @@ const Profile = () => {
       {/* Learning Fields Section */}
       <section id="learning-field">
         <div className="flex justify-center m-4 font-qs">
-          <div className="w-[90%] p-4 bg-red-500">
+          <div className="w-[90%] p-4">
             <div>
-              <button type="button" className="mr-4 text-black bg-white rounded-xl btn">Accomplished Study</button>
+              <button type="button" className="mr-4 text-black bg-box rounded-xl btn">Accomplished Study</button>
               <button type="button" className="mr-4 rounded-xl btn bg-dark">On Going Study</button>
             </div>
-            <table className="w-full">
+            <table className="w-full mt-4 border-collapse">
               <thead>
                 <tr>
-                  <th>Tech</th>
-                  <th>Topic</th>
-                  <th>Learning Hour</th>
+                  <th className="w-[20%] bg-box py-2 border border-slate-500">Tech</th>
+                  <th className="w-[60%] bg-box py-2 border border-slate-500">Topic</th>
+                  <th className="w-[20%] bg-box py-2 border border-slate-500">Learning Hour</th>
                 </tr>
               </thead>
               <tbody>
                 {
                   studies.map((study) => (
-                    <tr key={study.id}>
-                      <td className="text-center">{study.tech}</td>
-                      <td className="text-center">{study.topic}</td>
-                      <td className="text-center">{study.hour}</td>
+                    <tr key={study.id} className="even:bg-blue-100 odd:bg-green-100">
+                      <td className="py-2 text-center border rounded-lg border-slate-300">{study.tech}</td>
+                      <td className="py-2 text-center border rounded-lg border-slate-300">{study.topic}</td>
+                      <td className="py-2 text-center border rounded-lg border-slate-300">{study.hour}</td>
                     </tr>
                   ))
                 }

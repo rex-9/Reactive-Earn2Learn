@@ -11,6 +11,7 @@ module.exports = {
         btn: '#0fbbbb',
         'btn-hover': '#0fbfff',
         input: '#111111',
+        box: '#DEE2E6',
       },
       fontFamily: {
         qs: ['Quicksand'],
