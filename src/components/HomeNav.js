@@ -2,21 +2,21 @@ import { Link } from 'react-router-dom';
 
 const HomeNav = () => (
   <>
-    <nav className="flex items-center justify-between px-24 py-3 bg-nav">
-      <div className="text-2xl font-extrabold text-white">E2L</div>
+    <nav className="flex items-center justify-between px-24 py-3 bg-dark">
+      <div className="text-white header">E2L</div>
 
       {/* Guest */}
       <div className="flex justify-between w-40">
-        <button type="button" className="px-2 py-1 font-bold bg-white rounded-lg">Login</button>
-        <button type="button" className="px-2 py-1 font-bold bg-white rounded-lg">Sign Up</button>
+        <button type="button" className="px-2 py-1 text-black bg-white rounded-lg">Login</button>
+        <button type="button" className="px-2 py-1 text-black bg-white rounded-lg">Sign Up</button>
       </div>
 
       {/* User */}
       <div className="flex items-center justify-between px-2 py-1 bg-gray-200 rounded-lg w-52">
-        <img className="w-12 h-12 object-cover rounded-full" src="https://static.zerochan.net/Dante.full.2952055.jpg" alt="" />
-        <div className="font-bold">Name</div>
+        <img className="object-cover w-12 h-12 rounded-full" src="https://static.zerochan.net/Dante.full.2952055.jpg" alt="" />
+        <div className="font-bold font-qs">Name</div>
       </div>
-      <Link to="/profile/1" className="text-white">My Study</Link>
+      <Link to="/profile/1" className="link">My Study</Link>
     </nav>
   </>
 );

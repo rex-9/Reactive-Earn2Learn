@@ -4,7 +4,7 @@ const Register = () => (
   <>
     <div className="flex justify-center h-screen pt-12 text-white bg-dark">
       <div className="flex flex-col items-center">
-        <div className="header">Register</div>
+        <div className="my-8 header">Register</div>
         <form>
           <input className="input" type="text" placeholder="Full Name" />
           {' '}
@@ -25,7 +25,7 @@ const Register = () => (
           <span>Remember me</span>
           {' '}
           <br />
-          <div className="flex justify-center w-full"><button type="button" className="btn">Register</button></div>
+          <div className="flex justify-center w-full"><button type="button" className="btn hover:shadow-gray-600">Register</button></div>
         </form>
         <div className="flex items-center justify-center">
           <Link to="/login" className="link">Log in</Link>

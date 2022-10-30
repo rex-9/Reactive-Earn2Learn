@@ -7,7 +7,11 @@
 
 @layer components {
   .header {
-    @apply my-8 text-3xl italic font-bold font-lato;
+    @apply text-3xl italic font-bold font-lato;
+  }
+
+  .name {
+    @apply flex justify-center border-b-[1px] w-[80%] font-bold font-qs text-lg border-b-gray-600 py-1 px-2
   }
 
   .input {
@@ -19,11 +23,11 @@
   }
 
   .btn {
-    @apply px-4 py-1 my-2 text-lg font-bold text-white rounded bg-btn;
+    @apply px-4 py-1 my-2 text-lg text-white rounded bg-btn;
   }
 
   .btn:hover {
-    @apply shadow-md bg-btn-hover shadow-white;
+    @apply shadow-md bg-btn-hover;
   }
 
   .link {
