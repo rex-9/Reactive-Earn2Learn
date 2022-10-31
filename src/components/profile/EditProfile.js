@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import edit from '../../assets/edit.png';
+import close from '../../assets/close.png';
 
 const EditProfile = ({ learner, setEdit }) => (
   <>
@@ -11,7 +11,7 @@ const EditProfile = ({ learner, setEdit }) => (
       </div>
 
       <button type="button" onClick={() => setEdit(false)}>
-        <img src={edit} alt="Edit Your Profile" />
+        <img src={close} alt="Edit Your Profile" />
       </button>
     </div>
   </>

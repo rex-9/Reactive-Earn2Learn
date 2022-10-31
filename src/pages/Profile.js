@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import ProfilePic from '../components/profile/ProfilePic';
 import DisplayProfile from '../components/profile/DisplayProfile';
 import EditProfile from '../components/profile/EditProfile';
-import AccomplishedTasks from '../components/tasks/AccomplishedTasks';
-import OngoingTasks from '../components/tasks/OngoingTasks';
+import AccomplishedTasks from '../components/study/AccomplishedTasks';
+import OngoingTasks from '../components/study/OngoingTasks';
 
 const Profile = () => {
   const { id } = useParams();
