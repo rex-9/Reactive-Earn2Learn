@@ -17,6 +17,16 @@ const Profile = () => {
   const [edit, setEdit] = useState(false);
   const [accomplished, setAccomplished] = useState(true);
 
+  const activeStyle = {
+    backgroundColor: '#1a202c',
+    color: '#fff',
+  };
+
+  const inactiveStyle = {
+    backgroundColor: 'lightgray',
+    color: '#000',
+  };
+
   return (
     <>
       {/* Learner Data Section */}
@@ -29,8 +39,8 @@ const Profile = () => {
       <section id="learning-field">
         <div className="flex justify-center m-4">
           <div className="w-[90%] p-4">
-            <button type="button" className="mr-4 text-black bg-box rounded-xl btn" onClick={() => setAccomplished(true)}>Accomplished Study</button>
-            <button type="button" className="mr-4 rounded-xl btn bg-dark" onClick={() => setAccomplished(false)}>On Going Study</button>
+            <button type="button" className="mr-4 rounded-xl btn" style={!accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(true)}>Accomplished Study</button>
+            <button type="button" className="mr-4 rounded-xl btn" style={accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(false)}>On Going Study</button>
           </div>
         </div>
         {accomplished ? <AccomplishedTasks studies={studies} />
