@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import ProfilePic from '../components/profile/ProfilePic';
 import DisplayProfile from '../components/profile/DisplayProfile';
 import EditProfile from '../components/profile/EditProfile';
 import AccomplishedTasks from '../components/tasks/AccomplishedTasks';
@@ -29,10 +30,15 @@ const Profile = () => {
 
   return (
     <>
-      {/* Learner Data Section */}
+      {/* Learner Profile Data Section */}
       <section id="learner-data">
-        {!edit ? <DisplayProfile learner={learner} setEdit={setEdit} />
-          : <EditProfile />}
+        <div className="flex justify-center m-4 font-qs">
+          <div className="bg-box rounded-md shadow-inner shadow-black p-4 w-[90%] flex items-start">
+            <ProfilePic learner={learner} />
+            {!edit ? <DisplayProfile learner={learner} setEdit={setEdit} />
+              : <EditProfile learner={learner} setEdit={setEdit} />}
+          </div>
+        </div>
       </section>
 
       {/* Learning Fields Section */}

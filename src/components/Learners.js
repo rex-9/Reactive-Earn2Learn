@@ -16,7 +16,7 @@ const Learners = () => {
             <div className="name">
               Hi! I am&nbsp;
               <span className="text-btn">
-                {learner.name}
+                {learner.username}
               </span>
             </div>
             <div className="p-2">
