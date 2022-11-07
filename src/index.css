@@ -14,6 +14,10 @@
     @apply flex justify-center border-b-[1px] w-[80%] font-bold font-qs text-lg border-b-gray-600 py-1 px-2
   }
 
+  .form-field {
+    @apply flex items-center justify-between w-[500px] mb-3
+  }
+
   .input {
     @apply px-4 py-2 my-2 rounded-lg w-72 bg-input;
   }
