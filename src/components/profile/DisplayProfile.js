@@ -2,30 +2,52 @@ import PropTypes from 'prop-types';
 
 import edit from '../../assets/edit.png';
 
-const DisplayProfile = ({ learner, setEdit }) => (
+const DisplayProfile = ({
+  setEdit,
+  username,
+  fullname,
+  email,
+  bio,
+  birthdate,
+  city,
+  phone,
+  role,
+}) => (
   <>
-    <div className="flex items-start justify-between w-full">
+    <div className="flex items-start justify-between w-full ml-12 mr-4">
 
       {/* Learner Profile Data */}
       <div>
         <div className="text-xl font-bold">
-          {learner.fullname}
+          {fullname}
           {' '}
           (
-          {learner.username}
+          {username}
           )
         </div>
         <div className="">
-          Age -
-          {learner.age}
+          Email -
+          {email}
+        </div>
+        <div className="">
+          Bio -
+          {bio}
+        </div>
+        <div className="">
+          Role -
+          {role}
+        </div>
+        <div className="">
+          Birthdate -
+          {birthdate}
         </div>
         <div className="">
           City -
-          {learner.city}
+          {city}
         </div>
         <div className="">
           Phone -
-          {learner.phone}
+          {phone}
         </div>
       </div>
 
@@ -37,14 +59,14 @@ const DisplayProfile = ({ learner, setEdit }) => (
 );
 
 DisplayProfile.propTypes = {
-  learner: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    fullname: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    age: PropTypes.number.isRequired,
-    city: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
-  }).isRequired,
+  username: PropTypes.string.isRequired,
+  fullname: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  bio: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  birthdate: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
   setEdit: PropTypes.func.isRequired,
 };
 

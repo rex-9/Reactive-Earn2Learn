@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const OngoingTasks = ({ studies }) => {
-  const techs = useSelector((state) => state.techs);
+  const techs = useSelector((state) => state.technologies);
 
   return (
     <>

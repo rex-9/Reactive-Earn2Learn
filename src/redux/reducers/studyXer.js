@@ -4,19 +4,25 @@ const ADD_STUDY = 'e2l-fe/studies/ADD_STUDY';
 const initialState = [
   {
     id: 1,
-    tech: 'React',
     topic: 'Redux',
-    hour: 2,
+    experience: 'Fall in love with Redux',
+    completed: true,
+    hours_taken: 3,
+    user_id: 1,
+    technology_id: 1,
   },
   {
     id: 2,
-    tech: 'Ruby',
     topic: 'Ruby On Rails',
-    hour: 5,
+    experience: null,
+    completed: false,
+    hours_taken: 0,
+    user_id: 1,
+    technology_id: 2,
   },
 ];
 
-const studiesXer = (state = initialState, action) => {
+const studyXer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_STUDIES:
       return [...action.payload];
@@ -29,4 +35,4 @@ const studiesXer = (state = initialState, action) => {
   }
 };
 
-export default studiesXer;
+export default studyXer;

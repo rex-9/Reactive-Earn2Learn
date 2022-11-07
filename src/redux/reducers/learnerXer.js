@@ -6,12 +6,14 @@ const initialState = [
     id: 1,
     username: 'Rex',
     fullname: 'Htet Naing',
-    email: 'htetnaing0814@gmail.com',
-    age: 22,
-    city: 'Yangon',
-    phone: '+959443112251',
-    password: 'P@ssw0rd',
     image: 'https://static.zerochan.net/Dante.full.2952055.jpg',
+    bio: "I'm a web developer",
+    city: 'Yangon',
+    birthdate: '1990-01-01',
+    phone: '+959443112251',
+    role: 'admin',
+    email: 'htetnaing0814@gmail.com',
+    password: 'P@ssw0rd',
     github: 'https://github.com/rex-9',
     linkedin: 'https://www.linkedin.com/in/rex-9',
   },
@@ -19,12 +21,14 @@ const initialState = [
     id: 2,
     username: 'Jerry',
     fullname: 'Sai La Min Oak',
-    email: 'jerry@gmail.com',
-    age: 21,
+    image: null,
+    bio: null,
     city: 'Mandalay',
+    birthdate: '1990-01-01',
     phone: '+959443112251',
+    role: 'learner',
+    email: 'jerry@gmail.com',
     password: 'P@ssw0rd',
-    image: 'https://static.zerochan.net/Dante.full.2952055.jpg',
     github: 'https://github.com/macabrepanpapakhin',
     linkedin: 'https://www.linkedin.com/in/macabrepanpapakhin',
   },
@@ -32,18 +36,20 @@ const initialState = [
     id: 3,
     username: 'SwanHtet18',
     fullname: 'Swan Htet',
-    email: 'SwanHtet18@gmail.com',
-    age: 23,
-    city: 'Pyin Oo Lwin',
-    phone: '+959443112251',
-    password: 'P@ssw0rd',
     image: 'https://static.zerochan.net/Dante.full.2952055.jpg',
+    bio: 'I am UI designer',
+    city: 'Pyin Oo Lwin',
+    birthdate: '1990-01-01',
+    phone: '+959443112251',
+    role: 'learner',
+    email: 'SwanHtet18@gmail.com',
+    password: 'P@ssw0rd',
     github: 'https://github.com/Swanhtet18',
     linkedin: 'https://www.linkedin.com/in/Swanhtet18',
   },
 ];
 
-const learnersXer = (state = initialState, action) => {
+const learnerXer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_LEARNERS:
       return [...action.payload];
@@ -56,4 +62,4 @@ const learnersXer = (state = initialState, action) => {
   }
 };
 
-export default learnersXer;
+export default learnerXer;

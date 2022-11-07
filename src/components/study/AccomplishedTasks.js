@@ -16,9 +16,9 @@ const AccomplishedTasks = ({ studies }) => (
             {
               studies.map((study) => (
                 <tr key={study.id} className="even:bg-blue-100 odd:bg-green-100">
-                  <td className="py-2 text-center border rounded-lg border-slate-300">{study.tech}</td>
+                  <td className="py-2 text-center border rounded-lg border-slate-300">{study.technology_id}</td>
                   <td className="py-2 text-center border rounded-lg border-slate-300">{study.topic}</td>
-                  <td className="py-2 text-center border rounded-lg border-slate-300">{study.hour}</td>
+                  <td className="py-2 text-center border rounded-lg border-slate-300">{study.hours_taken}</td>
                 </tr>
               ))
             }
@@ -33,9 +33,9 @@ AccomplishedTasks.propTypes = {
   studies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      tech: PropTypes.string.isRequired,
+      technology_id: PropTypes.number.isRequired,
       topic: PropTypes.string.isRequired,
-      hour: PropTypes.number.isRequired,
+      hours_taken: PropTypes.number.isRequired,
     }),
   ).isRequired,
 };
