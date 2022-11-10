@@ -32,12 +32,22 @@ const Learners = () => {
               </Link>
             </button>
             <div className="flex flex-wrap justify-center w-40 gap-4">
-              <Link to={learner.github} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
-                <img src={github} alt="GitHub Profile" />
-              </Link>
-              <Link to={learner.linkedin} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
-                <img src={linkedin} alt="LinkedIn Profile" />
-              </Link>
+              {
+                learner.github
+                  ? (
+                    <Link to={learner.github} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
+                      <img src={github} alt="GitHub Profile" />
+                    </Link>
+                  ) : <img src={github} alt="GitHub Profile" />
+              }
+              {
+                learner.linkedin
+                  ? (
+                    <Link to={learner.linkedin} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
+                      <img src={linkedin} alt="LinkedIn Profile" />
+                    </Link>
+                  ) : <img src={linkedin} alt="LinkedIn Profile" />
+              }
             </div>
           </div>
         ))

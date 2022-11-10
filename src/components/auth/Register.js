@@ -32,7 +32,7 @@ const Register = () => {
 
   const register = () => {
     const newLearner = {
-      id: '0',
+      id: 0,
       fullname,
       username,
       city,

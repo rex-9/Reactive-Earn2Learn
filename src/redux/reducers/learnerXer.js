@@ -1,6 +1,7 @@
 const FETCH_LEARNERS = 'e2l-fe/learners/FETCH_LEARNERS';
-const UPDATE_LEARNER = 'e2l-fe/learners/UPDATE_LEARNER';
 const ADD_LEARNER = 'e2l-fe/learners/ADD_LEARNER';
+const UPDATE_LEARNER = 'e2l-fe/learners/UPDATE_LEARNER';
+const DELETE_LEARNER = 'e2l-fe/learners/DELETE_LEARNER';
 
 const initialState = [
   {
@@ -30,8 +31,8 @@ const initialState = [
     role: 'learner',
     email: 'jerry@gmail.com',
     password: 'P@ssw0rd',
-    github: 'https://github.com/macabrepanpapakhin',
-    linkedin: 'https://www.linkedin.com/in/macabrepanpapakhin',
+    github: null,
+    linkedin: null,
   },
   {
     id: 3,
@@ -62,6 +63,9 @@ const learnerXer = (state = initialState, action) => {
       state[action.payload.id - 1] = action.payload;
       return [...state];
 
+    case DELETE_LEARNER:
+      return state.filter((learner) => learner.id !== action.payload);
+
     default:
       return state;
   }
@@ -77,5 +81,10 @@ const updateLearner = (learner) => ({
   payload: learner,
 });
 
+const deleteLearner = (id) => ({
+  type: DELETE_LEARNER,
+  payload: id,
+});
+
 export default learnerXer;
-export { addLearner, updateLearner };
+export { addLearner, updateLearner, deleteLearner };

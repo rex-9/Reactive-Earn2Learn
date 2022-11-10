@@ -11,12 +11,22 @@ const ProfilePic = ({ learner }) => (
     <div className="w-[20%]">
       <img className="object-cover w-48 h-48" src={learner.image || avatar} alt="Profile of the Learner" />
       <div className="flex justify-around w-48 mt-2">
-        <Link to={learner.github} className="p-1 rounded-lg hover:bg-white" target="_blank">
-          <img src={githubIcon} alt="GitHub Profile" />
-        </Link>
-        <Link to={learner.linkedin} className="p-1 rounded-lg hover:bg-white" target="_blank">
-          <img src={linkedinIcon} alt="LinkedIn Profile" />
-        </Link>
+        {
+          learner.github
+            ? (
+              <Link to={learner.github} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
+                <img src={githubIcon} alt="GitHub Profile" />
+              </Link>
+            ) : <img src={githubIcon} alt="GitHub Profile" />
+        }
+        {
+          learner.linkedin
+            ? (
+              <Link to={learner.linkedin} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
+                <img src={linkedinIcon} alt="LinkedIn Profile" />
+              </Link>
+            ) : <img src={linkedinIcon} alt="LinkedIn Profile" />
+        }
       </div>
     </div>
   </>
