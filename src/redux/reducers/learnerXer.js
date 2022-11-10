@@ -1,4 +1,5 @@
 const FETCH_LEARNERS = 'e2l-fe/learners/FETCH_LEARNERS';
+const UPDATE_LEARNER = 'e2l-fe/learners/UPDATE_LEARNER';
 const ADD_LEARNER = 'e2l-fe/learners/ADD_LEARNER';
 
 const initialState = [
@@ -55,11 +56,26 @@ const learnerXer = (state = initialState, action) => {
       return [...action.payload];
 
     case ADD_LEARNER:
-      return [...action.payload];
+      return [...state, action.payload];
+
+    case UPDATE_LEARNER:
+      state[action.payload.id - 1] = action.payload;
+      return [...state];
 
     default:
       return state;
   }
 };
 
+const addLearner = (learner) => ({
+  type: ADD_LEARNER,
+  payload: learner,
+});
+
+const updateLearner = (learner) => ({
+  type: UPDATE_LEARNER,
+  payload: learner,
+});
+
 export default learnerXer;
+export { addLearner, updateLearner };

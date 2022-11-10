@@ -7,8 +7,8 @@ const HomeNav = () => (
 
       {/* Guest */}
       <div className="flex justify-between w-40">
-        <button type="button" className="px-2 py-1 text-black bg-white rounded-lg">Login</button>
-        <button type="button" className="px-2 py-1 text-black bg-white rounded-lg">Sign Up</button>
+        <Link to="/login" className="px-2 py-1 text-black bg-white rounded-lg">Login</Link>
+        <Link to="/Register" className="px-2 py-1 text-black bg-white rounded-lg">Register</Link>
       </div>
 
       {/* User */}

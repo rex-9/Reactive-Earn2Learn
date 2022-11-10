@@ -14,6 +14,10 @@
     @apply flex justify-center border-b-[1px] w-[80%] font-bold font-qs text-lg border-b-gray-600 py-1 px-2
   }
 
+  .auth-form-field {
+    @apply bg-black
+  }
+
   .form-field {
     @apply flex items-center justify-between w-[500px] mb-3
   }

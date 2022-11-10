@@ -6,7 +6,7 @@ const DisplayProfile = ({
   setEdit, learner,
 }) => (
   <>
-    <div className="flex items-start justify-between w-full ml-12 mr-4">
+    <div className="flex items-start justify-between w-full ml-12">
 
       {/* Learner Profile Data */}
       <div>

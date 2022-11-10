@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
+import { updateLearner } from '../../redux/reducers/learnerXer';
 import close from '../../assets/close.png';
 
 const EditProfile = ({
   setEdit,
   learner,
 }) => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState(learner.username);
   const [fullname, setFullname] = useState(learner.fullname);
   const [email, setEmail] = useState(learner.email);
@@ -22,19 +25,23 @@ const EditProfile = ({
 
   const saveChanges = () => {
     // TODO: Save changes to the database
-    // console.log('Saving Changes');
-    // setEdit(false);
-    console.log(username);
-    console.log(fullname);
-    console.log(email);
-    console.log(image);
-    console.log(bio);
-    console.log(birthdate);
-    console.log(city);
-    console.log(phone);
-    console.log(role);
-    console.log(github);
-    console.log(linkedin);
+    setEdit(false);
+    const learnerObj = {
+      id: learner.id,
+      password: learner.password,
+      username,
+      fullname,
+      email,
+      image,
+      bio,
+      birthdate,
+      city,
+      phone,
+      role,
+      github,
+      linkedin,
+    };
+    dispatch(updateLearner(learnerObj));
   };
 
   return (
@@ -132,9 +139,11 @@ const EditProfile = ({
 EditProfile.propTypes = {
   setEdit: PropTypes.func.isRequired,
   learner: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     username: PropTypes.string.isRequired,
     fullname: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
     image: PropTypes.string,
     bio: PropTypes.string,
     city: PropTypes.string.isRequired,

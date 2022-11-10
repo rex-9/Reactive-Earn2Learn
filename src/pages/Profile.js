@@ -45,18 +45,6 @@ const Profile = () => {
                 <EditProfile
                   setEdit={setEdit}
                   learner={learner}
-                // username={username}
-                // setUsername={setUsername}
-                // setFullname={setFullname}
-                // setEmail={setEmail}
-                // setImage={setImage}
-                // setBio={setBio}
-                // setBirthdate={setBirthdate}
-                // setCity={setCity}
-                // setPhone={setPhone}
-                // setRole={setRole}
-                // setGithub={setGithub}
-                // setLinkedin={setLinkedin}
                 />
               )}
           </div>

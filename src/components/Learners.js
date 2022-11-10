@@ -23,7 +23,7 @@ const Learners = () => {
             </div>
             <div className="mt-1 text-center">
               <div className="mb-3">Specializing in</div>
-              {professions.length === 0 ? <span>No profession yet</span> : professions.map((profession) => <span key={profession} className="px-2 py-1 m-1 text-gray-600 bg-green-300 border-2 border-gray-300 rounded-md shadow-lg cursor-default hover:shadow-inner">{profession}</span>)}
+              {professions.length === 0 ? <span>No profession yet</span> : professions.map((profession) => <span key={profession} className="px-2 py-1 m-1 text-gray-600 bg-green-300 border-2 border-gray-300 rounded-md shadow-lg cursor-default hover:bg-green-100 hover:text-gray-800 hover:shadow-inner">{profession}</span>)}
             </div>
             <button type="button" className="mt-4 btn">
               <Link to={`/profile/${learner.id}`}>
