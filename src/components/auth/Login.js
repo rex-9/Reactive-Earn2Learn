@@ -16,7 +16,7 @@ const Login = () => (
           <span>Remember me</span>
           {' '}
           <br />
-          <div className="flex justify-center w-full"><button type="button" className="btn hover:shadow-gray-600">Log In</button></div>
+          <div className="flex justify-center w-full my-2"><button type="button" className="btn hover:shadow-gray-600">Log In</button></div>
         </form>
         <div className="flex items-center justify-center">
           <Link to="/register" className="link">Register</Link>

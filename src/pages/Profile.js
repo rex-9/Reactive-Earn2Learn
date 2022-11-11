@@ -28,7 +28,7 @@ const Profile = () => {
 
   const inactiveStyle = {
     backgroundColor: 'lightgray',
-    color: '#000',
+    color: '#1a202c',
   };
 
   return (

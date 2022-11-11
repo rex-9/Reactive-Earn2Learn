@@ -27,7 +27,11 @@
   }
 
   .input {
-    @apply px-4 py-2 my-2 rounded-lg w-72 bg-input;
+    @apply px-4 py-2 my-2 rounded-lg w-80 bg-input;
+  }
+
+  .input * {
+    @apply pt-24
   }
 
   .checkbox {
@@ -35,7 +39,7 @@
   }
 
   .btn {
-    @apply px-4 py-1 my-2 text-lg text-white rounded bg-btn;
+    @apply px-4 py-1 text-lg text-white rounded bg-btn;
   }
 
   .btn:hover {

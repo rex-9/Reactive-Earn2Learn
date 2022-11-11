@@ -8,8 +8,8 @@ const initialState = [
     id: 1,
     topic: 'Redux',
     experience: 'Fall in love with Redux',
-    completed: true,
     hours_taken: 3,
+    completed: true,
     user: {
       id: 1,
       username: 'Rex',
@@ -30,8 +30,8 @@ const initialState = [
     id: 2,
     topic: 'Ruby On Rails',
     experience: null,
-    completed: true,
     hours_taken: 0,
+    completed: true,
     user: {
       id: 2,
       username: 'SaSa',
