@@ -237,20 +237,21 @@ const Register = () => {
                 Must match the first password input field.
               </p>
             </label>
-            {/* <label htmlFor="password">
-              <div>Password:</div>
-              <input type="password" className="mt-2 mb-4 input" placeholder="Password" onChange={(e) => setPassword(e.target.value)} id="password" />
-            </label> */}
-            {/* <label htmlFor="confirm-password">
-              <div>Confirm Password:</div>
-              <input type="password" className="mt-2 mb-4 input" placeholder="E.g. +Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)} id="confirm-password" />
-            </label> */}
             <br />
             <input type="checkbox" className="checkbox" />
             <span>Remember me</span>
             {' '}
             <br />
-            <div className="flex justify-center w-full my-2"><button type="button" className="btn hover:shadow-gray-600" onClick={onSubmit}>Register</button></div>
+            <div className="flex justify-center w-full my-2">
+              <button
+                type="button"
+                disabled={!!(!validUsername || !validPassword || !validConfirm)}
+                className="btn hover:shadow-gray-600"
+                onClick={onSubmit}
+              >
+                Register
+              </button>
+            </div>
           </form>
           <div className="flex items-center justify-center">
             <Link to="/login" className="link">Log in</Link>
