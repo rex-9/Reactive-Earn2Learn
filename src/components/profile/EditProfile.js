@@ -47,7 +47,7 @@ const EditProfile = ({
   return (
     <>
       <div className="flex items-start justify-between w-full ml-12">
-        <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col items-center w-[50%]">
           <div className="py-2 mb-2 text-center text-gray-500 rounded-lg w-96 bg-yellow-50">
             To edit your profile data,
             <br />

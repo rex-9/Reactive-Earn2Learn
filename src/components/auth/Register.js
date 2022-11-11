@@ -23,7 +23,6 @@ const Register = () => {
       setSuccess(false);
     } else if (password !== confirmPassword) {
       alert('Password does not match');
-      console.log('validate failed');
       setSuccess(false);
     } else {
       setSuccess(true);

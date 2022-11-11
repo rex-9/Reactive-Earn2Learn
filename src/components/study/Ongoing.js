@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const OngoingTasks = ({ studies }) => {
+const Ongoing = ({ studies }) => {
   const techs = useSelector((state) => state.technologies);
 
   return (
@@ -23,9 +23,9 @@ const OngoingTasks = ({ studies }) => {
           </div>
           {
             studies.map((study) => (
-              <div key={study.tech} className="flex items-center justify-between p-2 mb-2 rounded-md bg-box">
+              <div key={study.technology_id} className="flex items-center justify-between p-2 mb-2 rounded-md bg-box">
                 <div>
-                  {study.tech}
+                  {study.technology.name}
                 </div>
                 <input type="number" placeholder=" ___ Hours" className="p-2 text-center rounded-md" />
                 <button type="button" className="btn">Complete</button>
@@ -38,7 +38,7 @@ const OngoingTasks = ({ studies }) => {
   );
 };
 
-OngoingTasks.propTypes = {
+Ongoing.propTypes = {
   studies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -49,4 +49,4 @@ OngoingTasks.propTypes = {
   ).isRequired,
 };
 
-export default OngoingTasks;
+export default Ongoing;

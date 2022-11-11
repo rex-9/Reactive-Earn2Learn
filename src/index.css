@@ -6,6 +6,10 @@
 @tailwind utilities;
 
 @layer components {
+  body {
+    @apply bg-green-100
+  }
+
   .header {
     @apply text-3xl italic font-bold font-lato;
   }

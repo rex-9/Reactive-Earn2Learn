@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import ProfilePic from '../components/profile/ProfilePic';
 import DisplayProfile from '../components/profile/DisplayProfile';
 import EditProfile from '../components/profile/EditProfile';
-import AccomplishedTasks from '../components/study/AccomplishedTasks';
-import OngoingTasks from '../components/study/OngoingTasks';
+import Completed from '../components/study/Completed';
+import Ongoing from '../components/study/Ongoing';
 
 const Profile = () => {
   const { id } = useParams();
@@ -14,13 +14,16 @@ const Profile = () => {
   const learner = learners.filter((learner) => learner.id === parseInt(id, 10))[0];
 
   const studies = useSelector((state) => state.studies);
+  const completed = studies.filter((study) => study.completed === true);
+  const ongoing = studies.filter((study) => study.completed === false);
 
   const [edit, setEdit] = useState(false);
   const [accomplished, setAccomplished] = useState(true);
 
   const activeStyle = {
-    backgroundColor: '#1a202c',
-    color: '#fff',
+    boxShadow: 'inset 0 0 5px #f8a100',
+    backgroundColor: 'lightgreen',
+    color: '#1a202c',
   };
 
   const inactiveStyle = {
@@ -55,12 +58,12 @@ const Profile = () => {
       <section id="learning-field">
         <div className="flex justify-center m-4">
           <div className="w-[90%] p-4">
-            <button type="button" className="mr-4 rounded-xl btn" style={!accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(true)}>Accomplished Study</button>
-            <button type="button" className="mr-4 rounded-xl btn" style={accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(false)}>On Going Study</button>
+            <button type="button" className="mr-4 rounded-xl btn" style={accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(true)}>Completed</button>
+            <button type="button" className="mr-4 rounded-xl btn" style={!accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(false)}>On Going</button>
           </div>
         </div>
-        {accomplished ? <AccomplishedTasks studies={studies} />
-          : <OngoingTasks studies={studies} />}
+        {accomplished ? <Completed studies={completed} />
+          : <Ongoing studies={ongoing} />}
       </section>
     </>
   );
