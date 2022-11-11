@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { addStudy, updateStudy } from '../../redux/reducers/studyXer';
 
 import close from '../../assets/close.png';
+import dummyStudies from '../../data';
 
 const Ongoing = ({ studies }) => {
   const techs = useSelector((state) => state.technologies);
@@ -13,14 +14,16 @@ const Ongoing = ({ studies }) => {
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
   const [topic, setTopic] = useState('');
+  const [currentTopic, setCurrentTopic] = useState('');
   const [techId, setTechId] = useState(0);
+  const [currentTechId, setCurrentTechId] = useState(0);
   const [experience, setExperience] = useState('');
   const [hoursTaken, setHoursTaken] = useState(0);
 
   const addStudyHandle = () => {
     setAddStatus(true);
     const newStudy = {
-      id: studies.length,
+      id: dummyStudies.length,
       topic,
       user_id: 1,
       technology_id: techId,
@@ -34,9 +37,8 @@ const Ongoing = ({ studies }) => {
   };
 
   const updateStudyHandle = () => {
-    setUpdateStatus(true);
     const newStudy = {
-      id: studies.length,
+      id: dummyStudies.length,
       topic,
       experience,
       hours_taken: hoursTaken,
@@ -47,15 +49,18 @@ const Ongoing = ({ studies }) => {
     dispatch(updateStudy(newStudy));
   };
 
-  const handleUpdate = () => {
-    updateStudyHandle();
-    setUpdateStatus(false);
+  const openUpdate = (id) => {
+    setUpdateStatus(true);
+    setCurrentTopic(dummyStudies[id - 1].topic);
+    setCurrentTechId(dummyStudies[id - 1].technology_id);
   };
 
   return (
     <>
       <div className="flex justify-center m-4 font-qs">
         <div className="w-[90%]">
+
+          {/* Add Study Section */}
           {addStatus
             ? (
               <div id="Add Study Form" className="fixed top-0 left-0 z-10 flex items-center justify-center w-screen h-screen bg-black/25">
@@ -83,6 +88,8 @@ const Ongoing = ({ studies }) => {
               </div>
             )
             : <div />}
+
+          {/* Update Study Section */}
           {updateStatus
             ? (
               <div id="Update Study Form" className="fixed top-0 left-0 z-10 flex items-center justify-center w-screen h-screen bg-black/25">
@@ -90,17 +97,14 @@ const Ongoing = ({ studies }) => {
                   <button className="float-right" onClick={() => setUpdateStatus(false)} type="button">
                     <img src={close} alt="close the popup" />
                   </button>
-                  {/* <span className="float-right">x</span> */}
                   <div className="mb-4 text-lg font-bold text-center">Congratulations for Completion!</div>
                   <label htmlFor="topic">
                     <div>Topic:</div>
-                    <textarea id="topic" className="text-white input" type="text" placeholder="Topic" onChange={(e) => setTopic(e.target.value)} />
+                    <textarea disabled id="topic" className="text-gray-200 bg-gray-700 input" type="text" placeholder="Topic" value={currentTopic} />
                   </label>
                   <label htmlFor="technology">
                     <div>Technology:</div>
-                    <select id="technology" className="text-white input" onChange={(e) => setTechId(e.target.value)}>
-                      {techs.map((tech) => (<option value={tech.id} key={tech.id}>{tech.name}</option>))}
-                    </select>
+                    <input disabled id="topic" className="text-gray-200 bg-gray-700 input" type="number" placeholder="Topic" value={currentTechId} />
                   </label>
                   <label htmlFor="experience">
                     <div>Experience:</div>
@@ -112,43 +116,33 @@ const Ongoing = ({ studies }) => {
                   </label>
                   <br />
                   <div className="flex justify-center">
-                    <button type="button" className="btn" onClick={handleUpdate}>Complete</button>
+                    <button type="button" className="btn" onClick={() => updateStudyHandle()}>Complete</button>
                   </div>
                 </div>
               </div>
             )
             : <div />}
           <button type="button" className="mb-4 btn" onClick={() => setAddStatus(true)}>Add a New Study</button>
-          {
-            techs.map((tech) => (<div key={tech.id}>{tech.name}</div>))
-          }
-          {
-            studies.map((study) => (<div key={study.id}>{study.topic}</div>))
-          }
-          {/* <div className="w-[35%] flex justify-between">
-            <input type="text" className="mr-4 placeholder-btn input bg-bg" placeholder="Add a New Tech to Learn" />
-            <button type="button" className="btn">Add</button>
-          </div>
-          <div className="flex justify-between items-center w-[35%]">
-            <select className="h-8 px-2 py-0 rounded-md bg-box">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr>
+                <th className="w-[20%] bg-box py-2 border border-slate-500">Tech</th>
+                <th className="w-[60%] bg-box py-2 border border-slate-500">Topic</th>
+                <th className="w-[20%] bg-box py-2 border border-slate-500">Action</th>
+              </tr>
+            </thead>
+            <tbody>
               {
-                techs.map((tech) => <option value={tech.name} key={tech.id}>{tech.name}</option>)
+                studies.map((study) => (
+                  <tr key={study.id} className="even:bg-blue-100 odd:bg-green-100">
+                    <td className="py-2 text-center border rounded-lg border-slate-300">{study.technology.name}</td>
+                    <td className="py-2 text-center border rounded-lg border-slate-300">{study.topic}</td>
+                    <td className="py-2 text-center border rounded-lg border-slate-300"><button type="button" className="btn" onClick={() => openUpdate(study.id)}>Complete</button></td>
+                  </tr>
+                ))
               }
-            </select>
-            <input type="text" className="input bg-bg placeholder-btn" placeholder="Add a New Topic to Learn" />
-            <button type="button" className="btn">Add</button>
-          </div>
-          {
-            studies.map((study) => (
-              <div key={study.technology_id} className="flex items-center justify-between p-2 mb-2 rounded-md bg-box">
-                <div>
-                  {study.technology.name}
-                </div>
-                <input type="number" placeholder=" ___ Hours" className="p-2 text-center rounded-md" />
-                <button type="button" className="btn">Complete</button>
-              </div>
-            ))
-          } */}
+            </tbody>
+          </table>
         </div>
       </div>
     </>
@@ -159,7 +153,7 @@ Ongoing.propTypes = {
   studies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      tech: PropTypes.string.isRequired,
+      technology_id: PropTypes.number.isRequired,
       topic: PropTypes.string.isRequired,
       hour: PropTypes.number.isRequired,
     }),
