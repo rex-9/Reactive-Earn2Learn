@@ -92,7 +92,7 @@ const Register = () => {
     navigate('/');
   };
 
-  const onSubmit = () => {
+  const handleSubmit = () => {
     validate();
     if (success) {
       register();
@@ -107,7 +107,8 @@ const Register = () => {
         <p ref={errRef} className={errMsg ? 'bg-red-500' : 'bg-blue-300'} aria-live="assertive">{errMsg}</p>
         <div className="flex flex-col items-center my-8">
           <div className="header">Register</div>
-          <form>
+
+          <form onSubmit={handleSubmit}>
             <label htmlFor="username">
               Username:
               <span className={validUsername ? 'inline ml-4 text-green-500' : 'hidden'}>
@@ -238,21 +239,23 @@ const Register = () => {
               </p>
             </label>
             <br />
+
             <input type="checkbox" className="checkbox" />
             <span>Remember me</span>
             {' '}
             <br />
+
             <div className="flex justify-center w-full my-2">
               <button
                 type="button"
                 disabled={!!(!validUsername || !validPassword || !validConfirm)}
-                className="btn hover:shadow-gray-600"
-                onClick={onSubmit}
+                className="btn hover:shadow-gray-600 disabled:opacity-60 disabled:bg-btn disabled:shadow-none"
               >
                 Register
               </button>
             </div>
           </form>
+
           <div className="flex items-center justify-center">
             <Link to="/login" className="link">Log in</Link>
             <div className="vertical-line" />
