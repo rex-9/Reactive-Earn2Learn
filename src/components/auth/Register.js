@@ -4,9 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { addLearner } from '../../redux/reducers/learnerXer';
-
-const USERNAME_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{2,24}$/;
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,}$/;
+import { USERNAME_REGEX, PASSWORD_REGEX } from './auth_service';
 
 const Register = () => {
   const usernameRef = useRef();
@@ -29,7 +27,7 @@ const Register = () => {
   const [focusConfirm, setFocusConfirm] = useState(false);
 
   const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
   const [fullname, setFullname] = useState('');
   const [city, setCity] = useState('');
   const [birthdate, setBirthdate] = useState('');
@@ -60,17 +58,17 @@ const Register = () => {
     setErrMsg('');
   }, [username, password, confirmPassword]);
 
-  const validate = () => {
-    if (!fullname || !username || !city || !birthdate || !phone || !email || !password || !confirmPassword) {
-      alert('You must fill all fields in the form');
-      setSuccess(false);
-    } else if (password !== confirmPassword) {
-      alert('Password does not match');
-      setSuccess(false);
-    } else {
-      setSuccess(true);
-    }
-  };
+  // const validate = () => {
+  //   if (!fullname || !username || !city || !birthdate || !phone || !email || !password || !confirmPassword) {
+  //     alert('You must fill all fields in the form');
+  //     setSuccess(false);
+  //   } else if (password !== confirmPassword) {
+  //     alert('Password does not match');
+  //     setSuccess(false);
+  //   } else {
+  //     setSuccess(true);
+  //   }
+  // };
 
   const register = () => {
     const newLearner = {
@@ -93,12 +91,12 @@ const Register = () => {
   };
 
   const handleSubmit = () => {
-    validate();
-    if (success) {
-      register();
-    } else {
-      alert('Validation Failed. Not gonna proceed to registration.');
-    }
+    // validate();
+    // if (success) {
+    register();
+    // } else {
+    //   alert('Validation Failed. Not gonna proceed to registration.');
+    // }
   };
 
   return (
@@ -194,12 +192,16 @@ const Register = () => {
                 aria-invalid={validPassword ? 'false' : 'true'}
                 aria-describedby="pwdnote"
               />
-              <p id="pwdnote" className={focusPassword && !validPassword ? 'block' : 'hidden'}>
+              <p id="pwdnote" className={focusPassword && password && !validPassword ? 'block' : 'hidden'}>
                 <FontAwesomeIcon icon={faInfoCircle} />
                 Minimum of 8 characters,
                 {' '}
                 <br />
-                Must include Uppercase and Lowercase letters, a Number and a Special Character
+                Must include Uppercase and Lowercase letters,
+                {' '}
+                <br />
+                {' '}
+                a Number and a Special Character
                 {' '}
                 <br />
                 Allowed special characters:
@@ -248,7 +250,7 @@ const Register = () => {
             <div className="flex justify-center w-full my-2">
               <button
                 type="button"
-                disabled={!!(!validUsername || !validPassword || !validConfirm)}
+                disabled={!!(!validUsername || !validPassword || !validConfirm || !fullname || !city || !birthdate || !phone || !email)}
                 className="btn hover:shadow-gray-600 disabled:opacity-60 disabled:bg-btn disabled:shadow-none"
               >
                 Register
