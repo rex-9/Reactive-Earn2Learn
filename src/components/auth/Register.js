@@ -113,7 +113,7 @@ const Register = () => {
               <span className={validUsername ? 'inline ml-4 text-green-500' : 'hidden'}>
                 <FontAwesomeIcon icon={faCheck} />
               </span>
-              <span className={validUsername || !username ? 'inline ml-4 text-red-500' : 'hidden'}>
+              <span className={!validUsername && username ? 'inline ml-4 text-red-500' : 'hidden'}>
                 <FontAwesomeIcon icon={faTimes} />
               </span>
               <br />
@@ -177,7 +177,7 @@ const Register = () => {
               <span className={validPassword ? 'inline ml-4 text-green-500' : 'hidden'}>
                 <FontAwesomeIcon icon={faCheck} />
               </span>
-              <span className={validPassword || !password ? 'inline ml-4 text-red-500' : 'hidden'}>
+              <span className={!validPassword && password ? 'inline ml-4 text-red-500' : 'hidden'}>
                 <FontAwesomeIcon icon={faTimes} />
               </span>
               <br />
@@ -213,10 +213,10 @@ const Register = () => {
 
             <label htmlFor="confirm_password">
               Confirm Password:
-              <span className={validConfirm ? 'inline ml-4 text-green-500' : 'hidden'}>
+              <span className={validConfirm && confirmPassword ? 'inline ml-4 text-green-500' : 'hidden'}>
                 <FontAwesomeIcon icon={faCheck} />
               </span>
-              <span className={validConfirm || !confirmPassword ? 'inline ml-4 text-red-500' : 'hidden'}>
+              <span className={!validConfirm && confirmPassword ? 'inline ml-4 text-red-500' : 'hidden'}>
                 <FontAwesomeIcon icon={faTimes} />
               </span>
               <br />
