@@ -1,18 +1,22 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+// import { useSelector, useDispatch } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { addLearner } from '../../redux/reducers/learnerXer';
+import axios from '../../api/axios';
+import { SetCookie, RemoveCookie } from '../services/Cookie';
+
+// import { addLearner } from '../../redux/reducers/learnerXer';
 import { USERNAME_REGEX, PASSWORD_REGEX } from './auth_service';
+
+const REGISTER_ENDPOINT = 'users/';
 
 const Register = () => {
   const usernameRef = useRef();
   const errRef = useRef();
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const learners = useSelector((state) => state.learners);
+  // const navigate = useNavigate(); // react-router-dom v6
+  // const dispatch = useDispatch(); // redux
 
   const [username, setUsername] = useState('');
   const [validUsername, setValidUsername] = useState(false);
@@ -26,8 +30,7 @@ const Register = () => {
   const [validConfirm, setValidConfirm] = useState(false);
   const [focusConfirm, setFocusConfirm] = useState(false);
 
-  const [errMsg, setErrMsg] = useState('');
-  // const [success, setSuccess] = useState(false);
+  const [errMsges, setErrMsges] = useState([]);
   const [fullname, setFullname] = useState('');
   const [city, setCity] = useState('');
   const [birthdate, setBirthdate] = useState('');
@@ -40,39 +43,35 @@ const Register = () => {
 
   useEffect(() => {
     const result = USERNAME_REGEX.test(username);
-    console.log(result);
-    console.log(username);
     setValidUsername(result);
   }, [username]);
 
   useEffect(() => {
     const result = PASSWORD_REGEX.test(password);
-    console.log(result);
-    console.log(password);
     setValidPassword(result);
     const match = password === confirmPassword;
     setValidConfirm(match);
   }, [password, confirmPassword]);
 
   useEffect(() => {
-    setErrMsg('');
+    setErrMsges('');
   }, [username, password, confirmPassword]);
 
-  // const validate = () => {
-  //   if (!fullname || !username || !city || !birthdate || !phone || !email || !password || !confirmPassword) {
-  //     alert('You must fill all fields in the form');
-  //     setSuccess(false);
-  //   } else if (password !== confirmPassword) {
-  //     alert('Password does not match');
-  //     setSuccess(false);
-  //   } else {
-  //     setSuccess(true);
-  //   }
+  // const register = () => {
+  // dispatch(addLearner(newLearner));
+  // navigate('/');
   // };
 
-  const register = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const v1 = USERNAME_REGEX.test(username);
+    const v2 = PASSWORD_REGEX.test(password);
+    if (!v1 || !v2) {
+      setErrMsges("Username or password doesn't match the requirement");
+      return;
+    }
+
     const newLearner = {
-      id: learners.length,
       fullname,
       username,
       city,
@@ -80,33 +79,32 @@ const Register = () => {
       phone,
       email,
       password,
-      role: 'learner',
-      image: null,
-      bio: null,
-      linkedin: null,
-      github: null,
     };
-    dispatch(addLearner(newLearner));
-    navigate('/');
-  };
-
-  const handleSubmit = () => {
-    // validate();
-    // if (success) {
-    register();
-    // } else {
-    //   alert('Validation Failed. Not gonna proceed to registration.');
-    // }
+    try {
+      const response = await axios.post(
+        REGISTER_ENDPOINT,
+        JSON.stringify(newLearner),
+        {
+          headers: { 'Content-Type': 'application/json' },
+        },
+      );
+      RemoveCookie('token');
+      SetCookie('token', JSON.stringify(response.token));
+      console.log(response.data.token);
+      // register();
+    } catch (e) {
+      setErrMsges(e.response.data);
+    }
   };
 
   return (
     <>
       <section className="flex justify-center pt-12 text-white h-fit bg-dark">
-        <p ref={errRef} className={errMsg ? 'bg-red-500' : 'bg-blue-300'} aria-live="assertive">{errMsg}</p>
         <div className="flex flex-col items-center my-8">
+
           <div className="header">Register</div>
 
-          <form onSubmit={handleSubmit}>
+          <form>
             <label htmlFor="username">
               Username:
               <span className={validUsername ? 'inline ml-4 text-green-500' : 'hidden'}>
@@ -252,11 +250,16 @@ const Register = () => {
                 type="button"
                 disabled={!!(!validUsername || !validPassword || !validConfirm || !fullname || !city || !birthdate || !phone || !email)}
                 className="btn hover:shadow-gray-600 disabled:opacity-60 disabled:bg-btn disabled:shadow-none"
+                onClick={handleSubmit}
               >
                 Register
               </button>
             </div>
           </form>
+
+          {
+            errMsges ? errMsges.map((msg) => <p key={msg} ref={errRef} className={msg ? 'text-red-400' : 'bg-blue-300'} aria-live="assertive">{msg}</p>) : <div />
+          }
 
           <div className="flex items-center justify-center">
             <Link to="/login" className="link">Log in</Link>

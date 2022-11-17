@@ -9,7 +9,7 @@ const initialState = [
     topic: 'Redux',
     experience: 'Fall in love with Redux',
     hours_taken: 3,
-    completed: false,
+    completed: true,
     user: {
       id: 1,
       username: 'Rex',
@@ -31,7 +31,7 @@ const initialState = [
     topic: 'Ruby On Rails',
     experience: null,
     hours_taken: 0,
-    completed: false,
+    completed: true,
     user: {
       id: 2,
       username: 'SaSa',
