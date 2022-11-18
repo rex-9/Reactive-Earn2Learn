@@ -1,14 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { GetCookie, RemoveCookie } from './services/Cookie';
 import avatar from '../assets/avatar.jpg';
 
 const HomeNav = () => {
+  const navigate = useNavigate();
   let user = GetCookie('user');
-  user = JSON.parse(user);
-  console.log(`user: ${user}`);
+  if (user) {
+    user = JSON.parse(user);
+  }
   const logout = () => {
     RemoveCookie('user');
     RemoveCookie('token');
+    navigate('/login');
   };
 
   return (

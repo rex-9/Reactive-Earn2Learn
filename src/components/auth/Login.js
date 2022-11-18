@@ -1,42 +1,34 @@
 import { useRef, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from '../../api/axios';
-import { SetCookie, RemoveCookie } from '../services/Cookie';
+
+import { loginLearner } from '../../redux/reducers/learnerXer';
+import { GetCookie, RemoveCookie } from '../services/Cookie';
 
 const Login = () => {
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
   const emailRef = useRef();
   const formRef = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [err, setErr] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    RemoveCookie('error');
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const auth = { email, password };
-    try {
-      const response = await axios.post(
-        'users/login',
-        JSON.stringify(auth),
-        {
-          headers: { 'Content-Type': 'application/json' },
-        },
-      );
-      const { token, user } = response.data;
-      RemoveCookie('token');
-      SetCookie('token', token);
-      SetCookie('user', JSON.stringify(user));
-      navigate('/');
-    } catch (error) {
-      if (error.response) {
-        const err = error.response.data.error;
-        setErr(err);
-        formRef.current?.reset();
-      } else {
-        setErr('Check your connection');
-      }
-    }
+    dispatch(loginLearner(auth));
+    await delay(300);
+    const cookErr = GetCookie('error');
+    if (cookErr !== undefined) setErr(cookErr);
+    else navigate('/');
   };
 
   useEffect(() => {

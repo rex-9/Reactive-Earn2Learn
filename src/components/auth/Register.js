@@ -1,22 +1,20 @@
-// import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import axios from '../../api/axios';
-import { SetCookie, RemoveCookie } from '../services/Cookie';
 
-// import { addLearner } from '../../redux/reducers/learnerXer';
+import { addLearner } from '../../redux/reducers/learnerXer';
 import { USERNAME_REGEX, PASSWORD_REGEX } from './auth_service';
 
-const REGISTER_ENDPOINT = 'users/';
+// const REGISTER_ENDPOINT = 'users/';
 
 const Register = () => {
   const usernameRef = useRef();
   const errRef = useRef();
 
-  const navigate = useNavigate(); // react-router-dom v6
-  // const dispatch = useDispatch(); // redux
+  // const navigate = useNavigate(); // react-router-dom v6
+  const dispatch = useDispatch(); // redux
 
   const [username, setUsername] = useState('');
   const [validUsername, setValidUsername] = useState(false);
@@ -76,18 +74,19 @@ const Register = () => {
       password,
     };
     try {
-      const response = await axios.post(
-        REGISTER_ENDPOINT,
-        JSON.stringify(newLearner),
-        {
-          headers: { 'Content-Type': 'application/json' },
-        },
-      );
-      const { token, user } = response.data;
-      RemoveCookie('token');
-      SetCookie('token', token);
-      SetCookie('user', JSON.stringify(user));
-      navigate('/');
+      // const response = await axios.post(
+      //   REGISTER_ENDPOINT,
+      //   JSON.stringify(newLearner),
+      //   {
+      //     headers: { 'Content-Type': 'application/json' },
+      //   },
+      // );
+      // const { token, user } = response.data;
+      // RemoveCookie('token');
+      // SetCookie('token', token);
+      // SetCookie('user', JSON.stringify(user));
+      dispatch(addLearner(newLearner));
+      // navigate('/');
     } catch (error) {
       if (error.response) {
         const err = error.response.data.error;
