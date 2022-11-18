@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Provider } from 'react-redux'; // Import Provider which is a component that wraps the entire app from React-Redux
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>,
 );

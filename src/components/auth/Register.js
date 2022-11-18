@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import axios from '../../api/axios';
@@ -15,7 +15,7 @@ const Register = () => {
   const usernameRef = useRef();
   const errRef = useRef();
 
-  // const navigate = useNavigate(); // react-router-dom v6
+  const navigate = useNavigate(); // react-router-dom v6
   // const dispatch = useDispatch(); // redux
 
   const [username, setUsername] = useState('');
@@ -57,11 +57,6 @@ const Register = () => {
     setErrMsges('');
   }, [username, password, confirmPassword]);
 
-  // const register = () => {
-  // dispatch(addLearner(newLearner));
-  // navigate('/');
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const v1 = USERNAME_REGEX.test(username);
@@ -88,12 +83,18 @@ const Register = () => {
           headers: { 'Content-Type': 'application/json' },
         },
       );
+      const { token, user } = response.data;
       RemoveCookie('token');
-      SetCookie('token', JSON.stringify(response.token));
-      console.log(response.data.token);
-      // register();
-    } catch (e) {
-      setErrMsges(e.response.data);
+      SetCookie('token', token);
+      SetCookie('user', JSON.stringify(user));
+      navigate('/');
+    } catch (error) {
+      if (error.response) {
+        const err = error.response.data.error;
+        setErrMsges(err);
+      } else {
+        setErrMsges('Check your Internet Connection');
+      }
     }
   };
 
@@ -145,27 +146,57 @@ const Register = () => {
 
             <label htmlFor="fullname">
               <div>Full Name:</div>
-              <input type="text" className="mt-2 mb-4 input" placeholder="E.g. Htet Naing" onChange={(e) => setFullname(e.target.value)} id="fullname" />
+              <input
+                type="text"
+                className="mt-2 mb-4 input"
+                placeholder="E.g. Htet Naing"
+                onChange={(e) => setFullname(e.target.value)}
+                id="fullname"
+              />
             </label>
 
             <label htmlFor="email">
               <div>Email:</div>
-              <input type="email" className="mt-2 mb-4 input" placeholder="E.g. htetnaing0814@gmail.com" onChange={(e) => setEmail(e.target.value)} id="fullname" />
+              <input
+                type="email"
+                className="mt-2 mb-4 input"
+                placeholder="E.g. htetnaing0814@gmail.com"
+                onChange={(e) => setEmail(e.target.value)}
+                id="fullname"
+              />
             </label>
 
             <label htmlFor="birthdate">
               <div>Birthdate:</div>
-              <input type="text" className="mt-2 mb-4 input" placeholder="E.g. 2000-18-03" onChange={(e) => setBirthdate(e.target.value)} id="age" />
+              <input
+                type="text"
+                className="mt-2 mb-4 input"
+                placeholder="E.g. 2000-18-03"
+                onChange={(e) => setBirthdate(e.target.value)}
+                id="age"
+              />
             </label>
 
             <label htmlFor="city">
               <div>City:</div>
-              <input type="text" className="mt-2 mb-4 input" placeholder="E.g. Yangon" onChange={(e) => setCity(e.target.value)} id="city" />
+              <input
+                type="text"
+                className="mt-2 mb-4 input"
+                placeholder="E.g. Yangon"
+                onChange={(e) => setCity(e.target.value)}
+                id="city"
+              />
             </label>
 
             <label htmlFor="phone">
               <div>Phone:</div>
-              <input type="text" className="mt-2 mb-4 input" placeholder="E.g. +959443112251" onChange={(e) => setPhone(e.target.value)} id="phone" />
+              <input
+                type="text"
+                className="mt-2 mb-4 input"
+                placeholder="E.g. +959443112251"
+                onChange={(e) => setPhone(e.target.value)}
+                id="phone"
+              />
             </label>
             <br />
 

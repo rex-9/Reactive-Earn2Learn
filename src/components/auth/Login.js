@@ -1,10 +1,12 @@
 import { useRef, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
+import { SetCookie, RemoveCookie } from '../services/Cookie';
 
 const Login = () => {
   const emailRef = useRef();
   const formRef = useRef();
+  const navigate = useNavigate();
 
   const [err, setErr] = useState('');
   const [email, setEmail] = useState('');
@@ -21,11 +23,19 @@ const Login = () => {
           headers: { 'Content-Type': 'application/json' },
         },
       );
-      console.log(response);
+      const { token, user } = response.data;
+      RemoveCookie('token');
+      SetCookie('token', token);
+      SetCookie('user', JSON.stringify(user));
+      navigate('/');
     } catch (error) {
-      const err = error.response.data.error;
-      setErr(err);
-      formRef.current?.reset();
+      if (error.response) {
+        const err = error.response.data.error;
+        setErr(err);
+        formRef.current?.reset();
+      } else {
+        setErr('Check your connection');
+      }
     }
   };
 
