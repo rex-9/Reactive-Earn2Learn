@@ -1,62 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { login, getWithToken } from '../../api/axios';
-import { SetCookie, RemoveCookie } from '../../components/services/Cookie';
+import { auth, getWithToken } from '../../api/axios';
 
 const LEARNERS_ENDPOINT = 'users/';
+const LOGIN_ENDPOINT = 'users/login';
 
 const LOGIN_LEARNER = 'e2l-fe/learners/LOGIN_LEARNERS';
 const FETCH_LEARNERS = 'e2l-fe/learners/FETCH_LEARNERS';
 const ADD_LEARNER = 'e2l-fe/learners/ADD_LEARNER';
 const UPDATE_LEARNER = 'e2l-fe/learners/UPDATE_LEARNER';
 const DELETE_LEARNER = 'e2l-fe/learners/DELETE_LEARNER';
-
-// const initialState = [
-//   {
-//     id: 1,
-//     username: 'Rex',
-//     fullname: 'Htet Naing',
-//     image: 'https://static.zerochan.net/Dante.full.2952055.jpg',
-//     bio: "I'm a web developer",
-//     city: 'Yangon',
-//     birthdate: '1990-01-01',
-//     phone: '+959443112251',
-//     role: 'admin',
-//     email: 'htetnaing0814@gmail.com',
-//     password: 'P@ssw0rd',
-//     github: 'https://github.com/rex-9',
-//     linkedin: 'https://www.linkedin.com/in/rex-9',
-//   },
-//   {
-//     id: 2,
-//     username: 'Jerry',
-//     fullname: 'Sai La Min Oak',
-//     image: null,
-//     bio: null,
-//     city: 'Mandalay',
-//     birthdate: '1990-01-01',
-//     phone: '+959443112251',
-//     role: 'learner',
-//     email: 'jerry@gmail.com',
-//     password: 'P@ssw0rd',
-//     github: null,
-//     linkedin: null,
-//   },
-//   {
-//     id: 3,
-//     username: 'SwanHtet18',
-//     fullname: 'Swan Htet',
-//     image: 'https://static.zerochan.net/Dante.full.2952055.jpg',
-//     bio: 'I am UI designer',
-//     city: 'Pyin Oo Lwin',
-//     birthdate: '1990-01-01',
-//     phone: '+959443112251',
-//     role: 'learner',
-//     email: 'SwanHtet18@gmail.com',
-//     password: 'P@ssw0rd',
-//     github: 'https://github.com/Swanhtet18',
-//     linkedin: 'https://www.linkedin.com/in/Swanhtet18',
-//   },
-// ];
 
 const learnerXer = (state = [], action) => {
   switch (action.type) {
@@ -66,7 +18,7 @@ const learnerXer = (state = [], action) => {
     case `${LOGIN_LEARNER}/fulfilled`:
       return state;
 
-    case ADD_LEARNER:
+    case `${ADD_LEARNER}/fulfilled`:
       return [...state, action.payload];
 
     case UPDATE_LEARNER:
@@ -81,31 +33,16 @@ const learnerXer = (state = [], action) => {
   }
 };
 
-const loginLearner = createAsyncThunk(LOGIN_LEARNER, async (auth) => {
-  await login('users/login', auth);
+const loginLearner = createAsyncThunk(LOGIN_LEARNER, async (credentials) => {
+  await auth(LOGIN_ENDPOINT, credentials);
 });
 
 const addLearner = createAsyncThunk(ADD_LEARNER, async (newLearner) => {
-  console.log(`lelelelelel ${newLearner}`);
-  const response = await axios.post(
-    LEARNERS_ENDPOINT,
-    newLearner,
-    {
-      headers: { 'Content-Type': 'application/json' },
-    },
-  );
-  console.log('Posted learner');
-  const { token, user } = response.data;
-  RemoveCookie('token');
-  SetCookie('token', token);
-  SetCookie('user', JSON.stringify(user));
-  console.log(`token: ${token} user: ${user}`);
+  await auth(LEARNERS_ENDPOINT, newLearner);
 });
 
 const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
-  console.log('before axios');
   const response = await getWithToken(LEARNERS_ENDPOINT);
-  console.log('Response', response.data);
   return response.data;
 });
 

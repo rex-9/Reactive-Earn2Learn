@@ -16,4 +16,52 @@ const studies = [{
   technology_id: 1,
 }];
 
+// const initialState = [
+//   {
+//     id: 1,
+//     username: 'Rex',
+//     fullname: 'Htet Naing',
+//     image: 'https://static.zerochan.net/Dante.full.2952055.jpg',
+//     bio: "I'm a web developer",
+//     city: 'Yangon',
+//     birthdate: '1990-01-01',
+//     phone: '+959443112251',
+//     role: 'admin',
+//     email: 'htetnaing0814@gmail.com',
+//     password: 'P@ssw0rd',
+//     github: 'https://github.com/rex-9',
+//     linkedin: 'https://www.linkedin.com/in/rex-9',
+//   },
+//   {
+//     id: 2,
+//     username: 'Jerry',
+//     fullname: 'Sai La Min Oak',
+//     image: null,
+//     bio: null,
+//     city: 'Mandalay',
+//     birthdate: '1990-01-01',
+//     phone: '+959443112251',
+//     role: 'learner',
+//     email: 'jerry@gmail.com',
+//     password: 'P@ssw0rd',
+//     github: null,
+//     linkedin: null,
+//   },
+//   {
+//     id: 3,
+//     username: 'SwanHtet18',
+//     fullname: 'Swan Htet',
+//     image: 'https://static.zerochan.net/Dante.full.2952055.jpg',
+//     bio: 'I am UI designer',
+//     city: 'Pyin Oo Lwin',
+//     birthdate: '1990-01-01',
+//     phone: '+959443112251',
+//     role: 'learner',
+//     email: 'SwanHtet18@gmail.com',
+//     password: 'P@ssw0rd',
+//     github: 'https://github.com/Swanhtet18',
+//     linkedin: 'https://www.linkedin.com/in/Swanhtet18',
+//   },
+// ];
+
 export default studies;

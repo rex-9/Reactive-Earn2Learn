@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { GetCookie, SetCookie, RemoveCookie } from '../components/services/Cookie';
 
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
 const baseURL = 'http://127.0.0.1:3000/';
 
-const login = (ep, auth) => axios.post(
+const auth = (ep, auth) => axios.post(
   `${baseURL}${ep}`,
   JSON.stringify(auth),
   {
@@ -39,4 +41,4 @@ const getWithToken = (ep) => axios.get(
   }
 });
 
-export { login, getWithToken };
+export { delay, auth, getWithToken };

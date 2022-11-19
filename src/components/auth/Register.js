@@ -1,19 +1,18 @@
 import { useDispatch } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { addLearner } from '../../redux/reducers/learnerXer';
 import { USERNAME_REGEX, PASSWORD_REGEX } from './auth_service';
-
-// const REGISTER_ENDPOINT = 'users/';
+import { GetCookie, RemoveCookie } from '../services/Cookie';
+import { delay } from '../../api/axios';
 
 const Register = () => {
   const usernameRef = useRef();
-  const errRef = useRef();
 
-  // const navigate = useNavigate(); // react-router-dom v6
+  const navigate = useNavigate(); // react-router-dom v6
   const dispatch = useDispatch(); // redux
 
   const [username, setUsername] = useState('');
@@ -28,7 +27,7 @@ const Register = () => {
   const [validConfirm, setValidConfirm] = useState(false);
   const [focusConfirm, setFocusConfirm] = useState(false);
 
-  const [errMsges, setErrMsges] = useState([]);
+  const [errMsges, setErrMsges] = useState(null);
   const [fullname, setFullname] = useState('');
   const [city, setCity] = useState('');
   const [birthdate, setBirthdate] = useState('');
@@ -60,7 +59,7 @@ const Register = () => {
     const v1 = USERNAME_REGEX.test(username);
     const v2 = PASSWORD_REGEX.test(password);
     if (!v1 || !v2) {
-      setErrMsges("Username or password doesn't match the requirement");
+      setErrMsges("Username or Password doesn't match the requirement");
       return;
     }
 
@@ -73,27 +72,15 @@ const Register = () => {
       email,
       password,
     };
-    try {
-      // const response = await axios.post(
-      //   REGISTER_ENDPOINT,
-      //   JSON.stringify(newLearner),
-      //   {
-      //     headers: { 'Content-Type': 'application/json' },
-      //   },
-      // );
-      // const { token, user } = response.data;
-      // RemoveCookie('token');
-      // SetCookie('token', token);
-      // SetCookie('user', JSON.stringify(user));
-      dispatch(addLearner(newLearner));
-      // navigate('/');
-    } catch (error) {
-      if (error.response) {
-        const err = error.response.data.error;
-        setErrMsges(err);
-      } else {
-        setErrMsges('Check your Internet Connection');
-      }
+    dispatch(addLearner(newLearner));
+    await delay(300);
+    const cookErr = GetCookie('error');
+    if (cookErr !== undefined) {
+      setErrMsges(cookErr);
+      console.log(errMsges.split(',').map((err) => console.log('err', err)));
+    } else {
+      navigate('/');
+      RemoveCookie('error');
     }
   };
 
@@ -287,8 +274,9 @@ const Register = () => {
             </div>
           </form>
 
+          {/* <div className="text-red-400" aria-live="assertive">{ Array.isArray(errMsges) }</div> */}
           {
-            errMsges ? errMsges.map((msg) => <p key={msg} ref={errRef} className={msg ? 'text-red-400' : 'bg-blue-300'} aria-live="assertive">{msg}</p>) : <div />
+            errMsges ? errMsges.split(',').map((msg) => <p key={msg} className="text-red-400" aria-live="assertive">{msg}</p>) : <div />
           }
 
           <div className="flex items-center justify-center">

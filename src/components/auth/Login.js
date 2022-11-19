@@ -4,10 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { loginLearner } from '../../redux/reducers/learnerXer';
 import { GetCookie, RemoveCookie } from '../services/Cookie';
+import { delay } from '../../api/axios';
 
 const Login = () => {
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
   const emailRef = useRef();
   const formRef = useRef();
   const navigate = useNavigate();
@@ -28,7 +27,10 @@ const Login = () => {
     await delay(300);
     const cookErr = GetCookie('error');
     if (cookErr !== undefined) setErr(cookErr);
-    else navigate('/');
+    else {
+      navigate('/');
+      RemoveCookie('error');
+    }
   };
 
   useEffect(() => {
