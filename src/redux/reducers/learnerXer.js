@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../api/axios';
+import { login, getWithToken } from '../../api/axios';
 import { SetCookie, RemoveCookie } from '../../components/services/Cookie';
 
-const REGISTER_ENDPOINT = 'users/';
+const LEARNERS_ENDPOINT = 'users/';
 
 const LOGIN_LEARNER = 'e2l-fe/learners/LOGIN_LEARNERS';
 const FETCH_LEARNERS = 'e2l-fe/learners/FETCH_LEARNERS';
@@ -60,7 +60,7 @@ const DELETE_LEARNER = 'e2l-fe/learners/DELETE_LEARNER';
 
 const learnerXer = (state = [], action) => {
   switch (action.type) {
-    case FETCH_LEARNERS:
+    case `${FETCH_LEARNERS}/fulfilled`:
       return [...action.payload];
 
     case `${LOGIN_LEARNER}/fulfilled`:
@@ -82,32 +82,13 @@ const learnerXer = (state = [], action) => {
 };
 
 const loginLearner = createAsyncThunk(LOGIN_LEARNER, async (auth) => {
-  // try {
-  await axios.post(
-    'users/login',
-    JSON.stringify(auth),
-    {
-      headers: { 'Content-Type': 'application/json' },
-    },
-  ).then((response) => {
-    const { token, user } = response.data;
-    RemoveCookie('token');
-    RemoveCookie('error');
-    SetCookie('token', token);
-    SetCookie('user', JSON.stringify(user));
-  }).catch((error) => {
-    if (error.response) {
-      SetCookie('error', error.response.data.error);
-    } else {
-      SetCookie('error', 'Check Your Connection');
-    }
-  });
+  await login('users/login', auth);
 });
 
 const addLearner = createAsyncThunk(ADD_LEARNER, async (newLearner) => {
   console.log(`lelelelelel ${newLearner}`);
   const response = await axios.post(
-    REGISTER_ENDPOINT,
+    LEARNERS_ENDPOINT,
     newLearner,
     {
       headers: { 'Content-Type': 'application/json' },
@@ -121,10 +102,12 @@ const addLearner = createAsyncThunk(ADD_LEARNER, async (newLearner) => {
   console.log(`token: ${token} user: ${user}`);
 });
 
-// const addLearner = (learner) => ({
-//   type: ADD_LEARNER,
-//   payload: learner,
-// });
+const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
+  console.log('before axios');
+  const response = await getWithToken(LEARNERS_ENDPOINT);
+  console.log('Response', response.data);
+  return response.data;
+});
 
 const updateLearner = (learner) => ({
   type: UPDATE_LEARNER,
@@ -138,5 +121,5 @@ const deleteLearner = (id) => ({
 
 export default learnerXer;
 export {
-  loginLearner, addLearner, updateLearner, deleteLearner,
+  loginLearner, addLearner, fetchLearners, updateLearner, deleteLearner,
 };

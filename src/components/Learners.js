@@ -1,6 +1,8 @@
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { fetchLearners } from '../redux/reducers/learnerXer';
 import avatar from '../assets/avatar.jpg';
 import github from '../assets/github.svg';
 import linkedin from '../assets/linkedin.svg';
@@ -8,6 +10,11 @@ import linkedin from '../assets/linkedin.svg';
 const Learners = () => {
   const learners = useSelector((state) => state.learners);
   const professions = useSelector((state) => state.professions);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchLearners());
+  }, []);
 
   return (
     <div className="flex flex-wrap justify-center h-screen bg-bg">
