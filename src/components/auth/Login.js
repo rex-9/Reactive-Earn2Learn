@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { loginLearner } from '../../redux/reducers/learnerXer';
 import { GetCookie, RemoveCookie } from '../services/Cookie';
@@ -9,16 +9,11 @@ import { delay } from '../../api/axios';
 const Login = () => {
   const emailRef = useRef();
   const formRef = useRef();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [err, setErr] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  useEffect(() => {
-    RemoveCookie('error');
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,13 +24,12 @@ const Login = () => {
     if (cookErr) setErr(cookErr);
     else {
       RemoveCookie('error');
-      console.log('before navigate');
-      navigate('/');
-      console.log('after navigate');
+      window.location.reload();
     }
   };
 
   useEffect(() => {
+    RemoveCookie('error');
     emailRef.current.focus();
   }, []);
 

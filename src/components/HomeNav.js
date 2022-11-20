@@ -1,10 +1,8 @@
-import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { GetCookie, RemoveCookie } from './services/Cookie';
 import avatar from '../assets/avatar.jpg';
 
 const HomeNav = () => {
-  const navigate = useNavigate();
   let user = GetCookie('user');
   if (user) {
     user = JSON.parse(user);
@@ -12,14 +10,8 @@ const HomeNav = () => {
   const logout = () => {
     RemoveCookie('user');
     RemoveCookie('token');
-    console.log('before logout navigate');
-    navigate('/login');
-    console.log('after logout navigate');
+    window.location.reload();
   };
-
-  useEffect(() => {
-
-  }, [user]);
 
   return (
     <>
