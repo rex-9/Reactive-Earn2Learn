@@ -29,7 +29,9 @@ const Login = () => {
     if (cookErr) setErr(cookErr);
     else {
       RemoveCookie('error');
+      console.log('before navigate');
       navigate('/');
+      console.log('after navigate');
     }
   };
 

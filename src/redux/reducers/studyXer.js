@@ -1,56 +1,14 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getWithToken } from '../../api/axios';
+
 const FETCH_STUDIES = 'e2l-fe/studies/FETCH_STUDIES';
 const ADD_STUDY = 'e2l-fe/studies/ADD_STUDY';
 const UPDATE_STUDY = 'e2l-fe/studies/UPDATE_STUDY';
 const DELETE_STUDY = 'e2l-fe/studies/DELETE_STUDY';
 
-const initialState = [
-  {
-    id: 1,
-    topic: 'Redux',
-    experience: 'Fall in love with Redux',
-    hours_taken: 3,
-    completed: true,
-    user: {
-      id: 1,
-      username: 'Rex',
-      fullname: 'Htet Naing',
-      email: 'rex@soul.com',
-      city: 'Yangon',
-      bio: null,
-      birthdate: '2000-03-18',
-      image: null,
-      role: 'learner',
-    },
-    technology: {
-      id: 1,
-      name: 'React',
-    },
-  },
-  {
-    id: 2,
-    topic: 'Ruby On Rails',
-    experience: null,
-    hours_taken: 0,
-    completed: true,
-    user: {
-      id: 2,
-      username: 'SaSa',
-      fullname: 'Sa Aung Htet Nyein',
-      email: 'sasa@sasa.com',
-      city: 'Yangon',
-      bio: null,
-      birthdate: '1999-11-07',
-      image: null,
-      role: 'learner',
-    },
-    technology: {
-      id: 2,
-      name: 'Ruby',
-    },
-  },
-];
+const STUDIES_ENDPOINT = (id) => `users/${id}/studies/`;
 
-const studyXer = (state = initialState, action) => {
+const studyXer = (state = [], action) => {
   switch (action.type) {
     case FETCH_STUDIES:
       return [...action.payload];
@@ -70,6 +28,12 @@ const studyXer = (state = initialState, action) => {
   }
 };
 
+const fetchStudies = createAsyncThunk(FETCH_STUDIES, async (id) => {
+  const response = await getWithToken(STUDIES_ENDPOINT(id));
+  console.log('Response Data', response.data);
+  return response.data;
+});
+
 const addStudy = (study) => ({
   type: ADD_STUDY,
   payload: study,
@@ -86,4 +50,6 @@ const deleteStudy = (studyId) => ({
 });
 
 export default studyXer;
-export { addStudy, updateStudy, deleteStudy };
+export {
+  fetchStudies, addStudy, updateStudy, deleteStudy,
+};

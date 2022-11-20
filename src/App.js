@@ -1,7 +1,6 @@
 import {
-  Routes, Route, useNavigate,
+  Routes, Route, Navigate,
 } from 'react-router-dom';
-import { useEffect } from 'react';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import ForgotPassword from './components/auth/ForgotPassword';
@@ -11,21 +10,41 @@ import Profile from './pages/Profile';
 import { GetCookie } from './components/services/Cookie';
 
 const App = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const token = GetCookie('token');
-    if (token) navigate('/');
-    else navigate('/login');
-  }, []);
+  const token = GetCookie('token');
 
   return (
     <>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/profile/:id" element={<Profile />} />
+        <Route
+          path="/login"
+          element={token ? (
+            <Navigate to="/" replace />
+          ) : <Login />}
+        />
+        <Route
+          path="/register"
+          element={token ? (
+            <Navigate to="/" replace />
+          ) : <Register />}
+        />
+        <Route
+          path="/forgot-password"
+          element={token ? (
+            <Navigate to="/" replace />
+          ) : <ForgotPassword />}
+        />
+        <Route
+          path="/"
+          element={!token ? (
+            <Navigate to="/login" replace />
+          ) : <Home />}
+        />
+        <Route
+          path="/profile/:id"
+          element={!token ? (
+            <Navigate to="/login" replace />
+          ) : <Profile />}
+        />
       </Routes>
     </>
   );

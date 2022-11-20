@@ -1,20 +1,67 @@
-const studies = [{
-  id: 1,
-  topic: 'State Management',
-  experience: null,
-  completed: true,
-  hours_taken: 0,
-  user_id: 1,
-  technology_id: 1,
-}, {
-  id: 2,
-  topic: 'Ruby jajaja',
-  experience: null,
-  completed: true,
-  hours_taken: 0,
-  user_id: 1,
-  technology_id: 1,
-}];
+// const initialState = [
+//   {
+//     id: 1,
+//     topic: 'Redux',
+//     experience: 'Fall in love with Redux',
+//     hours_taken: 3,
+//     completed: true,
+//     user: {
+//       id: 1,
+//       username: 'Rex',
+//       fullname: 'Htet Naing',
+//       email: 'rex@soul.com',
+//       city: 'Yangon',
+//       bio: null,
+//       birthdate: '2000-03-18',
+//       image: null,
+//       role: 'learner',
+//     },
+//     technology: {
+//       id: 1,
+//       name: 'React',
+//     },
+//   },
+//   {
+//     id: 2,
+//     topic: 'Ruby On Rails',
+//     experience: null,
+//     hours_taken: 0,
+//     completed: true,
+//     user: {
+//       id: 2,
+//       username: 'SaSa',
+//       fullname: 'Sa Aung Htet Nyein',
+//       email: 'sasa@sasa.com',
+//       city: 'Yangon',
+//       bio: null,
+//       birthdate: '1999-11-07',
+//       image: null,
+//       role: 'learner',
+//     },
+//     technology: {
+//       id: 2,
+//       name: 'Ruby',
+//     },
+//   },
+// ];
+
+// const studies = [{
+//   id: 1,
+//   topic: 'State Management',
+//   experience: null,
+//   completed: true,
+//   hours_taken: 0,
+//   user_id: 1,
+//   technology_id: 1,
+// }, {
+//   id: 2,
+//   topic: 'Ruby jajaja',
+//   experience: null,
+//   completed: true,
+//   hours_taken: 0,
+//   user_id: 1,
+//   technology_id: 1,
+// }];
 
 // const initialState = [
 //   {
@@ -64,4 +111,4 @@ const studies = [{
 //   },
 // ];
 
-export default studies;
+// export default studies;

@@ -1,6 +1,8 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
+import { fetchStudies } from '../redux/reducers/studyXer';
 
 import ProfilePic from '../components/profile/ProfilePic';
 import DisplayProfile from '../components/profile/DisplayProfile';
@@ -10,6 +12,7 @@ import Ongoing from '../components/study/Ongoing';
 
 const Profile = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const learners = useSelector((state) => state.learners);
   const learner = learners.filter((learner) => learner.id === parseInt(id, 10))[0];
 
@@ -31,14 +34,19 @@ const Profile = () => {
     color: '#1a202c',
   };
 
+  useEffect(() => {
+    console.log('id', id);
+    dispatch(fetchStudies(id));
+  });
+
   return (
     <>
       {/* Learner Profile Data Section */}
       <section id="learner-data">
         <div className="flex justify-center m-4 font-qs">
           <div className="bg-box rounded-md shadow-inner shadow-black p-4 w-[90%] flex items-start">
-            <ProfilePic learner={learner} />
-            {!edit ? (
+            {/* <ProfilePic learner={learner} /> */}
+            {/* {!edit ? (
               <DisplayProfile
                 setEdit={setEdit}
                 learner={learner}
@@ -49,7 +57,7 @@ const Profile = () => {
                   setEdit={setEdit}
                   learner={learner}
                 />
-              )}
+              )} */}
           </div>
         </div>
       </section>
