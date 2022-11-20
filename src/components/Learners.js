@@ -18,8 +18,8 @@ const Learners = () => {
 
   return (
     <div className="flex flex-wrap justify-center h-screen bg-bg">
-      {
-        learners.map((learner) => (
+      { !learners.includes(undefined)
+        ? learners.map((learner) => (
           <div key={learner.id} className="flex flex-col items-center py-2 m-2 bg-white rounded-lg w-80 h-fit hover:shadow-2xl">
             <img className="object-cover w-24 h-24 rounded-full" src={learner.image ? learner.image : avatar} alt="" />
             <div className="name">
@@ -57,8 +57,7 @@ const Learners = () => {
               }
             </div>
           </div>
-        ))
-      }
+        )) : <div>Loading...</div>}
     </div>
   );
 };

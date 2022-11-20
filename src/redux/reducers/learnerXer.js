@@ -43,6 +43,7 @@ const addLearner = createAsyncThunk(ADD_LEARNER, async (newLearner) => {
 
 const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
   const response = await getWithToken(LEARNERS_ENDPOINT);
+  console.log('Response Data', response.data);
   return response.data;
 });
 
