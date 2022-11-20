@@ -26,10 +26,10 @@ const Login = () => {
     dispatch(loginLearner(auth));
     await delay(300);
     const cookErr = GetCookie('error');
-    if (cookErr !== undefined) setErr(cookErr);
+    if (cookErr) setErr(cookErr);
     else {
-      navigate('/');
       RemoveCookie('error');
+      navigate('/');
     }
   };
 

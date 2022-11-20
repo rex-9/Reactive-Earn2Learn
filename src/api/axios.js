@@ -13,10 +13,13 @@ const auth = (ep, auth) => axios.post(
   },
 ).then((response) => {
   const { token, user } = response.data;
-  RemoveCookie('token');
   RemoveCookie('error');
-  SetCookie('token', token);
-  SetCookie('user', JSON.stringify(user));
+  if (ep === 'users/login') {
+    RemoveCookie('token');
+    RemoveCookie('user');
+    SetCookie('token', token);
+    SetCookie('user', JSON.stringify(user));
+  }
 }).catch((error) => {
   if (error.response) {
     SetCookie('error', error.response.data.error);

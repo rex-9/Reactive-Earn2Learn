@@ -75,12 +75,12 @@ const Register = () => {
     dispatch(addLearner(newLearner));
     await delay(300);
     const cookErr = GetCookie('error');
-    if (cookErr !== undefined) {
+    if (cookErr) {
       setErrMsges(cookErr);
       console.log(errMsges.split(',').map((err) => console.log('err', err)));
     } else {
-      navigate('/');
       RemoveCookie('error');
+      navigate('/login');
     }
   };
 
