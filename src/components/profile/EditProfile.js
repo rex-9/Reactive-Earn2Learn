@@ -28,7 +28,7 @@ const EditProfile = ({
     setEdit(false);
     const learnerObj = {
       id: learner.id,
-      password: learner.password,
+      // password: learner.password,
       username,
       fullname,
       email,
@@ -143,7 +143,7 @@ EditProfile.propTypes = {
     username: PropTypes.string.isRequired,
     fullname: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
+    // password: PropTypes.string.isRequired,
     image: PropTypes.string,
     bio: PropTypes.string,
     city: PropTypes.string.isRequired,

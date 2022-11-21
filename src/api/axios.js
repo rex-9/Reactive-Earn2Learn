@@ -44,7 +44,7 @@ const getWithToken = (ep) => axios.get(
   }
 });
 
-const postWithToken = (ep, obj) => axios.post(
+const postWithToken = (ep, obj) => axios.put(
   `${baseURL}${ep}`,
   JSON.stringify(obj),
   {
