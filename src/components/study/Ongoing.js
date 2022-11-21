@@ -16,6 +16,8 @@ const Ongoing = ({ studies }) => {
 
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
+
+  const [currentStudyID, setCurrentStudyID] = useState('');
   const [topic, setTopic] = useState('');
   const [currentTopic, setCurrentTopic] = useState('');
 
@@ -36,7 +38,6 @@ const Ongoing = ({ studies }) => {
       user_id: id,
       technology_id: techId,
     };
-    console.log('newStudy', newStudy);
     dispatch(addStudy(newStudy));
   };
 
@@ -46,22 +47,24 @@ const Ongoing = ({ studies }) => {
   };
 
   const updateStudyHandle = () => {
-    setUpdateStatus(true);
-    const newStudy = {
-      topic,
+    const completeStudy = {
+      id: currentStudyID,
       experience,
       hours_taken: hoursTaken,
       completed: true,
-      user_id: id,
-      technology_id: techId,
     };
-    dispatch(updateStudy(newStudy));
+    console.log('completeStudy', completeStudy);
+    dispatch(updateStudy(completeStudy));
+    setUpdateStatus(false);
   };
 
   const openUpdate = (id) => {
     setUpdateStatus(true);
-    setCurrentTopic(studies[id - 1].topic);
-    setCurrentTechId(studies[id - 1].technology_id);
+    const study = studies.find((study) => study.id === id);
+    console.log('Study', study);
+    setCurrentStudyID(study.id);
+    setCurrentTopic(study.topic);
+    setCurrentTechId(study.technology.id);
   };
 
   return (
@@ -76,7 +79,6 @@ const Ongoing = ({ studies }) => {
                   <button className="float-right" onClick={() => setAddStatus(false)} type="button">
                     <img src={close} alt="close the popup" />
                   </button>
-                  {/* <span className="float-right">x</span> */}
                   <div className="mb-4 text-lg font-bold text-center">Add a new Topic to learn</div>
                   <label htmlFor="topic">
                     <div>Topic:</div>
@@ -124,7 +126,7 @@ const Ongoing = ({ studies }) => {
                   </label>
                   <label htmlFor="hoursTaken">
                     <div>Hours Taken:</div>
-                    <textarea id="hoursTaken" className="text-white input" type="text" placeholder="Hours taken to complete" onChange={(e) => setHoursTaken(e.target.value)} />
+                    <input id="hoursTaken" className="text-white input" type="number" placeholder="Hours taken to complete" onChange={(e) => setHoursTaken(e.target.value)} />
                   </label>
                   <br />
                   <div className="flex justify-center">

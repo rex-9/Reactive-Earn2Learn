@@ -60,23 +60,6 @@ const reqWithToken = (method, ep, obj) => axios({
   }
 });
 
-// const putWithToken = (ep, obj) => axios.put(
-//   `${baseURL}${ep}`,
-//   JSON.stringify(obj),
-//   {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Authorization: `Bearer ${GetCookie('token')}`,
-//     },
-//   },
-// ).catch((error) => {
-//   if (error.response) {
-//     console.log('Error', error.response.data);
-//   } else {
-//     console.log('error', 'Check Your Connection');
-//   }
-// });
-
 export {
   delay, auth, getWithToken, reqWithToken,
 };

@@ -8,6 +8,7 @@ const DELETE_STUDY = 'e2l-fe/studies/DELETE_STUDY';
 
 const STUDIES_ENDPOINT = (id) => `users/${id}/studies/`;
 const ADD_STUDY_ENDPOINT = 'studies/';
+const UPDATE_STUDY_ENDPOINT = (id) => `studies/${id}`;
 
 const studyXer = (state = [], action) => {
   switch (action.type) {
@@ -17,7 +18,7 @@ const studyXer = (state = [], action) => {
     case `${ADD_STUDY}/fulfilled`:
       return [...state, action.payload];
 
-    case UPDATE_STUDY:
+    case `${UPDATE_STUDY}/fulfilled`:
       state[action.payload.id - 1] = action.payload;
       return state;
 
@@ -38,9 +39,9 @@ const addStudy = createAsyncThunk(ADD_STUDY, async (newStudy) => {
   await reqWithToken('POST', ADD_STUDY_ENDPOINT, newStudy);
 });
 
-const updateStudy = (study) => ({
-  type: UPDATE_STUDY,
-  payload: study,
+const updateStudy = createAsyncThunk(UPDATE_STUDY, async (obj) => {
+  console.log(obj);
+  await reqWithToken('PUT', UPDATE_STUDY_ENDPOINT(obj.id), obj);
 });
 
 const deleteStudy = (studyId) => ({

@@ -22,7 +22,7 @@ const learnerXer = (state = [], action) => {
     case `${ADD_LEARNER}/fulfilled`:
       return [...state, action.payload];
 
-    case UPDATE_LEARNER:
+    case `${UPDATE_LEARNER}/fulfilled`:
       state[action.payload.id - 1] = action.payload;
       return [...state];
 
