@@ -24,11 +24,9 @@ const EditProfile = ({
   const [linkedin, setLinkedin] = useState(learner.linkedin);
 
   const saveChanges = () => {
-    // TODO: Save changes to the database
     setEdit(false);
     const learnerObj = {
       id: learner.id,
-      // password: learner.password,
       username,
       fullname,
       email,

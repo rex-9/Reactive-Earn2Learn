@@ -48,9 +48,7 @@ const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
 });
 
 const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
-  console.log('LEARNER', learner);
   const response = await postWithToken(UPDATE_LEARNER_ENDPOINT(learner.id), learner);
-  console.log('RESPONSE', response);
   return response.data;
 });
 

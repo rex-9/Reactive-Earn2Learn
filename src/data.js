@@ -111,4 +111,20 @@
 //   },
 // ];
 
+// const initialState = [
+//   'React',
+//   'Ruby',
+// ];
+
+// const initialState = [
+//   {
+//     id: 1,
+//     name: 'React',
+//   },
+//   {
+//     id: 2,
+//     name: 'Ruby',
+//   },
+// ];
+
 // export default studies;

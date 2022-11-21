@@ -1,33 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { addStudy, updateStudy } from '../../redux/reducers/studyXer';
 
 import close from '../../assets/close.png';
-import dummyStudies from '../../data';
+import { fetchTechnologies } from '../../redux/reducers/technologyXer';
 
 const Ongoing = ({ studies }) => {
-  const techs = useSelector((state) => state.technologies);
+  const { id } = useParams();
   const dispatch = useDispatch();
+  const techs = useSelector((state) => state.technologies);
 
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
   const [topic, setTopic] = useState('');
   const [currentTopic, setCurrentTopic] = useState('');
-  const [techId, setTechId] = useState(0);
+
+  const [techId, setTechId] = useState(1);
   const [currentTechId, setCurrentTechId] = useState(0);
   const [experience, setExperience] = useState('');
   const [hoursTaken, setHoursTaken] = useState(0);
 
+  useEffect(() => {
+    dispatch(fetchTechnologies());
+  }, []);
+
   const addStudyHandle = () => {
     setAddStatus(true);
+    setTechId(techId);
     const newStudy = {
-      id: dummyStudies.length,
       topic,
-      user_id: 1,
+      user_id: id,
       technology_id: techId,
     };
+    console.log('newStudy', newStudy);
     dispatch(addStudy(newStudy));
   };
 
@@ -37,13 +45,13 @@ const Ongoing = ({ studies }) => {
   };
 
   const updateStudyHandle = () => {
+    setUpdateStatus(true);
     const newStudy = {
-      id: dummyStudies.length,
       topic,
       experience,
       hours_taken: hoursTaken,
       completed: true,
-      user_id: 1,
+      user_id: id,
       technology_id: techId,
     };
     dispatch(updateStudy(newStudy));
@@ -51,15 +59,14 @@ const Ongoing = ({ studies }) => {
 
   const openUpdate = (id) => {
     setUpdateStatus(true);
-    setCurrentTopic(dummyStudies[id - 1].topic);
-    setCurrentTechId(dummyStudies[id - 1].technology_id);
+    setCurrentTopic(studies[id - 1].topic);
+    setCurrentTechId(studies[id - 1].technology_id);
   };
 
   return (
     <>
       <div className="flex justify-center m-4 font-qs">
         <div className="w-[90%]">
-
           {/* Add Study Section */}
           {addStatus
             ? (
@@ -77,7 +84,13 @@ const Ongoing = ({ studies }) => {
                   <label htmlFor="technology">
                     <div>Technology:</div>
                     <select id="technology" className="text-white input" onChange={(e) => setTechId(e.target.value)}>
-                      {techs.map((tech) => (<option value={tech.id} key={tech.id}>{tech.name}</option>))}
+                      {techs.map((tech) => (
+                        <option value={tech.id} key={tech.id}>
+                          {tech.name}
+                          {' '}
+                          {tech.id}
+                        </option>
+                      ))}
                     </select>
                   </label>
                   <br />
@@ -123,6 +136,8 @@ const Ongoing = ({ studies }) => {
             )
             : <div />}
           <button type="button" className="mb-4 btn" onClick={() => setAddStatus(true)}>Add a New Study</button>
+
+          {/* Display Study List */}
           <table className="w-full border-collapse">
             <thead>
               <tr>

@@ -1,21 +1,15 @@
-const FETCH_TECHNOLOGIES = 'e2l-fe/technologies/FETCH_TECHNOLOGIES';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getWithToken } from '../../api/axios';
+
+const FETCH_TECHNOLOGIES = 'e2l-fe/TECHNOLOGIES/FETCH_TECHNOLOGIES';
 const ADD_TECHNOLOGY = 'e2l-fe/technologies/ADD_TECHNOLOGY';
 
-const initialState = [
-  {
-    id: 1,
-    name: 'React',
-  },
-  {
-    id: 2,
-    name: 'Ruby',
-  },
-];
+const TECHNOLOGIES_ENDPOINT = 'technologies/';
 
-const technologyXer = (state = initialState, action) => {
+const technologyXer = (state = [], action) => {
   switch (action.type) {
-    case FETCH_TECHNOLOGIES:
-      return [...action.payload];
+    case `${FETCH_TECHNOLOGIES}/fulfilled`:
+      return action.payload;
 
     case ADD_TECHNOLOGY:
       return [...action.payload];
@@ -25,4 +19,10 @@ const technologyXer = (state = initialState, action) => {
   }
 };
 
+const fetchTechnologies = createAsyncThunk(FETCH_TECHNOLOGIES, async () => {
+  const response = await getWithToken(TECHNOLOGIES_ENDPOINT);
+  return response.data;
+});
+
 export default technologyXer;
+export { fetchTechnologies };

@@ -12,6 +12,7 @@ import Ongoing from '../components/study/Ongoing';
 const Profile = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
   const learners = useSelector((state) => state.learners);
   const learner = learners.filter((learner) => learner.id === parseInt(id, 10))[0];
 
@@ -21,6 +22,10 @@ const Profile = () => {
 
   const [edit, setEdit] = useState(false);
   const [accomplished, setAccomplished] = useState(true);
+
+  useEffect(() => {
+    dispatch(fetchStudies(id));
+  }, []);
 
   const activeStyle = {
     boxShadow: 'inset 0 0 5px #f8a100',
@@ -32,14 +37,6 @@ const Profile = () => {
     backgroundColor: 'lightgray',
     color: '#1a202c',
   };
-
-  useEffect(() => {
-    // console.log('Hello Testing 124');
-    // console.log('url', url);
-    // console.log('id', id);
-    // console.log('learners', learners);
-    dispatch(fetchStudies(id));
-  }, []);
 
   return (
     <>
