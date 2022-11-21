@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { auth, getWithToken, postWithToken } from '../../api/axios';
+import { auth, getWithToken, reqWithToken } from '../../api/axios';
 
 const LEARNERS_ENDPOINT = 'users/';
 const UPDATE_LEARNER_ENDPOINT = (id) => `users/${id}`;
@@ -48,7 +48,7 @@ const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
 });
 
 const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
-  const response = await postWithToken(UPDATE_LEARNER_ENDPOINT(learner.id), learner);
+  const response = await reqWithToken('PUT', UPDATE_LEARNER_ENDPOINT(learner.id), learner);
   return response.data;
 });
 

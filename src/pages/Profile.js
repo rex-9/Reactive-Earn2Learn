@@ -16,7 +16,7 @@ const Profile = () => {
   const learners = useSelector((state) => state.learners);
   const learner = learners.filter((learner) => learner.id === parseInt(id, 10))[0];
 
-  const studies = useSelector((state) => state.studies);
+  const studies = useSelector((state) => state.studies.filter((study) => study.user.id === parseInt(id, 10)));
   const completed = studies.filter((study) => study.completed === true);
   const ongoing = studies.filter((study) => study.completed === false);
 

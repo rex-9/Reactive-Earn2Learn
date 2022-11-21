@@ -44,16 +44,15 @@ const getWithToken = (ep) => axios.get(
   }
 });
 
-const postWithToken = (ep, obj) => axios.put(
-  `${baseURL}${ep}`,
-  JSON.stringify(obj),
-  {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${GetCookie('token')}`,
-    },
+const reqWithToken = (method, ep, obj) => axios({
+  method,
+  url: `${baseURL}${ep}`,
+  data: JSON.stringify(obj),
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${GetCookie('token')}`,
   },
-).catch((error) => {
+}).catch((error) => {
   if (error.response) {
     console.log('Error', error.response.data);
   } else {
@@ -61,6 +60,23 @@ const postWithToken = (ep, obj) => axios.put(
   }
 });
 
+// const putWithToken = (ep, obj) => axios.put(
+//   `${baseURL}${ep}`,
+//   JSON.stringify(obj),
+//   {
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${GetCookie('token')}`,
+//     },
+//   },
+// ).catch((error) => {
+//   if (error.response) {
+//     console.log('Error', error.response.data);
+//   } else {
+//     console.log('error', 'Check Your Connection');
+//   }
+// });
+
 export {
-  delay, auth, getWithToken, postWithToken,
+  delay, auth, getWithToken, reqWithToken,
 };

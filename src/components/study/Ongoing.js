@@ -9,7 +9,8 @@ import close from '../../assets/close.png';
 import { fetchTechnologies } from '../../redux/reducers/technologyXer';
 
 const Ongoing = ({ studies }) => {
-  const { id } = useParams();
+  let { id } = useParams();
+  id = parseInt(id, 10);
   const dispatch = useDispatch();
   const techs = useSelector((state) => state.technologies);
 
@@ -87,8 +88,6 @@ const Ongoing = ({ studies }) => {
                       {techs.map((tech) => (
                         <option value={tech.id} key={tech.id}>
                           {tech.name}
-                          {' '}
-                          {tech.id}
                         </option>
                       ))}
                     </select>

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getWithToken, postWithToken } from '../../api/axios';
+import { getWithToken, reqWithToken } from '../../api/axios';
 
 const FETCH_STUDIES = 'e2l-fe/studies/FETCH_STUDIES';
 const ADD_STUDY = 'e2l-fe/studies/ADD_STUDY';
@@ -35,7 +35,7 @@ const fetchStudies = createAsyncThunk(FETCH_STUDIES, async (id) => {
 });
 
 const addStudy = createAsyncThunk(ADD_STUDY, async (newStudy) => {
-  await postWithToken(ADD_STUDY_ENDPOINT, newStudy);
+  await reqWithToken('POST', ADD_STUDY_ENDPOINT, newStudy);
 });
 
 const updateStudy = (study) => ({
