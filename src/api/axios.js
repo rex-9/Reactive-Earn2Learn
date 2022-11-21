@@ -44,4 +44,23 @@ const getWithToken = (ep) => axios.get(
   }
 });
 
-export { delay, auth, getWithToken };
+const postWithToken = (ep, obj) => axios.post(
+  `${baseURL}${ep}`,
+  JSON.stringify(obj),
+  {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${GetCookie('token')}`,
+    },
+  },
+).catch((error) => {
+  if (error.response) {
+    console.log('Error', error.response.data);
+  } else {
+    console.log('error', 'Check Your Connection');
+  }
+});
+
+export {
+  delay, auth, getWithToken, postWithToken,
+};

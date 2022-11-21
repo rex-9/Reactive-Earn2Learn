@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { auth, getWithToken } from '../../api/axios';
+import { auth, getWithToken, postWithToken } from '../../api/axios';
 
 const LEARNERS_ENDPOINT = 'users/';
+const UPDATE_LEARNER_ENDPOINT = (id) => `users/${id}`;
 const LOGIN_ENDPOINT = 'users/login';
 
 const LOGIN_LEARNER = 'e2l-fe/learners/LOGIN_LEARNERS';
@@ -13,7 +14,7 @@ const DELETE_LEARNER = 'e2l-fe/learners/DELETE_LEARNER';
 const learnerXer = (state = [], action) => {
   switch (action.type) {
     case `${FETCH_LEARNERS}/fulfilled`:
-      return [...action.payload];
+      return action.payload;
 
     case `${LOGIN_LEARNER}/fulfilled`:
       return state;
@@ -46,9 +47,9 @@ const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
   return response.data;
 });
 
-const updateLearner = (learner) => ({
-  type: UPDATE_LEARNER,
-  payload: learner,
+const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
+  const response = await postWithToken(UPDATE_LEARNER_ENDPOINT(learner.id), learner);
+  return response.data;
 });
 
 const deleteLearner = (id) => ({

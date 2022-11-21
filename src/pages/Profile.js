@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 import { fetchStudies } from '../redux/reducers/studyXer';
 
-import ProfilePic from '../components/profile/ProfilePic';
 import DisplayProfile from '../components/profile/DisplayProfile';
 import EditProfile from '../components/profile/EditProfile';
 import Completed from '../components/study/Completed';
@@ -35,9 +34,12 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    console.log('id', id);
+    // console.log('Hello Testing 124');
+    // console.log('url', url);
+    // console.log('id', id);
+    // console.log('learners', learners);
     dispatch(fetchStudies(id));
-  });
+  }, []);
 
   return (
     <>
@@ -45,19 +47,23 @@ const Profile = () => {
       <section id="learner-data">
         <div className="flex justify-center m-4 font-qs">
           <div className="bg-box rounded-md shadow-inner shadow-black p-4 w-[90%] flex items-start">
-            {/* <ProfilePic learner={learner} /> */}
-            {/* {!edit ? (
-              <DisplayProfile
-                setEdit={setEdit}
-                learner={learner}
-              />
+            <DisplayProfile
+              setEdit={setEdit}
+              learner={learner}
+            />
+            {edit ? (
+              <div className="bg-black/40 w-full flex h-[200%] justify-center fixed top-0 left-0">
+                <div className="bg-white p-4 my-2 rounded-lg">
+                  <EditProfile
+                    setEdit={setEdit}
+                    learner={learner}
+                  />
+                </div>
+              </div>
             )
               : (
-                <EditProfile
-                  setEdit={setEdit}
-                  learner={learner}
-                />
-              )} */}
+                <div />
+              )}
           </div>
         </div>
       </section>
