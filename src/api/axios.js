@@ -3,8 +3,8 @@ import { GetCookie, SetCookie, RemoveCookie } from '../components/services/Cooki
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-const baseURL = 'http://127.0.0.1:3001/';
-// const baseURL = 'https://earn2learn-on-rails.herokuapp.com/';
+// const baseURL = 'http://127.0.0.1:3001/';
+const baseURL = 'https://earn2learn-on-rails.herokuapp.com/';
 
 const auth = (ep, auth) => axios.post(
   `${baseURL}${ep}`,

@@ -87,8 +87,8 @@ DisplayProfile.propTypes = {
     phone: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
     image: PropTypes.string,
-    github: PropTypes.string.isRequired,
-    linkedin: PropTypes.string.isRequired,
+    github: PropTypes.string,
+    linkedin: PropTypes.string,
   }).isRequired,
   setEdit: PropTypes.func.isRequired,
 };
