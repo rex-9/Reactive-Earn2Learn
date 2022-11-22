@@ -44,6 +44,7 @@ const Ongoing = ({ studies }) => {
   const handleAdd = () => {
     addStudyHandle();
     setAddStatus(false);
+    window.location.reload();
   };
 
   const updateStudyHandle = () => {
@@ -56,6 +57,7 @@ const Ongoing = ({ studies }) => {
     console.log('completeStudy', completeStudy);
     dispatch(updateStudy(completeStudy));
     setUpdateStatus(false);
+    window.location.reload();
   };
 
   const openUpdate = (id) => {

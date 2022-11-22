@@ -8,7 +8,7 @@ const DELETE_STUDY = 'e2l-fe/studies/DELETE_STUDY';
 
 const STUDIES_ENDPOINT = (id) => `users/${id}/studies/`;
 const ADD_STUDY_ENDPOINT = 'studies/';
-const UPDATE_STUDY_ENDPOINT = (id) => `studies/${id}`;
+const STUDY_ENDPOINT = (id) => `studies/${id}`;
 
 const studyXer = (state = [], action) => {
   switch (action.type) {
@@ -40,8 +40,7 @@ const addStudy = createAsyncThunk(ADD_STUDY, async (newStudy) => {
 });
 
 const updateStudy = createAsyncThunk(UPDATE_STUDY, async (obj) => {
-  console.log(obj);
-  await reqWithToken('PUT', UPDATE_STUDY_ENDPOINT(obj.id), obj);
+  await reqWithToken('PUT', STUDY_ENDPOINT(obj.id), obj);
 });
 
 const deleteStudy = (studyId) => ({

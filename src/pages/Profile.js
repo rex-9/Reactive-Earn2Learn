@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { fetchStudies } from '../redux/reducers/studyXer';
+import { fetchLearner } from '../redux/reducers/learnerXer';
 
 import DisplayProfile from '../components/profile/DisplayProfile';
 import EditProfile from '../components/profile/EditProfile';
@@ -13,8 +14,7 @@ const Profile = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const learners = useSelector((state) => state.learners);
-  const learner = learners.filter((learner) => learner.id === parseInt(id, 10))[0];
+  const learner = fetchLearner(id);
 
   const studies = useSelector((state) => state.studies.filter((study) => study.user.id === parseInt(id, 10)));
   const completed = studies.filter((study) => study.completed === true);
@@ -24,6 +24,7 @@ const Profile = () => {
   const [accomplished, setAccomplished] = useState(true);
 
   useEffect(() => {
+    console.log('learner', learner);
     dispatch(fetchStudies(id));
   }, []);
 
