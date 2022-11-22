@@ -40,6 +40,7 @@ const EditProfile = ({
       linkedin,
     };
     dispatch(updateLearner(learnerObj));
+    window.location.reload();
   };
 
   return (

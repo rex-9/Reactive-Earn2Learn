@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { fetchStudies } from '../redux/reducers/studyXer';
-import { fetchLearner } from '../redux/reducers/learnerXer';
+import { getWithToken } from '../api/axios';
 
 import DisplayProfile from '../components/profile/DisplayProfile';
 import EditProfile from '../components/profile/EditProfile';
@@ -11,10 +11,16 @@ import Completed from '../components/study/Completed';
 import Ongoing from '../components/study/Ongoing';
 
 const Profile = () => {
+  const [learner, setLearner] = useState({});
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const learner = fetchLearner(id);
+  const fetchLearner = async (id) => {
+    const response = await getWithToken(`users/${id}`);
+    console.log('RESPONSE DATA', response.data);
+    setLearner(response.data);
+    console.log('LEARNER', learner);
+  };
 
   const studies = useSelector((state) => state.studies.filter((study) => study.user.id === parseInt(id, 10)));
   const completed = studies.filter((study) => study.completed === true);
@@ -24,7 +30,7 @@ const Profile = () => {
   const [accomplished, setAccomplished] = useState(true);
 
   useEffect(() => {
-    console.log('learner', learner);
+    fetchLearner(id);
     dispatch(fetchStudies(id));
   }, []);
 

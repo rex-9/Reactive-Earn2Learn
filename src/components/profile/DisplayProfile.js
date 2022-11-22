@@ -93,8 +93,4 @@ DisplayProfile.propTypes = {
   setEdit: PropTypes.func.isRequired,
 };
 
-// DisplayProfile.defaultProps = {
-//   bio: "I'm a super learner",
-// };
-
 export default DisplayProfile;

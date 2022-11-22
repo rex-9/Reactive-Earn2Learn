@@ -51,11 +51,11 @@ const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
   return response.data;
 });
 
-const fetchLearner = createAsyncThunk(FETCH_LEARNER, async (id) => {
-  const response = await getWithToken(LEARNER_ENDPOINT(id));
-  console.log('Response Data', response.data);
-  return response.data;
-});
+// const fetchLearner = createAsyncThunk(FETCH_LEARNER, async (id) => {
+//   const response = await getWithToken(LEARNER_ENDPOINT(id));
+//   console.log('Response Data', response.data);
+//   return response.data;
+// });
 
 const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
   const response = await reqWithToken('PUT', LEARNER_ENDPOINT(learner.id), learner);
@@ -69,5 +69,5 @@ const deleteLearner = (id) => ({
 
 export default learnerXer;
 export {
-  loginLearner, addLearner, fetchLearners, fetchLearner, updateLearner, deleteLearner,
+  loginLearner, addLearner, fetchLearners, updateLearner, deleteLearner,
 };

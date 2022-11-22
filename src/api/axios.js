@@ -36,7 +36,7 @@ const getWithToken = (ep) => axios.get(
       Authorization: `Bearer ${GetCookie('token')}`,
     },
   },
-).catch((error) => {
+).then((response) => response).catch((error) => {
   if (error.response) {
     console.log('Error', error.response.data);
   } else {
