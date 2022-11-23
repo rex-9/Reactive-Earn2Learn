@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { delay, auth } from '../../api/axios';
 
@@ -7,6 +7,7 @@ const Login = () => {
   const LOGIN_ENDPOINT = 'users/login';
   const emailRef = useRef();
   const formRef = useRef();
+  const navigate = useNavigate();
 
   const [err, setErr] = useState('');
   const [status, setStatus] = useState('');
@@ -14,13 +15,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const fun = ({ stat, err }) => {
-    console.log('Before Status', status);
     setStatus(stat);
-    console.log('After Status', status);
     if (status === 'failure') {
       setErr(err);
     } else if (status === 'success') {
-      window.location.reload();
+      navigate('/');
     }
   };
 

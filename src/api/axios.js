@@ -37,13 +37,7 @@ const getWithToken = (ep) => axios.get(
       Authorization: `Bearer ${GetCookie('token')}`,
     },
   },
-).then((response) => response.data).catch((error) => {
-  if (error.response) {
-    console.log('Error', error.response.data);
-  } else {
-    console.log('error', 'Check Your Connection');
-  }
-});
+).then((response) => response.data);
 
 const reqWithToken = (method, ep, obj) => axios({
   method,
@@ -53,12 +47,6 @@ const reqWithToken = (method, ep, obj) => axios({
     'Content-Type': 'application/json',
     Authorization: `Bearer ${GetCookie('token')}`,
   },
-}).catch((error) => {
-  if (error.response) {
-    console.log('Error', error.response.data);
-  } else {
-    console.log('error', 'Check Your Connection');
-  }
 });
 
 export {

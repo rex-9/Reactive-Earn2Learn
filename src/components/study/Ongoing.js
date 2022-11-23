@@ -28,7 +28,7 @@ const Ongoing = ({ studies }) => {
 
   useEffect(() => {
     dispatch(fetchTechnologies());
-  }, []);
+  }, [dispatch]);
 
   const addStudyHandle = () => {
     setAddStatus(true);
@@ -54,7 +54,6 @@ const Ongoing = ({ studies }) => {
       hours_taken: hoursTaken,
       completed: true,
     };
-    console.log('completeStudy', completeStudy);
     dispatch(updateStudy(completeStudy));
     setUpdateStatus(false);
     window.location.reload();
@@ -63,7 +62,6 @@ const Ongoing = ({ studies }) => {
   const openUpdate = (id) => {
     setUpdateStatus(true);
     const study = studies.find((study) => study.id === id);
-    console.log('Study', study);
     setCurrentStudyID(study.id);
     setCurrentTopic(study.topic);
     setCurrentTechId(study.technology.id);

@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchLearners());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

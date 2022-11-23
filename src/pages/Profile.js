@@ -17,9 +17,7 @@ const Profile = () => {
 
   const fetchLearner = async (id) => {
     const response = await getWithToken(`users/${id}`);
-    console.log('RESPONSE DATA', response.data);
     setLearner(response.data);
-    console.log('LEARNER', learner);
   };
 
   const studies = useSelector((state) => state.studies.filter((study) => study.user.id === parseInt(id, 10)));
@@ -32,7 +30,7 @@ const Profile = () => {
   useEffect(() => {
     fetchLearner(id);
     dispatch(fetchStudies(id));
-  }, []);
+  }, [dispatch, id]);
 
   const activeStyle = {
     boxShadow: 'inset 0 0 5px #f8a100',

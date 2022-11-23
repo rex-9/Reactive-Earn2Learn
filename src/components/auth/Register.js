@@ -52,12 +52,9 @@ const Register = () => {
   }, [username, password, confirmPassword]);
 
   const fun = ({ stat, err }) => {
-    console.log('Before Status', status);
     setStatus(stat);
-    console.log('After Status', status);
     if (status === 'failure') {
       setErrMsges(err);
-      console.log('Error', err);
     } else if (status === 'success') {
       navigate('/login');
     }
