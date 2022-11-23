@@ -1,19 +1,15 @@
-import { useDispatch } from 'react-redux';
 import { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { addLearner } from '../../redux/reducers/learnerXer';
 import { USERNAME_REGEX, PASSWORD_REGEX } from './auth_service';
-import { GetCookie, RemoveCookie } from '../services/Cookie';
-import { delay } from '../../api/axios';
+import { auth } from '../../api/axios';
 
 const Register = () => {
+  const LEARNERS_ENDPOINT = 'users';
   const usernameRef = useRef();
-
-  const navigate = useNavigate(); // react-router-dom v6
-  const dispatch = useDispatch(); // redux
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [validUsername, setValidUsername] = useState(false);
@@ -27,7 +23,8 @@ const Register = () => {
   const [validConfirm, setValidConfirm] = useState(false);
   const [focusConfirm, setFocusConfirm] = useState(false);
 
-  const [errMsges, setErrMsges] = useState(null);
+  const [errMsges, setErrMsges] = useState('');
+  const [status, setStatus] = useState('');
   const [fullname, setFullname] = useState('');
   const [city, setCity] = useState('');
   const [birthdate, setBirthdate] = useState('');
@@ -54,6 +51,18 @@ const Register = () => {
     setErrMsges('');
   }, [username, password, confirmPassword]);
 
+  const fun = ({ stat, err }) => {
+    console.log('Before Status', status);
+    setStatus(stat);
+    console.log('After Status', status);
+    if (status === 'failure') {
+      setErrMsges(err);
+      console.log('Error', err);
+    } else if (status === 'success') {
+      navigate('/login');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const v1 = USERNAME_REGEX.test(username);
@@ -72,16 +81,7 @@ const Register = () => {
       email,
       password,
     };
-    dispatch(addLearner(newLearner));
-    await delay(300);
-    const cookErr = GetCookie('error');
-    if (cookErr) {
-      setErrMsges(cookErr);
-      console.log(errMsges.split(',').map((err) => console.log('err', err)));
-    } else {
-      RemoveCookie('error');
-      navigate('/login');
-    }
+    await auth(LEARNERS_ENDPOINT, newLearner, fun);
   };
 
   return (
@@ -274,9 +274,8 @@ const Register = () => {
             </div>
           </form>
 
-          {/* <div className="text-red-400" aria-live="assertive">{ Array.isArray(errMsges) }</div> */}
           {
-            errMsges ? errMsges.split(',').map((msg) => <p key={msg} className="text-red-400" aria-live="assertive">{msg}</p>) : <div />
+            errMsges ? errMsges.map((msg) => <p key={msg} className="text-red-400" aria-live="assertive">{msg}</p>) : <div />
           }
 
           <div className="flex items-center justify-center">

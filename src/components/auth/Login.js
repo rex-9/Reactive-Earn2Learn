@@ -1,35 +1,37 @@
 import { useRef, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { loginLearner } from '../../redux/reducers/learnerXer';
-import { GetCookie, RemoveCookie } from '../services/Cookie';
-import { delay } from '../../api/axios';
+import { delay, auth } from '../../api/axios';
 
 const Login = () => {
+  const LOGIN_ENDPOINT = 'users/login';
   const emailRef = useRef();
   const formRef = useRef();
-  const dispatch = useDispatch();
 
   const [err, setErr] = useState('');
+  const [status, setStatus] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const auth = { email, password };
-    dispatch(loginLearner(auth));
-    await delay(300);
-    const cookErr = GetCookie('error');
-    if (cookErr) setErr(cookErr);
-    else {
-      RemoveCookie('error');
+  const fun = ({ stat, err }) => {
+    console.log('Before Status', status);
+    setStatus(stat);
+    console.log('After Status', status);
+    if (status === 'failure') {
+      setErr(err);
+    } else if (status === 'success') {
       window.location.reload();
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const credentials = { email, password };
+    await auth(LOGIN_ENDPOINT, credentials, fun);
+    await delay(3000);
+  };
+
   useEffect(() => {
-    RemoveCookie('error');
     emailRef.current.focus();
   }, []);
 

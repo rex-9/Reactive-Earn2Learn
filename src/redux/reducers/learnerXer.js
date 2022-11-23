@@ -1,11 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { auth, getWithToken, reqWithToken } from '../../api/axios';
+import { getWithToken, reqWithToken } from '../../api/axios';
 
 const LEARNERS_ENDPOINT = 'users/';
 const LEARNER_ENDPOINT = (id) => `users/${id}`;
-const LOGIN_ENDPOINT = 'users/login';
 
-const LOGIN_LEARNER = 'e2l-fe/learners/LOGIN_LEARNERS';
 const FETCH_LEARNERS = 'e2l-fe/learners/FETCH_LEARNERS';
 const FETCH_LEARNER = 'e2l-fe/learners/FETCH_LEARNER';
 const ADD_LEARNER = 'e2l-fe/learners/ADD_LEARNER';
@@ -19,9 +17,6 @@ const learnerXer = (state = [], action) => {
 
     case `${FETCH_LEARNER}/fulfilled`:
       return action.payload;
-
-    case `${LOGIN_LEARNER}/fulfilled`:
-      return state;
 
     case `${ADD_LEARNER}/fulfilled`:
       return [...state, action.payload];
@@ -38,24 +33,10 @@ const learnerXer = (state = [], action) => {
   }
 };
 
-const loginLearner = createAsyncThunk(LOGIN_LEARNER, async (credentials) => {
-  await auth(LOGIN_ENDPOINT, credentials);
-});
-
-const addLearner = createAsyncThunk(ADD_LEARNER, async (newLearner) => {
-  await auth(LEARNERS_ENDPOINT, newLearner);
-});
-
 const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
   const response = await getWithToken(LEARNERS_ENDPOINT);
   return response.data;
 });
-
-// const fetchLearner = createAsyncThunk(FETCH_LEARNER, async (id) => {
-//   const response = await getWithToken(LEARNER_ENDPOINT(id));
-//   console.log('Response Data', response.data);
-//   return response.data;
-// });
 
 const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
   const response = await reqWithToken('PUT', LEARNER_ENDPOINT(learner.id), learner);
@@ -69,5 +50,5 @@ const deleteLearner = (id) => ({
 
 export default learnerXer;
 export {
-  loginLearner, addLearner, fetchLearners, updateLearner, deleteLearner,
+  fetchLearners, updateLearner, deleteLearner,
 };

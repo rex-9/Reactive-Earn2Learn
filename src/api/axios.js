@@ -3,10 +3,10 @@ import { GetCookie, SetCookie, RemoveCookie } from '../components/services/Cooki
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-// const baseURL = 'http://127.0.0.1:3001/';
-const baseURL = 'https://earn2learn-on-rails.herokuapp.com/';
+const baseURL = 'http://127.0.0.1:3001/';
+// const baseURL = 'https://earn2learn-on-rails.herokuapp.com/';
 
-const auth = (ep, auth) => axios.post(
+const auth = (ep, auth, fun) => axios.post(
   `${baseURL}${ep}`,
   JSON.stringify(auth),
   {
@@ -14,18 +14,18 @@ const auth = (ep, auth) => axios.post(
   },
 ).then((response) => {
   const { token, user } = response.data;
-  RemoveCookie('error');
   if (ep === 'users/login') {
     RemoveCookie('token');
     RemoveCookie('user');
     SetCookie('token', token);
     SetCookie('user', JSON.stringify(user));
   }
+  fun({ stat: response.data.status });
 }).catch((error) => {
   if (error.response) {
-    SetCookie('error', error.response.data.error);
+    fun({ stat: error.response.data.status, err: error.response.data.error });
   } else {
-    SetCookie('error', 'Check Your Connection');
+    fun({ stat: error.response.data.status, err: 'Check Your Connection' });
   }
 });
 
@@ -37,7 +37,7 @@ const getWithToken = (ep) => axios.get(
       Authorization: `Bearer ${GetCookie('token')}`,
     },
   },
-).then((response) => response).catch((error) => {
+).then((response) => response.data).catch((error) => {
   if (error.response) {
     console.log('Error', error.response.data);
   } else {
