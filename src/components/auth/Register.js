@@ -159,7 +159,7 @@ const Register = () => {
                 className="mt-2 mb-4 input"
                 placeholder="E.g. 2000-18-03"
                 onChange={(e) => setBirthdate(e.target.value)}
-                id="age"
+                id="birthdate"
               />
             </label>
 
