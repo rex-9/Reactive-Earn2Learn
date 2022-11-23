@@ -87,7 +87,7 @@ const EditProfile = ({
           <label htmlFor="birthdate">
             <div className="form-field">
               <span>Birthdate:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. 2000-18-03" onChange={(e) => setBirthdate(e.target.value)} id="age" />
+              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. 18-03-2000" onChange={(e) => setBirthdate(e.target.value)} id="birthdate" />
             </div>
           </label>
           <label htmlFor="city">

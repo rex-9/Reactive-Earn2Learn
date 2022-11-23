@@ -157,7 +157,7 @@ const Register = () => {
               <input
                 type="text"
                 className="mt-2 mb-4 input"
-                placeholder="E.g. 2000-18-03"
+                placeholder="E.g. 18-03-2000"
                 onChange={(e) => setBirthdate(e.target.value)}
                 id="birthdate"
               />
