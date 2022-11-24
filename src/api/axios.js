@@ -22,7 +22,6 @@ const auth = (ep, credentials) => axios.post(
   }
   return response.data;
 }).catch((error) => {
-  console.log(error);
   if (error.response) {
     return error.response.data;
   } else {
