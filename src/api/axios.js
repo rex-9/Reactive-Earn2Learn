@@ -37,7 +37,7 @@ const getWithToken = (ep) => axios.get(
       Authorization: `Bearer ${GetCookie('token')}`,
     },
   },
-).then((response) => response.data);
+).then((response) => response);
 
 const reqWithToken = (method, ep, obj) => axios({
   method,

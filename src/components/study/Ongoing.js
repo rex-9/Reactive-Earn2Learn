@@ -7,12 +7,14 @@ import { addStudy, updateStudy } from '../../redux/reducers/studyXer';
 
 import close from '../../assets/close.png';
 import { fetchTechnologies } from '../../redux/reducers/technologyXer';
+import { GetCookie } from '../services/Cookie';
 
 const Ongoing = ({ studies }) => {
   let { id } = useParams();
   id = parseInt(id, 10);
   const dispatch = useDispatch();
   const techs = useSelector((state) => state.technologies);
+  const currentUser = JSON.parse(GetCookie('user'));
 
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
@@ -136,7 +138,11 @@ const Ongoing = ({ studies }) => {
               </div>
             )
             : <div />}
-          <button type="button" className="mb-4 btn" onClick={() => setAddStatus(true)}>Add a New Study</button>
+          {
+              currentUser.id === id
+                ? <button type="button" className="mb-4 btn" onClick={() => setAddStatus(true)}>Add a New Study</button>
+                : <div />
+            }
 
           {/* Display Study List */}
           <table className="w-full border-collapse">
@@ -153,7 +159,11 @@ const Ongoing = ({ studies }) => {
                   <tr key={study.id} className="even:bg-blue-100 odd:bg-green-100">
                     <td className="py-2 text-center border rounded-lg border-slate-300">{study.technology.name}</td>
                     <td className="py-2 text-center border rounded-lg border-slate-300">{study.topic}</td>
-                    <td className="py-2 text-center border rounded-lg border-slate-300"><button type="button" className="btn" onClick={() => openUpdate(study.id)}>Complete</button></td>
+                    <td className="py-2 text-center border rounded-lg border-slate-300">
+                      {id === currentUser.id
+                        ? <button type="button" className="btn" onClick={() => openUpdate(study.id)}>Complete</button>
+                        : <div />}
+                    </td>
                   </tr>
                 ))
               }
