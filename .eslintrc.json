@@ -20,7 +20,8 @@
     "import/no-unresolved": "off",
     "no-shadow": "off",
     "max-len": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "no-else-return": "off"
   },
   "ignorePatterns": [
     "dist/",

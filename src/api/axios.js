@@ -6,9 +6,9 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const baseURL = 'http://127.0.0.1:3001/';
 // const baseURL = 'https://earn2learn-on-rails.herokuapp.com/';
 
-const auth = (ep, auth, fun) => axios.post(
+const auth = (ep, credentials) => axios.post(
   `${baseURL}${ep}`,
-  JSON.stringify(auth),
+  JSON.stringify(credentials),
   {
     headers: { 'Content-Type': 'application/json' },
   },
@@ -20,12 +20,13 @@ const auth = (ep, auth, fun) => axios.post(
     SetCookie('token', token);
     SetCookie('user', JSON.stringify(user));
   }
-  fun({ stat: response.data.status });
+  return response.data;
 }).catch((error) => {
+  console.log(error);
   if (error.response) {
-    fun({ stat: error.response.data.status, err: error.response.data.error });
+    return error.response.data;
   } else {
-    fun({ stat: error.response.data.status, err: 'Check Your Connection' });
+    return { status: 'failure', error: 'Check Your Connection' };
   }
 });
 

@@ -1,33 +1,26 @@
 import { useRef, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { delay, auth } from '../../api/axios';
+import { auth } from '../../api/axios';
 
 const Login = () => {
   const LOGIN_ENDPOINT = 'users/login';
   const emailRef = useRef();
   const formRef = useRef();
-  const navigate = useNavigate();
 
   const [err, setErr] = useState('');
-  const [status, setStatus] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const fun = ({ stat, err }) => {
-    setStatus(stat);
-    if (status === 'failure') {
-      setErr(err);
-    } else if (status === 'success') {
-      navigate('/');
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const credentials = { email, password };
-    await auth(LOGIN_ENDPOINT, credentials, fun);
-    await delay(3000);
+    const result = await auth(LOGIN_ENDPOINT, credentials);
+    if (result.status === 'success') {
+      window.location.reload();
+    } else if (result.status === 'failure') {
+      setErr(result.error);
+    }
   };
 
   useEffect(() => {

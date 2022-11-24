@@ -24,7 +24,6 @@ const Register = () => {
   const [focusConfirm, setFocusConfirm] = useState(false);
 
   const [errMsges, setErrMsges] = useState('');
-  const [status, setStatus] = useState('');
   const [fullname, setFullname] = useState('');
   const [city, setCity] = useState('');
   const [birthdate, setBirthdate] = useState('');
@@ -51,15 +50,6 @@ const Register = () => {
     setErrMsges('');
   }, [username, password, confirmPassword]);
 
-  const fun = ({ stat, err }) => {
-    setStatus(stat);
-    if (status === 'failure') {
-      setErrMsges(err);
-    } else if (status === 'success') {
-      navigate('/login');
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const v1 = USERNAME_REGEX.test(username);
@@ -78,7 +68,12 @@ const Register = () => {
       email,
       password,
     };
-    await auth(LEARNERS_ENDPOINT, newLearner, fun);
+    const result = await auth(LEARNERS_ENDPOINT, newLearner);
+    if (result.status === 'success') {
+      navigate('/login');
+    } else if (result.status === 'failure') {
+      setErrMsges(result.error);
+    }
   };
 
   return (
