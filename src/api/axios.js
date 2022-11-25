@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { GetCookie, SetCookie, RemoveCookie } from '../components/services/Cookie';
+import { GetCookie, SetCookie } from '../components/services/Cookie';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-const baseURL = 'http://127.0.0.1:3001/';
+// const baseURL = 'http://127.0.0.1:3001/';
+const baseURL = 'https://earn2learn-on-rails.onrender.com/';
 // const baseURL = 'https://earn2learn-on-rails.herokuapp.com/';
 
 const auth = (ep, credentials) => axios.post(
@@ -15,8 +16,6 @@ const auth = (ep, credentials) => axios.post(
 ).then((response) => {
   const { token, user } = response.data;
   if (ep === 'users/login') {
-    RemoveCookie('token');
-    RemoveCookie('user');
     SetCookie('token', token);
     SetCookie('user', JSON.stringify(user));
   }
