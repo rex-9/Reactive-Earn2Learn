@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { updateLearner } from '../../redux/reducers/learnerXer';
-import close from '../../assets/close.png';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 const EditProfile = ({
   setEdit,
@@ -128,7 +129,7 @@ const EditProfile = ({
         </div>
 
         <button type="button" onClick={() => setEdit(false)}>
-          <img src={close} alt="Edit Your Profile" />
+          <FontAwesomeIcon icon={faClose} className="h-6" />
         </button>
       </div>
     </>

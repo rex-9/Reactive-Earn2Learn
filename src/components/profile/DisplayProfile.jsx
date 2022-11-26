@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import edit from '../../assets/edit.png';
 import avatar from '../../assets/avatar.jpg';
 import githubIcon from '../../assets/github-black.svg';
 import linkedinIcon from '../../assets/linkedin-black.svg';
 import { GetCookie } from '../services/Cookie';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const DisplayProfile = ({
   setEdit, learner,
 }) => {
   const currentUser = JSON.parse(GetCookie('user'));
-
   return (
     <>
       <div className="flex items-start justify-between w-full">
@@ -41,10 +41,10 @@ const DisplayProfile = ({
           <div>
             <div className="text-xl font-bold">
               {learner.fullname}
-              {' '}
-              (
+              <span> </span>
+              <span>(</span>
               {learner.username}
-              )
+              <span>)</span>
             </div>
             <div className="">
               Email - &nbsp;
@@ -76,7 +76,7 @@ const DisplayProfile = ({
             learner.id === currentUser.id
               ? (
                 <button type="button" onClick={() => setEdit(true)}>
-                  <img src={edit} alt="Edit Your Profile" />
+                  <FontAwesomeIcon icon={faEdit} className="h-6" />
                 </button>
               ) : <div />
           }
@@ -88,7 +88,6 @@ const DisplayProfile = ({
 
 DisplayProfile.propTypes = {
   learner: PropTypes.shape({
-    id: PropTypes.number.isRequired,
     username: PropTypes.string.isRequired,
     fullname: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,

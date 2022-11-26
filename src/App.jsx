@@ -35,15 +35,11 @@ const App = () => {
         />
         <Route
           path="/"
-          element={!token ? (
-            <Navigate to="/login" replace />
-          ) : <Home />}
+          element={<Home />}
         />
         <Route
           path="/profile/:id"
-          element={!token ? (
-            <Navigate to="/login" replace />
-          ) : <Profile />}
+          element={<Profile />}
         />
       </Routes>
     </>

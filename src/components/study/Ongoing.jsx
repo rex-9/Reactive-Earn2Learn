@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { addStudy, updateStudy } from '../../redux/reducers/studyXer';
 
-import close from '../../assets/close.png';
 import { fetchTechnologies } from '../../redux/reducers/technologyXer';
 import { GetCookie } from '../services/Cookie';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 const Ongoing = ({ studies }) => {
   let { id } = useParams();
@@ -79,7 +80,7 @@ const Ongoing = ({ studies }) => {
               <div id="Add Study Form" className="fixed top-0 left-0 z-10 flex items-center justify-center w-screen h-screen bg-black/25">
                 <div className="absolute p-4 bg-white rounded-lg w-96 h-fit">
                   <button className="float-right" onClick={() => setAddStatus(false)} type="button">
-                    <img src={close} alt="close the popup" />
+                    <FontAwesomeIcon icon={faClose} className="h-6" />
                   </button>
                   <div className="mb-4 text-lg font-bold text-center">Add a new Topic to learn</div>
                   <label htmlFor="topic">
@@ -111,7 +112,7 @@ const Ongoing = ({ studies }) => {
               <div id="Update Study Form" className="fixed top-0 left-0 z-10 flex items-center justify-center w-screen h-screen bg-black/25">
                 <div className="absolute p-4 bg-white rounded-lg w-96 h-fit">
                   <button className="float-right" onClick={() => setUpdateStatus(false)} type="button">
-                    <img src={close} alt="close the popup" />
+                    <FontAwesomeIcon icon={faClose} className="h-6" />
                   </button>
                   <div className="mb-4 text-lg font-bold text-center">Congratulations for Completion!</div>
                   <label htmlFor="topic">
@@ -139,10 +140,10 @@ const Ongoing = ({ studies }) => {
             )
             : <div />}
           {
-              currentUser.id === id
-                ? <button type="button" className="mb-4 btn" onClick={() => setAddStatus(true)}>Add a New Study</button>
-                : <div />
-            }
+            currentUser.id === id
+              ? <button type="button" className="mb-4 btn" onClick={() => setAddStatus(true)}>Add a New Study</button>
+              : <div />
+          }
 
           {/* Display Study List */}
           <table className="w-full border-collapse">

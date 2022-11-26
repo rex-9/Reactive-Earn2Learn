@@ -7,7 +7,7 @@
 
 @layer components {
   body {
-    @apply bg-green-100
+    @apply bg-green-100;
   }
 
   .header {
@@ -15,15 +15,15 @@
   }
 
   .name {
-    @apply flex justify-center border-b-[1px] w-[80%] font-bold font-qs text-lg border-b-gray-600 py-1 px-2
+    @apply flex justify-center border-b-[1px] w-[80%] font-bold font-qs text-lg border-b-gray-600 py-1 px-2;
   }
 
   .auth-form-field {
-    @apply bg-black
+    @apply bg-black;
   }
 
   .form-field {
-    @apply flex items-center justify-between w-[500px] mb-3
+    @apply flex items-center justify-between w-[500px] mb-3;
   }
 
   .input {
@@ -31,7 +31,7 @@
   }
 
   .input * {
-    @apply pt-24
+    @apply pt-24;
   }
 
   .checkbox {

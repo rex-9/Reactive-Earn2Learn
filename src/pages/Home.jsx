@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchLearners } from '../redux/reducers/learnerXer';
 
-import HomeNav from '../components/HomeNav';
+import HomeNav from "../components/HomeNav";
 import Learners from '../components/Learners';
 
 const Home = () => {
