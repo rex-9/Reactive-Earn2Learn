@@ -3,7 +3,7 @@ import { GetCookie, SetCookie } from '../components/services/Cookie';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-// const baseURL = 'http://127.0.0.1:3001/';
+// const baseURL = 'http://127.0.0.1:3000/';
 const baseURL = 'https://earn2learn-on-rails.onrender.com/';
 // const baseURL = 'https://earn2learn-on-rails.herokuapp.com/';
 
