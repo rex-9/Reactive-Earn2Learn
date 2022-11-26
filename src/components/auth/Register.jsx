@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { USERNAME_REGEX, PASSWORD_REGEX } from './auth_service';
-import { auth } from '../../api/axios';
+import { authentication } from '../../api/axios';
 
 const Register = () => {
   const LEARNERS_ENDPOINT = 'users';
@@ -68,7 +68,7 @@ const Register = () => {
       email,
       password,
     };
-    const result = await auth(LEARNERS_ENDPOINT, newLearner);
+    const result = await authentication(LEARNERS_ENDPOINT, newLearner);
     if (result.status === 'success') {
       navigate('/login');
     } else if (result.status === 'failure') {

@@ -3,11 +3,11 @@ import { GetCookie, SetCookie } from '../components/services/Cookie';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-// const baseURL = 'http://127.0.0.1:3000/';
-const baseURL = 'https://earn2learn-on-rails.onrender.com/';
+const baseURL = 'http://127.0.0.1:3000/';
+// const baseURL = 'https://earn2learn-on-rails.onrender.com/';
 // const baseURL = 'https://earn2learn-on-rails.herokuapp.com/';
 
-const auth = (ep, credentials) => axios.post(
+const authentication = (ep, credentials) => axios.post(
   `${baseURL}${ep}`,
   JSON.stringify(credentials),
   {
@@ -49,5 +49,5 @@ const reqWithToken = (method, ep, obj) => axios({
 });
 
 export {
-  delay, auth, getWithToken, reqWithToken,
+  delay, authentication, getWithToken, reqWithToken,
 };

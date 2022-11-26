@@ -1,21 +1,21 @@
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { auth } from '../../api/axios';
+import { authentication } from '../../api/axios';
 
 const Login = () => {
   const LOGIN_ENDPOINT = 'users/login';
-  const emailRef = useRef();
+  const authRef = useRef();
   const formRef = useRef();
 
   const [err, setErr] = useState('');
-  const [email, setEmail] = useState('');
+  const [auth, setAuth] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const credentials = { email, password };
-    const result = await auth(LOGIN_ENDPOINT, credentials);
+    const credentials = { auth, password };
+    const result = await authentication(LOGIN_ENDPOINT, credentials);
     if (result.status === 'success') {
       window.location.reload();
     } else if (result.status === 'failure') {
@@ -24,7 +24,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    emailRef.current.focus();
+    authRef.current.focus();
   }, []);
 
   return (
@@ -35,10 +35,10 @@ const Login = () => {
           <form onSubmit={handleSubmit} ref={formRef}>
             <input
               className="input"
-              ref={emailRef}
+              ref={authRef}
               type="text"
-              placeholder="email"
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Username or Email"
+              onChange={(e) => setAuth(e.target.value)}
             />
             {' '}
             <br />
@@ -55,7 +55,7 @@ const Login = () => {
             {' '}
             <br />
             <div className="flex justify-center w-full my-2">
-              <button type="submit" className="btn hover:shadow-gray-600 disabled:opacity-60 disabled:bg-btn disabled:shadow-none" disabled={!!(!email || !password)}>Log In</button>
+              <button type="submit" className="btn hover:shadow-gray-600 disabled:opacity-60 disabled:bg-btn disabled:shadow-none" disabled={!!(!auth || !password)}>Log In</button>
             </div>
           </form>
           {
