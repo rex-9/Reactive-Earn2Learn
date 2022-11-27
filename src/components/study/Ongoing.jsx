@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addStudy, updateStudy } from '../../redux/reducers/studyXer';
 
 import { fetchTechnologies } from '../../redux/reducers/technologyXer';
-import { returnCurrentUser } from '../services/Cookie';
+import { returnCurrentUser } from '../services/cookie';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 const Ongoing = ({ studies }) => {
@@ -30,8 +30,7 @@ const Ongoing = ({ studies }) => {
   const [hoursTaken, setHoursTaken] = useState(0);
 
   useEffect(() => {
-    if (Object.keys(currentUser).length !== 0) {
-      console.log('currentUser');
+    if (Object.keys(currentUser).length !== 0 && currentUser.id === id) {
       dispatch(fetchTechnologies());
     }
   }, [dispatch]);

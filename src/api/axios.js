@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GetCookie, SetCookie } from '../components/services/Cookie';
+import { getCookie, setCookie } from '../components/services/cookie';
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
@@ -16,8 +16,8 @@ const authentication = (ep, credentials) => axios.post(
 ).then((response) => {
   const { token, user } = response.data;
   if (ep === 'users/login') {
-    SetCookie('token', token);
-    SetCookie('user', JSON.stringify(user));
+    setCookie('token', token);
+    setCookie('user', JSON.stringify(user));
   }
   return response.data;
 }).catch((error) => {
@@ -37,7 +37,7 @@ const getWithToken = (ep) => axios.get(
   {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${GetCookie('token')}`,
+      Authorization: `Bearer ${getCookie('token')}`,
     },
   },
 ).then((response) => response);
@@ -48,7 +48,7 @@ const reqWithToken = (method, ep, obj) => axios({
   data: JSON.stringify(obj),
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${GetCookie('token')}`,
+    Authorization: `Bearer ${getCookie('token')}`,
   },
 });
 

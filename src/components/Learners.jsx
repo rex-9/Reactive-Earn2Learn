@@ -7,7 +7,6 @@ import linkedin from '../assets/linkedin.svg';
 
 const Learners = () => {
   const learners = useSelector((state) => state.learners);
-  const professions = useSelector((state) => state.professions);
 
   return (
     <div className="flex flex-wrap justify-center h-screen">
@@ -22,7 +21,7 @@ const Learners = () => {
           </div>
           <div className="mt-1 text-center">
             <div className="mb-3">Specializing in</div>
-            {professions.length === 0 ? <span>No profession yet</span> : professions.map((profession) => <span key={profession} className="px-2 py-1 m-1 text-gray-600 bg-green-300 border-2 border-gray-300 rounded-md shadow-lg cursor-default hover:bg-green-100 hover:text-gray-800 hover:shadow-inner">{profession}</span>)}
+            {learner.technologies.length === 0 ? <span>No profession yet</span> : learner.technologies.map((technology) => <span key={technology} className="px-2 py-1 m-1 text-gray-600 bg-green-300 border-2 border-gray-300 rounded-md shadow-lg cursor-default hover:bg-green-100 hover:text-gray-800 hover:shadow-inner">{technology.name}</span>)}
           </div>
           <button type="button" className="mt-4 btn">
             <Link to={`/profile/${learner.id}`}>

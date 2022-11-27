@@ -7,10 +7,13 @@ import ForgotPassword from './components/auth/ForgotPassword';
 
 import Home from './pages/learner/Home';
 import Profile from './pages/learner/Profile';
-import { GetCookie } from './components/services/Cookie';
+import { getCookie } from './components/services/cookie';
+import Users from './pages/admin/Users';
+import Studies from './pages/admin/Studies';
+import Certificates from './pages/admin/Certificates';
 
 const App = () => {
-  const token = GetCookie('token');
+  const token = getCookie('token');
 
   return (
     <>
@@ -40,6 +43,24 @@ const App = () => {
         <Route
           path="/profile/:id"
           element={<Profile />}
+        />
+        <Route
+          path="/admin/users"
+          element={token ? (
+            <Navigate to="/" replace />
+          ) : <Users />}
+        />
+        <Route
+          path="/admin/studies"
+          element={token ? (
+            <Navigate to="/" replace />
+          ) : <Studies />}
+        />
+        <Route
+          path="/admin/certificates"
+          element={token ? (
+            <Navigate to="/" replace />
+          ) : <Certificates />}
         />
       </Routes>
     </>

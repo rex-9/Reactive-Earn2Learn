@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import avatar from '../../assets/avatar.jpg';
 import githubIcon from '../../assets/github-black.svg';
 import linkedinIcon from '../../assets/linkedin-black.svg';
-import { returnCurrentUser } from '../services/Cookie';
+import { returnCurrentUser } from '../services/cookie';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const DisplayProfile = ({
