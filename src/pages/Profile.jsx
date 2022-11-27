@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { fetchStudies } from '../redux/reducers/studyXer';
-import { getWithToken } from '../api/axios';
+import { get } from '../api/axios';
 
 import DisplayProfile from '../components/profile/DisplayProfile';
 import EditProfile from '../components/profile/EditProfile';
@@ -16,8 +16,9 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const fetchLearner = async (id) => {
-    const response = await getWithToken(`users/${id}`);
+    const response = await get(`users/${id}`);
     setLearner(response.data);
+    setLoading(false);
   };
 
   const studies = useSelector((state) => state.studies.filter((study) => study.user.id === parseInt(id, 10)));

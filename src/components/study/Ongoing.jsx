@@ -15,7 +15,8 @@ const Ongoing = ({ studies }) => {
   id = parseInt(id, 10);
   const dispatch = useDispatch();
   const techs = useSelector((state) => state.technologies);
-  const currentUser = JSON.parse(GetCookie('user'));
+  const jsonUser = GetCookie('user');
+  const currentUser = JSON.parse(jsonUser || '{}');
 
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);

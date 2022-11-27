@@ -11,7 +11,8 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 const DisplayProfile = ({
   setEdit, learner,
 }) => {
-  const currentUser = JSON.parse(GetCookie('user'));
+  const jsonUser = GetCookie('user');
+  const currentUser = JSON.parse(jsonUser || '{}');
   return (
     <>
       <div className="flex items-start justify-between w-full">

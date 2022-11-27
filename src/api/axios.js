@@ -28,6 +28,10 @@ const authentication = (ep, credentials) => axios.post(
   }
 });
 
+const get = (ep) => axios.get(
+  `${baseURL}${ep}`,
+).then(response => response);
+
 const getWithToken = (ep) => axios.get(
   `${baseURL}${ep}`,
   {
@@ -49,5 +53,5 @@ const reqWithToken = (method, ep, obj) => axios({
 });
 
 export {
-  delay, authentication, getWithToken, reqWithToken,
+  delay, authentication, get, getWithToken, reqWithToken,
 };
