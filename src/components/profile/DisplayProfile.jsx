@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import avatar from '../../assets/avatar.jpg';
 import githubIcon from '../../assets/github-black.svg';
 import linkedinIcon from '../../assets/linkedin-black.svg';
-import { checkCookie, GetCookie } from '../services/Cookie';
+import { returnCurrentUser } from '../services/Cookie';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const DisplayProfile = ({
   setEdit, learner,
 }) => {
-  const currentUser = checkCookie('user') ? JSON.parse(GetCookie('user')) : {};
+  const currentUser = returnCurrentUser();
   return (
     <>
       <div className="flex items-start justify-between w-full">
@@ -84,23 +84,6 @@ const DisplayProfile = ({
       </div>
     </>
   );
-};
-
-DisplayProfile.propTypes = {
-  learner: PropTypes.shape({
-    username: PropTypes.string.isRequired,
-    fullname: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    bio: PropTypes.string,
-    city: PropTypes.string.isRequired,
-    birthdate: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
-    role: PropTypes.string.isRequired,
-    image: PropTypes.string,
-    github: PropTypes.string,
-    linkedin: PropTypes.string,
-  }).isRequired,
-  setEdit: PropTypes.func.isRequired,
 };
 
 export default DisplayProfile;

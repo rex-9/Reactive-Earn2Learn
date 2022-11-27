@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addStudy, updateStudy } from '../../redux/reducers/studyXer';
 
 import { fetchTechnologies } from '../../redux/reducers/technologyXer';
-import { GetCookie, checkCookie } from '../services/Cookie';
+import { returnCurrentUser } from '../services/Cookie';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 const Ongoing = ({ studies }) => {
@@ -15,7 +15,7 @@ const Ongoing = ({ studies }) => {
   id = parseInt(id, 10);
   const dispatch = useDispatch();
   const techs = useSelector((state) => state.technologies);
-  const currentUser = checkCookie('user') ? JSON.parse(GetCookie('user')) : {};
+  const currentUser = returnCurrentUser();
 
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
@@ -30,7 +30,10 @@ const Ongoing = ({ studies }) => {
   const [hoursTaken, setHoursTaken] = useState(0);
 
   useEffect(() => {
-    dispatch(fetchTechnologies());
+    if (Object.keys(currentUser).length !== 0) {
+      console.log('currentUser');
+      dispatch(fetchTechnologies());
+    }
   }, [dispatch]);
 
   const addStudyHandle = () => {
@@ -180,9 +183,7 @@ Ongoing.propTypes = {
   studies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      technology_id: PropTypes.number.isRequired,
       topic: PropTypes.string.isRequired,
-      hour: PropTypes.number.isRequired,
     }),
   ).isRequired,
 };

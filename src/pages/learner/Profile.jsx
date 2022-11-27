@@ -18,7 +18,6 @@ const Profile = () => {
   const fetchLearner = async (id) => {
     const response = await get(`users/${id}`);
     setLearner(response.data);
-    setLoading(false);
   };
 
   const studies = useSelector((state) => state.studies.filter((study) => study.user.id === parseInt(id, 10)));

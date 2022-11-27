@@ -23,6 +23,8 @@ const checkCookie = (key) => {
     return true;
   }
   return false;
-}
+};
 
-export { SetCookie, GetCookie, RemoveCookie, checkCookie };
+const returnCurrentUser = () => checkCookie('user') ? JSON.parse(GetCookie('user')) : {};
+
+export { SetCookie, GetCookie, RemoveCookie, checkCookie, returnCurrentUser };
