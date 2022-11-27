@@ -5,8 +5,8 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import ForgotPassword from './components/auth/ForgotPassword';
 
-import Home from './pages/Home';
-import Profile from './pages/Profile';
+import Home from './pages/learner/Home';
+import Profile from './pages/learner/Profile';
 import { GetCookie } from './components/services/Cookie';
 
 const App = () => {

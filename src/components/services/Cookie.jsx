@@ -17,4 +17,12 @@ const GetCookie = (key) => Cookie.get(key);
 
 const RemoveCookie = (key) => Cookie.remove(key);
 
-export { SetCookie, GetCookie, RemoveCookie };
+const checkCookie = (key) => {
+  const cookie = GetCookie(key);
+  if (cookie) {
+    return true;
+  }
+  return false;
+}
+
+export { SetCookie, GetCookie, RemoveCookie, checkCookie };

@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { fetchStudies } from '../redux/reducers/studyXer';
-import { get } from '../api/axios';
+import { fetchStudies } from '../../redux/reducers/studyXer';
+import { get } from '../../api/axios';
 
-import DisplayProfile from '../components/profile/DisplayProfile';
-import EditProfile from '../components/profile/EditProfile';
-import Completed from '../components/study/Completed';
-import Ongoing from '../components/study/Ongoing';
+import DisplayProfile from '../../components/profile/DisplayProfile';
+import EditProfile from '../../components/profile/EditProfile';
+import Completed from '../../components/study/Completed';
+import Ongoing from '../../components/study/Ongoing';
 
 const Profile = () => {
   const [learner, setLearner] = useState({});

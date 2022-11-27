@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addStudy, updateStudy } from '../../redux/reducers/studyXer';
 
 import { fetchTechnologies } from '../../redux/reducers/technologyXer';
-import { GetCookie } from '../services/Cookie';
+import { GetCookie, checkCookie } from '../services/Cookie';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 const Ongoing = ({ studies }) => {
@@ -15,8 +15,7 @@ const Ongoing = ({ studies }) => {
   id = parseInt(id, 10);
   const dispatch = useDispatch();
   const techs = useSelector((state) => state.technologies);
-  const jsonUser = GetCookie('user');
-  const currentUser = JSON.parse(jsonUser || '{}');
+  const currentUser = checkCookie('user') ? JSON.parse(GetCookie('user')) : {};
 
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);

@@ -5,14 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import avatar from '../../assets/avatar.jpg';
 import githubIcon from '../../assets/github-black.svg';
 import linkedinIcon from '../../assets/linkedin-black.svg';
-import { GetCookie } from '../services/Cookie';
+import { checkCookie, GetCookie } from '../services/Cookie';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const DisplayProfile = ({
   setEdit, learner,
 }) => {
-  const jsonUser = GetCookie('user');
-  const currentUser = JSON.parse(jsonUser || '{}');
+  const currentUser = checkCookie('user') ? JSON.parse(GetCookie('user')) : {};
   return (
     <>
       <div className="flex items-start justify-between w-full">
