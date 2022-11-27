@@ -14,7 +14,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className="sticky top-0 w-full flex items-center justify-between px-24 py-3 bg-dark">
+    <nav className="sticky top-0 h-[10%] w-full flex items-center justify-between px-24 py-3 bg-dark">
       <div className="text-white header">E2L</div>
       {
         Object.keys(user).length !== 0

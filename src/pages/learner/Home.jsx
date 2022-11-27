@@ -15,13 +15,26 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <section className="flex flex-col h-screen">
       <Nav />
-      {
-        isAdmin() ? <Panel /> : <div />
-      }
-      <Learners />
-    </>
+      <div className="flex h-[90%]">
+        {
+          isAdmin() ?
+            <div className="bg-yellow-200 w-96 h-full">
+              <Panel />
+            </div>
+            : <div />
+        }
+        {/* <!-- Scroll wrapper --> */}
+        <div class="flex-1 flex overflow-hidden">
+          {/* <!-- Scrollable container --> */}
+          <div class="flex-1 overflow-y-scroll">
+            {/* <!-- Your content --> */}
+            <Learners />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

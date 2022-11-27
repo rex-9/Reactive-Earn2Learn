@@ -1,6 +1,6 @@
 const Panel = () => {
   return (
-    <section className="fixed top-0 bg-blue-200 shadow-lg shadow-red-600 h-screen w-96">
+    <section className="">
       <div>
         Panel
       </div>
