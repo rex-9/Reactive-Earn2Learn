@@ -46,79 +46,72 @@ const EditProfile = ({
 
   return (
     <>
-      <div className="flex items-start justify-between w-[600px]">
+      <div className="flex items-start justify-around pt-8 w-[600px]">
         <div className="flex flex-col items-center">
-          <div className="py-2 mb-2 text-center text-gray-500 rounded-lg w-96 bg-yellow-50">
-            To edit your profile data,
-            <br />
-            you do not need to fill every field.
-            <br />
-            You can only fill the fields you want to change.
-          </div>
           <label htmlFor="username">
             <div className="form-field">
               <span>Username:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. Rex" onChange={(e) => setUsername(e.target.value)} id="username" />
+              <input defaultValue={learner.username} type="text" className="m-0 bg-box input w-96" placeholder="E.g. Rex" onChange={(e) => setUsername(e.target.value)} id="username" />
             </div>
           </label>
           <label htmlFor="fullname">
             <div className="form-field">
               <span>Full Name:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. Htet Naing" onChange={(e) => setFullname(e.target.value)} id="fullname" />
+              <input defaultValue={learner.fullname} type="text" className="m-0 bg-box input w-96" placeholder="E.g. Htet Naing" onChange={(e) => setFullname(e.target.value)} id="fullname" />
             </div>
           </label>
           <label htmlFor="email">
             <div className="form-field">
               <span>Email:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. htetnaing0814@gmail.com" onChange={(e) => setEmail(e.target.value)} id="fullname" />
+              <input defaultValue={learner.email} type="text" className="m-0 bg-box input w-96" placeholder="E.g. htetnaing0814@gmail.com" onChange={(e) => setEmail(e.target.value)} id="fullname" />
             </div>
           </label>
           <label htmlFor="image">
             <div className="form-field">
               <span>Image:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. https://www.unsplash.com/hello.jpg" onChange={(e) => setImage(e.target.value)} id="image" />
+              <input defaultValue={learner.image} type="text" className="m-0 bg-box input w-96" placeholder="E.g. https://www.unsplash.com/hello.jpg" onChange={(e) => setImage(e.target.value)} id="image" />
             </div>
           </label>
           <label htmlFor="bio">
             <div className="form-field">
               <span>Bio:</span>
-              <textarea type="text" className="m-0 bg-box w-96 input" placeholder="E.g. Hi! I am a Spiritual Full-Stack Developer." onChange={(e) => setBio(e.target.value)} id="image" />
+              <textarea defaultValue={learner.bio} type="text" className="m-0 bg-box w-96 input" placeholder="E.g. Hi! I am a Spiritual Full-Stack Developer." onChange={(e) => setBio(e.target.value)} id="image" />
             </div>
           </label>
           <label htmlFor="birthdate">
             <div className="form-field">
               <span>Birthdate:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. 18-03-2000" onChange={(e) => setBirthdate(e.target.value)} id="birthdate" />
+              <input defaultValue={learner.birthdate} type="text" className="m-0 bg-box input w-96" placeholder="E.g. 18-03-2000" onChange={(e) => setBirthdate(e.target.value)} id="birthdate" />
             </div>
           </label>
           <label htmlFor="city">
             <div className="form-field">
               <span>City:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. Yangon" onChange={(e) => setCity(e.target.value)} id="city" />
+              <input defaultValue={learner.city} type="text" className="m-0 bg-box input w-96" placeholder="E.g. Yangon" onChange={(e) => setCity(e.target.value)} id="city" />
             </div>
           </label>
           <label htmlFor="phone">
             <div className="form-field">
               <span>Phone:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. +959443112251" onChange={(e) => setPhone(e.target.value)} id="phone" />
+              <input defaultValue={learner.phone} type="text" className="m-0 bg-box input w-96" placeholder="E.g. +959443112251" onChange={(e) => setPhone(e.target.value)} id="phone" />
             </div>
           </label>
           <label htmlFor="role">
             <div className="form-field">
               <span>Role:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. Admin" onChange={(e) => setRole(e.target.value)} id="phone" />
+              <input defaultValue={learner.role} type="text" className="m-0 bg-box input w-96" placeholder="E.g. Admin" onChange={(e) => setRole(e.target.value)} id="phone" />
             </div>
           </label>
           <label htmlFor="github">
             <div className="form-field">
               <span>GitHub:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. https://www.github.com/rex-9" onChange={(e) => setGithub(e.target.value)} id="github" />
+              <input defaultValue={learner.github} type="text" className="m-0 bg-box input w-96" placeholder="E.g. https://www.github.com/rex-9" onChange={(e) => setGithub(e.target.value)} id="github" />
             </div>
           </label>
           <label htmlFor="linkedin">
             <div className="form-field">
               <span>LinkedIn:</span>
-              <input type="text" className="m-0 bg-box input w-96" placeholder="E.g. https://www.linkedin.com/in/rex9" onChange={(e) => setLinkedin(e.target.value)} id="linkedin" />
+              <input defaultValue={learner.linkedin} type="text" className="m-0 bg-box input w-96" placeholder="E.g. https://www.linkedin.com/in/rex9" onChange={(e) => setLinkedin(e.target.value)} id="linkedin" />
             </div>
           </label>
           <div className="text-right w-[500px]">

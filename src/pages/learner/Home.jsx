@@ -20,15 +20,13 @@ const Home = () => {
       <div className="flex h-[90%]">
         {
           isAdmin() ?
-            <div className="bg-yellow-200 w-96 h-full">
-              <Panel />
-            </div>
+            <Panel />
             : <div />
         }
         {/* <!-- Scroll wrapper --> */}
-        <div class="flex-1 flex overflow-hidden">
+        <div className="flex-1 flex overflow-hidden">
           {/* <!-- Scrollable container --> */}
-          <div class="flex-1 overflow-y-scroll">
+          <div className="flex-1 overflow-y-scroll">
             {/* <!-- Your content --> */}
             <Learners />
           </div>

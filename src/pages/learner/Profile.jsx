@@ -54,8 +54,8 @@ const Profile = () => {
               learner={learner}
             />
             {edit ? (
-              <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
-                <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
+              <div className="bg-black/40 w-full flex h-screen justify-center fixed top-0 left-0">
+                <div className="bg-white p-4 my-4 rounded-lg overflow-y-auto">
                   <EditProfile
                     setEdit={setEdit}
                     learner={learner}

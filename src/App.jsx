@@ -7,7 +7,7 @@ import ForgotPassword from './components/auth/ForgotPassword';
 
 import Home from './pages/learner/Home';
 import Profile from './pages/learner/Profile';
-import { getCookie } from './components/services/cookie';
+import { getCookie, isAdmin } from './components/services/cookie';
 import Users from './pages/admin/Users';
 import Studies from './pages/admin/Studies';
 import Certificates from './pages/admin/Certificates';
@@ -46,19 +46,19 @@ const App = () => {
         />
         <Route
           path="/admin/users"
-          element={token ? (
+          element={!isAdmin() ? (
             <Navigate to="/" replace />
           ) : <Users />}
         />
         <Route
           path="/admin/studies"
-          element={token ? (
+          element={!isAdmin() ? (
             <Navigate to="/" replace />
           ) : <Studies />}
         />
         <Route
           path="/admin/certificates"
-          element={token ? (
+          element={!isAdmin() ? (
             <Navigate to="/" replace />
           ) : <Certificates />}
         />

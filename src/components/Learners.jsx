@@ -25,7 +25,7 @@ const Learners = () => {
               learner.technologies.length === 0 ?
                 <span>No profession yet</span> :
                 learner.technologies.map((technology) => (
-                  <span key={technology} className="px-2 py-1 m-1 text-gray-600 bg-green-300 border-2 border-gray-300 rounded-md shadow-lg cursor-default hover:bg-green-100 hover:text-gray-800 hover:shadow-inner">
+                  <span key={technology.id} className="px-2 py-1 m-1 text-gray-600 bg-green-300 border-2 border-gray-300 rounded-md shadow-lg cursor-default hover:bg-green-100 hover:text-gray-800 hover:shadow-inner">
                     {technology.name}
                   </span>
                 ))
