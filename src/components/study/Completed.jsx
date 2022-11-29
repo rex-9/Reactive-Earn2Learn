@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { returnCurrentUser } from '../../services/cookie';
+import Alert from '../Alert';
 import EditStudy from './EditStudy';
 
 const Completed = ({ studies }) => {
@@ -11,11 +12,18 @@ const Completed = ({ studies }) => {
 
   const [edit, setEdit] = useState();
   const [study, setStudy] = useState({});
+  const [ID, setID] = useState(false);
+  const [alert, setAlert] = useState(false);
 
   const handleEdit = (id) => {
     setEdit(!edit)
     const temp = studies.find((study) => study.id === id);
     setStudy(temp)
+  }
+
+  const handleDelete = (id) => {
+    setID(id);
+    setAlert(true);
   }
 
   return (
@@ -28,6 +36,16 @@ const Completed = ({ studies }) => {
                 <EditStudy
                   setEdit={setEdit}
                   study={study}
+                />
+              </div>
+            </div>
+          )}
+          {alert && (
+            <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
+              <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
+                <Alert
+                  setAlert={setAlert}
+                  id={ID}
                 />
               </div>
             </div>
@@ -53,7 +71,12 @@ const Completed = ({ studies }) => {
                 </div>
                 {
                   currentUser.id === id
-                  && <button type="button" className="mb-4" onClick={() => handleEdit(study.id)}>Edit</button>
+                  && (
+                    <div>
+                      <button type="button" onClick={() => handleEdit(study.id)}>Edit</button>
+                      <button type="button" onClick={() => handleDelete(study.id)}>Delete</button>
+                    </div>
+                  )
                 }
               </div>
             ))

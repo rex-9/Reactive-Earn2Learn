@@ -23,7 +23,7 @@ const studyXer = (state = [], action) => {
       return state;
 
     case DELETE_STUDY:
-      return state.filter((study) => study.id !== action.payload);
+      return state;
 
     default:
       return state;
@@ -49,7 +49,8 @@ const updateStudy = createAsyncThunk(UPDATE_STUDY, async (obj) => {
 });
 
 const deleteStudy = createAsyncThunk(DELETE_STUDY, async (id) => {
-  await deleteWithToken(endpoint.study(id));
+  const response = await deleteWithToken(endpoint.study(id));
+  console.log('Delete Study response.data', response.data);
 });
 
 export default studyXer;
