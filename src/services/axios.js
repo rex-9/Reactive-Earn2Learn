@@ -53,6 +53,16 @@ const get = (ep) => axios.get(
   ep,
 ).then((response) => response);
 
+const deleteWithToken = (ep) => axios.delete(
+  ep,
+  {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getCookie('token')}`,
+    },
+  },
+);
+
 const getWithToken = (ep) => axios.get(
   ep,
   {
@@ -74,5 +84,5 @@ const reqWithToken = (method, ep, obj) => axios({
 });
 
 export {
-  endpoint, authentication, get, getWithToken, reqWithToken,
+  endpoint, authentication, get, getWithToken, reqWithToken, deleteWithToken
 };

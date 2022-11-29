@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { endpoint, getWithToken, reqWithToken } from '../../services/axios';
+import { endpoint, getWithToken, reqWithToken, deleteWithToken } from '../../services/axios';
 
 const FETCH_LEARNERS = 'reactive-earn2learn/learners/FETCH_LEARNERS';
 const FETCH_LEARNER = 'reactive-earn2learn/learners/FETCH_LEARNER';
@@ -40,9 +40,9 @@ const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
   return response.data;
 });
 
-const deleteLearner = (id) => ({
-  type: DELETE_LEARNER,
-  payload: id,
+const deleteLearner = createAsyncThunk(DELETE_LEARNER, async (id) => {
+  const response = await deleteWithToken(endpoint.learner(id));
+  return response.data;
 });
 
 export default learnerXer;

@@ -4,6 +4,7 @@ import { endpoint, getWithToken, reqWithToken } from '../../services/axios';
 const FETCH_CERTIFICATES = 'reactive-earn2learn/certificates/FETCH_CERTIFICATES';
 const ADD_CERTIFICATE = 'reactive-earn2learn/certificates/ADD_CERTIFICATE';
 const UPDATE_CERTIFICATE = 'reactive-earn2learn/certificates/UPDATE_CERTIFICATE';
+const DELETE_CERTIFICATE = 'reactive-earn2learn/certificates/DELETE_CERTIFICATE';
 
 const certificateXer = (state = [], action) => {
   switch (action.type) {
@@ -31,5 +32,10 @@ const updateCertificate = createAsyncThunk(UPDATE_CERTIFICATE, async (obj) => {
   await reqWithToken('PUT', endpoint.certificate(obj.id), obj);
 });
 
+const deleteCertificate = createAsyncThunk(DELETE_CERTIFICATE, async (id) => {
+  const response = await deleteWithToken(endpoint.certificate(id));
+  return response.data;
+});
+
 export default certificateXer;
-export { fetchCertificates, updateCertificate };
+export { fetchCertificates, updateCertificate, deleteCertificate };

@@ -19,7 +19,7 @@ const Profile = () => {
     setLearner(response.data);
   };
 
-  const studies = useSelector((state) => state.studies.filter((study) => study.user.id === parseInt(id, 10)));
+  const studies = useSelector((state) => state.studies);
   const completed = studies.filter((study) => study.completed === true);
   const ongoing = studies.filter((study) => study.completed === false);
 
