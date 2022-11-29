@@ -5,9 +5,8 @@ const FETCH_CERTIFICATES = 'reactive-earn2learn/certificates/FETCH_CERTIFICATES'
 const ADD_CERTIFICATE = 'reactive-earn2learn/certificates/ADD_CERTIFICATE';
 
 const certificateXer = (state = [], action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case `${FETCH_CERTIFICATES}/fulfilled`:
-      console.log('FETCH_CERTIFICATES', action.payload);
       return action.payload;
 
     case `${FETCH_CERTIFICATES}/rejected`:
@@ -18,7 +17,6 @@ const certificateXer = (state = [], action) => {
       return [...action.payload];
 
     default:
-      console.log('Default Hahahahahaha');
       return state;
   }
 };
