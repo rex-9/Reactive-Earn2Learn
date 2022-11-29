@@ -22,6 +22,8 @@ class Endpoint {
   technologies = () => `${this.url}technologies/`;
 
   certificates = () => `${this.url}certificates/`;
+
+  certificate = (id) => `${this.url}certificates/${id}`;
 }
 
 const endpoint = new Endpoint();

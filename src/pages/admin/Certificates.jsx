@@ -15,7 +15,6 @@ const Certificates = () => {
     setCertificate(temp)
   };
 
-  console.log(certificates);
   useEffect(() => {
     dispatch(fetchCertificates());
   }, [dispatch]);
