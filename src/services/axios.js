@@ -6,19 +6,21 @@ class Endpoint {
     this.url = 'http://127.0.0.1:3000/';
   }
 
-  login = () => this.url + 'users/login';
+  login = () => `${this.url}users/login`;
 
-  learners = () => this.url + 'users/';
+  learners = () => `${this.url}users/`;
 
-  learner = (id) => `users/${id}`;
+  learner = (id) => `${this.url}users/${id}`;
 
-  studies = () => this.url + 'studies/';
+  studies = () => `${this.url}studies/`;
 
-  study = (id) => this.url + `studies/${id}`;
+  study = (id) => `${this.url}studies/${id}`;
 
-  learnerStudies = (id) => this.url + `users/${id}/studies/`;
+  learnerStudies = (id) => `${this.url}users/${id}/studies/`;
 
-  technologies = () => this.url + 'technologies/';
+  technologies = () => `${this.url}technologies/`;
+
+  certificates = () => `${this.url}certificates/`;
 }
 
 const endpoint = new Endpoint();
@@ -38,7 +40,6 @@ const authentication = (ep, credentials) => axios.post(
   return response.data;
 }).catch((error) => {
   if (error.response) {
-    console.log(error.response);
     return error.response.data;
   } else {
     return { status: 'failure', error: 'Check Your Connection' };
@@ -47,7 +48,7 @@ const authentication = (ep, credentials) => axios.post(
 
 const get = (ep) => axios.get(
   ep,
-).then(response => response);
+).then((response) => response);
 
 const getWithToken = (ep) => axios.get(
   ep,

@@ -1,38 +1,32 @@
-const FETCH_CERTIFICATES = 'e2l-fe/certificates/FETCH_CERTIFICATES';
-const ADD_CERTIFICATE = 'e2l-fe/certificates/ADD_CERTIFICATE';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { endpoint, getWithToken } from '../../services/axios';
 
-const initialState = [
-  {
-    id: 1,
-    title: 'Master of React',
-    link: 'https://www.udemy.com/certificate/UC-8b9b9b1c-1b1a-4b1f-8f1a-1f1f1f1f1f1f/',
-    achieved_date: '2021-01-01',
-    expiration_date: '2021-01-01',
-    user_id: 1,
-    technology_id: 1,
-  },
-  {
-    id: 2,
-    title: 'Master on Rails',
-    link: 'https://www.udemy.com/certificate/UC-8b9b9b1c-1b1a-4b1f-8f1a-1f1f1f1f1f1f/',
-    achieved_date: '2022-01-01',
-    expiration_date: null,
-    user_id: 1,
-    technology_id: 2,
-  },
-];
+const FETCH_CERTIFICATES = 'reactive-earn2learn/certificates/FETCH_CERTIFICATES';
+const ADD_CERTIFICATE = 'reactive-earn2learn/certificates/ADD_CERTIFICATE';
 
-const certificateXer = (state = initialState, action) => {
+const certificateXer = (state = [], action) => {
   switch (action.payload) {
-    case FETCH_CERTIFICATES:
-      return [...action.payload];
+    case `${FETCH_CERTIFICATES}/fulfilled`:
+      console.log('FETCH_CERTIFICATES', action.payload);
+      return action.payload;
+
+    case `${FETCH_CERTIFICATES}/rejected`:
+      console.log('rejected');
+      return action.payload;
 
     case ADD_CERTIFICATE:
       return [...action.payload];
 
     default:
+      console.log('Default Hahahahahaha');
       return state;
   }
 };
 
+const fetchCertificates = createAsyncThunk(FETCH_CERTIFICATES, async () => {
+  const response = await getWithToken(endpoint.certificates());
+  return response.data;
+});
+
 export default certificateXer;
+export { fetchCertificates };

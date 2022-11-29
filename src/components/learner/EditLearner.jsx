@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { updateLearner } from '../../redux/reducers/learnerXer';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 
-const EditProfile = ({
+const EditLearner = ({
   setEdit,
   learner,
 }) => {
@@ -129,7 +129,7 @@ const EditProfile = ({
   );
 };
 
-EditProfile.propTypes = {
+EditLearner.propTypes = {
   setEdit: PropTypes.func.isRequired,
   learner: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -142,9 +142,9 @@ EditProfile.propTypes = {
     birthdate: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
-    github: PropTypes.string.isRequired,
-    linkedin: PropTypes.string.isRequired,
+    github: PropTypes.string,
+    linkedin: PropTypes.string,
   }).isRequired,
 };
 
-export default EditProfile;
+export default EditLearner;

@@ -1,5 +1,5 @@
-const FETCH_PROFESSIONS = 'e2l-fe/professions/FETCH_PROFESSIONS';
-// const FETCH_TECHNOLOGY_USERS = "e2l-fe/user_technologies/FETCH_TECHNOLOGY_USERS";
+const FETCH_PROFESSIONS = 'reactive-earn2learn/professions/FETCH_PROFESSIONS';
+// const FETCH_TECHNOLOGY_USERS = "reactive-earn2learn/user_technologies/FETCH_TECHNOLOGY_USERS";
 
 const initialState = [
   'React',

@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { endpoint, getWithToken } from '../../services/axios';
 
-const FETCH_TECHNOLOGIES = 'e2l-fe/TECHNOLOGIES/FETCH_TECHNOLOGIES';
-const ADD_TECHNOLOGY = 'e2l-fe/technologies/ADD_TECHNOLOGY';
+const FETCH_TECHNOLOGIES = 'reactive-earn2learn/TECHNOLOGIES/FETCH_TECHNOLOGIES';
+const ADD_TECHNOLOGY = 'reactive-earn2learn/technologies/ADD_TECHNOLOGY';
 
 const technologyXer = (state = [], action) => {
   switch (action.type) {

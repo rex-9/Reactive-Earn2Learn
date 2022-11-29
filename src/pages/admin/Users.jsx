@@ -1,28 +1,20 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLearners } from "../../redux/reducers/learnerXer";
-import EditProfile from "../../components/profile/EditProfile";
+import EditLearner from "../../components/learner/EditLearner";
 import avatar from "../../assets/avatar.jpg";
 
 const Users = () => {
   const [edit, setEdit] = useState(false);
   const learners = useSelector((state) => state.learners);
-  let [learner, setLearner] = useState({});
+  const [learner, setLearner] = useState({});
   const dispatch = useDispatch();
 
   const handleEdit = (id) => {
-    // setEdit(!edit)
+    setEdit(!edit)
     const temp = learners.find((learner) => learner.id === id);
     setLearner(temp)
-    console.log(temp);
-    console.log(learner);
-    // setLeanrerr(learner);
-    // console.log(learnerr);
   }
-
-  useEffect(() => {
-
-  }, [edit, learner])
 
   useEffect(() => {
     dispatch(fetchLearners())
@@ -32,7 +24,7 @@ const Users = () => {
       {edit && (
         <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
           <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
-            <EditProfile
+            <EditLearner
               setEdit={setEdit}
               learner={learner}
             />

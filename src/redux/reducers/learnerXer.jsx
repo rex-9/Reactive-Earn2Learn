@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { endpoint, getWithToken, reqWithToken } from '../../services/axios';
 
-const FETCH_LEARNERS = 'e2l-fe/learners/FETCH_LEARNERS';
-const FETCH_LEARNER = 'e2l-fe/learners/FETCH_LEARNER';
-const ADD_LEARNER = 'e2l-fe/learners/ADD_LEARNER';
-const UPDATE_LEARNER = 'e2l-fe/learners/UPDATE_LEARNER';
-const DELETE_LEARNER = 'e2l-fe/learners/DELETE_LEARNER';
+const FETCH_LEARNERS = 'reactive-earn2learn/learners/FETCH_LEARNERS';
+const FETCH_LEARNER = 'reactive-earn2learn/learners/FETCH_LEARNER';
+const ADD_LEARNER = 'reactive-earn2learn/learners/ADD_LEARNER';
+const UPDATE_LEARNER = 'reactive-earn2learn/learners/UPDATE_LEARNER';
+const DELETE_LEARNER = 'reactive-earn2learn/learners/DELETE_LEARNER';
 
 const learnerXer = (state = [], action) => {
   switch (action.type) {

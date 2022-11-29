@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { fetchStudies } from '../../redux/reducers/studyXer';
-import DisplayProfile from '../../components/profile/DisplayProfile';
-import EditProfile from '../../components/profile/EditProfile';
+import { fetchLearnerStudies } from '../../redux/reducers/studyXer';
+import DisplayLearner from '../../components/learner/DisplayLearner';
+import EditLearner from '../../components/learner/EditLearner';
 import Completed from '../../components/study/Completed';
 import Ongoing from '../../components/study/Ongoing';
-import { get } from '../../services/axios';
+import { endpoint, get } from '../../services/axios';
 
 const Profile = () => {
   const [learner, setLearner] = useState({});
@@ -15,7 +15,7 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const fetchLearner = async (id) => {
-    const response = await get(`users/${id}`);
+    const response = await get(endpoint.learner(id));
     setLearner(response.data);
   };
 
@@ -28,7 +28,7 @@ const Profile = () => {
 
   useEffect(() => {
     fetchLearner(id);
-    dispatch(fetchStudies(id));
+    dispatch(fetchLearnerStudies(id));
   }, [dispatch, id]);
 
   const activeStyle = {
@@ -48,14 +48,14 @@ const Profile = () => {
       <section id="learner-data">
         <div className="flex justify-center m-4 font-qs">
           <div className="bg-box rounded-md shadow-inner shadow-black p-4 w-[90%] flex items-start">
-            <DisplayProfile
+            <DisplayLearner
               setEdit={setEdit}
               learner={learner}
             />
             {edit && (
               <div className="bg-black/40 w-full flex h-screen justify-center fixed top-0 left-0">
                 <div className="bg-white p-4 my-4 rounded-lg overflow-y-auto">
-                  <EditProfile
+                  <EditLearner
                     setEdit={setEdit}
                     learner={learner}
                   />

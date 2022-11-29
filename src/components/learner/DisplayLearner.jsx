@@ -8,7 +8,7 @@ import linkedinIcon from '../../assets/linkedin-black.svg';
 import { isAdmin, returnCurrentUser } from '../../services/cookie';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
-const DisplayProfile = ({
+const DisplayLearner = ({
   setEdit, learner,
 }) => {
   const currentUser = returnCurrentUser();
@@ -89,4 +89,4 @@ const DisplayProfile = ({
   );
 };
 
-export default DisplayProfile;
+export default DisplayLearner;

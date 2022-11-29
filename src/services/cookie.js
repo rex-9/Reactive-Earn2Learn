@@ -22,10 +22,10 @@ const checkCookie = (key) => {
   else return false;
 };
 
-const isAdmin = () => {
-  return checkCookie('user') && JSON.parse(getCookie('user')).role === 'admin';
-}
+const isAdmin = () => checkCookie('user') && JSON.parse(getCookie('user')).role === 'admin';
 
-const returnCurrentUser = () => checkCookie('user') ? JSON.parse(getCookie('user')) : {};
+const returnCurrentUser = () => (checkCookie('user') ? JSON.parse(getCookie('user')) : {});
 
-export { setCookie, getCookie, removeCookie, checkCookie, returnCurrentUser, isAdmin };
+export {
+  setCookie, getCookie, removeCookie, checkCookie, returnCurrentUser, isAdmin,
+};
