@@ -211,11 +211,27 @@ const Register = () => {
                 {' '}
                 <br />
                 Allowed special characters:
-                <span aria-label="exclamation mark">!</span>
-                <span aria-label="at symbol">@</span>
-                <span aria-label="hashtag">#</span>
-                <span aria-label="dollar sign">$</span>
-                <span aria-label="percent">%</span>
+                <br />
+                <span aria-label="exclamation mark">! </span>
+                <span aria-label="double quotation">" </span>
+                <span aria-label="hashtag"># </span>
+                <span aria-label="dollar sign">$ </span>
+                <span aria-label="percent">% </span>
+                <span aria-label="ampersand">& </span>
+                <span aria-label="apostrophe">' </span>
+                <span aria-label="left parenthesis">&#40; </span>
+                <span aria-label="right parenthesis">&#41; </span>
+                <span aria-label="asterisk">* </span>
+                <span aria-label="plus sign">+ </span>
+                <span aria-label="comma">, </span>
+                <span aria-label="full-stop">. </span>
+                <span aria-label="colon">: </span>
+                <span aria-label="semicolon">; </span>
+                <span aria-label="less than sign">&#60; </span>
+                <span aria-label="equal sign">=</span>
+                <span aria-label="greater than sign">&#62; </span>
+                <span aria-label="question mark">? </span>
+                <span aria-label="at symbol">@ </span>
               </p>
               <br />
             </label>
