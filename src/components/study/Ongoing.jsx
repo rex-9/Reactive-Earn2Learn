@@ -78,7 +78,7 @@ const Ongoing = ({ studies }) => {
         <div className="w-[90%]">
           {/* Add Study Section */}
           {addStatus
-            ? (
+            && (
               <div id="Add Study Form" className="fixed top-0 left-0 z-10 flex items-center justify-center w-screen h-screen bg-black/25">
                 <div className="absolute p-4 bg-white rounded-lg w-96 h-fit">
                   <button className="float-right" onClick={() => setAddStatus(false)} type="button">
@@ -106,11 +106,11 @@ const Ongoing = ({ studies }) => {
                 </div>
               </div>
             )
-            : <div />}
+          }
 
           {/* Update Study Section */}
           {updateStatus
-            ? (
+            && (
               <div id="Update Study Form" className="fixed top-0 left-0 z-10 flex items-center justify-center w-screen h-screen bg-black/25">
                 <div className="absolute p-4 bg-white rounded-lg w-96 h-fit">
                   <button className="float-right" onClick={() => setUpdateStatus(false)} type="button">
@@ -139,12 +139,10 @@ const Ongoing = ({ studies }) => {
                   </div>
                 </div>
               </div>
-            )
-            : <div />}
+            )}
           {
             currentUser.id === id
-              ? <button type="button" className="mb-4 btn" onClick={() => setAddStatus(true)}>Add a New Study</button>
-              : <div />
+            && <button type="button" className="mb-4 btn" onClick={() => setAddStatus(true)}>Add a New Study</button>
           }
 
           {/* Display Study List */}
@@ -164,8 +162,8 @@ const Ongoing = ({ studies }) => {
                     <td className="py-2 text-center border rounded-lg border-slate-300">{study.topic}</td>
                     <td className="py-2 text-center border rounded-lg border-slate-300">
                       {id === currentUser.id
-                        ? <button type="button" className="btn" onClick={() => openUpdate(study.id)}>Complete</button>
-                        : <div />}
+                        && <button type="button" className="btn" onClick={() => openUpdate(study.id)}>Complete</button>
+                      }
                     </td>
                   </tr>
                 ))

@@ -53,7 +53,7 @@ const Profile = () => {
               setEdit={setEdit}
               learner={learner}
             />
-            {edit ? (
+            {edit && (
               <div className="bg-black/40 w-full flex h-screen justify-center fixed top-0 left-0">
                 <div className="bg-white p-4 my-4 rounded-lg overflow-y-auto">
                   <EditProfile
@@ -62,10 +62,7 @@ const Profile = () => {
                   />
                 </div>
               </div>
-            )
-              : (
-                <div />
-              )}
+            )}
           </div>
         </div>
       </section>

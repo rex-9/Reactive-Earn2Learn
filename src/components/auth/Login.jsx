@@ -1,10 +1,9 @@
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { authentication } from '../../api/axios';
+import { endpoint, authentication } from '../../api/axios';
 
 const Login = () => {
-  const LOGIN_ENDPOINT = 'users/login';
   const authRef = useRef();
   const formRef = useRef();
 
@@ -15,7 +14,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const credentials = { auth, password };
-    const result = await authentication(LOGIN_ENDPOINT, credentials);
+    const result = await authentication(endpoint.login(), credentials);
     if (result.status === 'success') {
       window.location.reload();
     } else if (result.status === 'failure') {
@@ -59,7 +58,7 @@ const Login = () => {
             </div>
           </form>
           {
-            err ? <p className="text-red-400">{err}</p> : <div />
+            err && <p className="text-red-400">{err}</p>
           }
           <div className="flex items-center justify-center">
             <Link to="/register" className="link">Register</Link>

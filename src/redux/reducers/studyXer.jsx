@@ -1,18 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getWithToken, reqWithToken } from '../../api/axios';
+import { endpoint, getWithToken, reqWithToken } from '../../api/axios';
 
 const FETCH_STUDIES = 'e2l-fe/studies/FETCH_STUDIES';
+const FETCH_LEARNER_STUDIES = 'e2l-fe/studies/FETCH_LEARNER_STUDIES';
 const ADD_STUDY = 'e2l-fe/studies/ADD_STUDY';
 const UPDATE_STUDY = 'e2l-fe/studies/UPDATE_STUDY';
 const DELETE_STUDY = 'e2l-fe/studies/DELETE_STUDY';
 
-const STUDIES_ENDPOINT = (id) => `users/${id}/studies/`;
-const ADD_STUDY_ENDPOINT = 'studies/';
-const STUDY_ENDPOINT = (id) => `studies/${id}`;
-
 const studyXer = (state = [], action) => {
   switch (action.type) {
     case `${FETCH_STUDIES}/fulfilled`:
+      return action.payload;
+
+    case `${FETCH_LEARNER_STUDIES}/fulfilled`:
       return action.payload;
 
     case `${ADD_STUDY}/fulfilled`:
@@ -30,17 +30,22 @@ const studyXer = (state = [], action) => {
   }
 };
 
-const fetchStudies = createAsyncThunk(FETCH_STUDIES, async (id) => {
-  const response = await getWithToken(STUDIES_ENDPOINT(id));
+const fetchStudies = createAsyncThunk(FETCH_STUDIES, async () => {
+  const response = await getWithToken(endpoint.studies());
+  return response.data;
+});
+
+const fetchLearnerStudies = createAsyncThunk(FETCH_LEARNER_STUDIES, async (id) => {
+  const response = await getWithToken(endpoint.learnerStudies(id));
   return response.data;
 });
 
 const addStudy = createAsyncThunk(ADD_STUDY, async (newStudy) => {
-  await reqWithToken('POST', ADD_STUDY_ENDPOINT, newStudy);
+  await reqWithToken('POST', endpoint.studies(), newStudy);
 });
 
 const updateStudy = createAsyncThunk(UPDATE_STUDY, async (obj) => {
-  await reqWithToken('PUT', STUDY_ENDPOINT(obj.id), obj);
+  await reqWithToken('PUT', endpoint.study(obj.id), obj);
 });
 
 const deleteStudy = (studyId) => ({
@@ -50,5 +55,5 @@ const deleteStudy = (studyId) => ({
 
 export default studyXer;
 export {
-  fetchStudies, addStudy, updateStudy, deleteStudy,
+  fetchLearnerStudies, fetchStudies, addStudy, updateStudy, deleteStudy,
 };

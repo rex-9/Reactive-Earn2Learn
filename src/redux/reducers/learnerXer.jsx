@@ -1,8 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getWithToken, reqWithToken } from '../../api/axios';
-
-const LEARNERS_ENDPOINT = 'users/';
-const LEARNER_ENDPOINT = (id) => `users/${id}`;
+import { endpoint, getWithToken, reqWithToken } from '../../api/axios';
 
 const FETCH_LEARNERS = 'e2l-fe/learners/FETCH_LEARNERS';
 const FETCH_LEARNER = 'e2l-fe/learners/FETCH_LEARNER';
@@ -34,12 +31,12 @@ const learnerXer = (state = [], action) => {
 };
 
 const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
-  const response = await getWithToken(LEARNERS_ENDPOINT);
+  const response = await getWithToken(endpoint.learners());
   return response.data;
 });
 
 const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
-  const response = await reqWithToken('PUT', LEARNER_ENDPOINT(learner.id), learner);
+  const response = await reqWithToken('PUT', endpoint.learner(learner.id), learner);
   return response.data;
 });
 

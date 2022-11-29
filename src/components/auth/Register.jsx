@@ -4,10 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { USERNAME_REGEX, PASSWORD_REGEX } from './auth_service';
-import { authentication } from '../../api/axios';
+import { endpoint, authentication } from '../../api/axios';
 
 const Register = () => {
-  const LEARNERS_ENDPOINT = 'users';
   const usernameRef = useRef();
   const navigate = useNavigate();
 
@@ -68,7 +67,7 @@ const Register = () => {
       email,
       password,
     };
-    const result = await authentication(LEARNERS_ENDPOINT, newLearner);
+    const result = await authentication(endpoint.learners(), newLearner);
     if (result.status === 'success') {
       navigate('/login');
     } else if (result.status === 'failure') {
@@ -267,7 +266,7 @@ const Register = () => {
           </form>
 
           {
-            errMsges ? errMsges.map((msg) => <p key={msg} className="text-red-400" aria-live="assertive">{msg}</p>) : <div />
+            errMsges && errMsges.map((msg) => <p key={msg} className="text-red-400" aria-live="assertive">{msg}</p>)
           }
 
           <div className="flex items-center justify-center">

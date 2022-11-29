@@ -19,9 +19,8 @@ const Home = () => {
       <Nav />
       <div className="flex h-[90%]">
         {
-          isAdmin() ?
-            <Panel />
-            : <div />
+          isAdmin() &&
+          <Panel />
         }
         {/* <!-- Scroll wrapper --> */}
         <div className="flex-1 flex overflow-hidden">

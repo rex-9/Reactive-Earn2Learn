@@ -1,27 +1,44 @@
 import axios from 'axios';
 import { getCookie, setCookie } from '../components/services/cookie';
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+class Endpoint {
+  constructor() {
+    this.url = 'http://127.0.0.1:3000/';
+  }
 
-const baseURL = 'http://127.0.0.1:3000/';
-// const baseURL = 'https://earn2learn-on-rails.onrender.com/';
-// const baseURL = 'https://earn2learn-on-rails.herokuapp.com/';
+  login = () => this.url + 'users/login';
+
+  learners = () => this.url + 'users/';
+
+  learner = (id) => `users/${id}`;
+
+  studies = () => this.url + 'studies/';
+
+  study = (id) => this.url + `studies/${id}`;
+
+  learnerStudies = (id) => this.url + `users/${id}/studies/`;
+
+  technologies = () => this.url + 'technologies/';
+}
+
+const endpoint = new Endpoint();
 
 const authentication = (ep, credentials) => axios.post(
-  `${baseURL}${ep}`,
+  ep,
   JSON.stringify(credentials),
   {
     headers: { 'Content-Type': 'application/json' },
   },
 ).then((response) => {
   const { token, user } = response.data;
-  if (ep === 'users/login') {
+  if (ep === endpoint.login()) {
     setCookie('token', token);
     setCookie('user', JSON.stringify(user));
   }
   return response.data;
 }).catch((error) => {
   if (error.response) {
+    console.log(error.response);
     return error.response.data;
   } else {
     return { status: 'failure', error: 'Check Your Connection' };
@@ -29,11 +46,11 @@ const authentication = (ep, credentials) => axios.post(
 });
 
 const get = (ep) => axios.get(
-  `${baseURL}${ep}`,
+  ep,
 ).then(response => response);
 
 const getWithToken = (ep) => axios.get(
-  `${baseURL}${ep}`,
+  ep,
   {
     headers: {
       'Content-Type': 'application/json',
@@ -44,7 +61,7 @@ const getWithToken = (ep) => axios.get(
 
 const reqWithToken = (method, ep, obj) => axios({
   method,
-  url: `${baseURL}${ep}`,
+  url: ep,
   data: JSON.stringify(obj),
   headers: {
     'Content-Type': 'application/json',
@@ -53,5 +70,5 @@ const reqWithToken = (method, ep, obj) => axios({
 });
 
 export {
-  delay, authentication, get, getWithToken, reqWithToken,
+  endpoint, authentication, get, getWithToken, reqWithToken,
 };

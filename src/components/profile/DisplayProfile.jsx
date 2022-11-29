@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import avatar from '../../assets/avatar.jpg';
 import githubIcon from '../../assets/github-black.svg';
 import linkedinIcon from '../../assets/linkedin-black.svg';
-import { returnCurrentUser } from '../services/cookie';
+import { isAdmin, returnCurrentUser } from '../services/cookie';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const DisplayProfile = ({
@@ -37,7 +37,7 @@ const DisplayProfile = ({
           </div>
         </div>
         {/* Learner Profile Data */}
-        <div className="flex justify-between items-start w-[80%]">
+        <div className="flex justify-between items-start ml-8 w-[80%]">
           <div>
             <div className="text-xl font-bold">
               {learner.fullname}
@@ -54,10 +54,13 @@ const DisplayProfile = ({
               Bio - &nbsp;
               {learner.bio || "I'm a super learner"}
             </div>
-            <div className="">
-              Role - &nbsp;
-              {learner.role}
-            </div>
+            {
+              isAdmin() &&
+              <div className="">
+                Role - &nbsp;
+                {learner.role}
+              </div>
+            }
             <div className="">
               Birthdate - &nbsp;
               {learner.birthdate}
@@ -74,11 +77,11 @@ const DisplayProfile = ({
 
           {
             learner.id === currentUser.id
-              ? (
-                <button type="button" onClick={() => setEdit(true)}>
-                  <FontAwesomeIcon icon={faEdit} className="h-6" />
-                </button>
-              ) : <div />
+            && (
+              <button type="button" onClick={() => setEdit(true)}>
+                <FontAwesomeIcon icon={faEdit} className="h-6" />
+              </button>
+            )
           }
         </div>
       </div>

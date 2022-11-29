@@ -1,10 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getWithToken } from '../../api/axios';
+import { endpoint, getWithToken } from '../../api/axios';
 
 const FETCH_TECHNOLOGIES = 'e2l-fe/TECHNOLOGIES/FETCH_TECHNOLOGIES';
 const ADD_TECHNOLOGY = 'e2l-fe/technologies/ADD_TECHNOLOGY';
-
-const TECHNOLOGIES_ENDPOINT = 'technologies/';
 
 const technologyXer = (state = [], action) => {
   switch (action.type) {
@@ -20,7 +18,7 @@ const technologyXer = (state = [], action) => {
 };
 
 const fetchTechnologies = createAsyncThunk(FETCH_TECHNOLOGIES, async () => {
-  const response = await getWithToken(TECHNOLOGIES_ENDPOINT);
+  const response = await getWithToken(endpoint.technologies());
   return response.data;
 });
 
