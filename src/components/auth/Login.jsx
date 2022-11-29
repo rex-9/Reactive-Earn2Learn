@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { endpoint, authentication } from '../../api/axios';
+import { endpoint, authentication } from '../../services/axios';
 
 const Login = () => {
   const authRef = useRef();

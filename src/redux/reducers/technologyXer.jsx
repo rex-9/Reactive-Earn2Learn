@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { endpoint, getWithToken } from '../../api/axios';
+import { endpoint, getWithToken } from '../../services/axios';
 
 const FETCH_TECHNOLOGIES = 'e2l-fe/TECHNOLOGIES/FETCH_TECHNOLOGIES';
 const ADD_TECHNOLOGY = 'e2l-fe/technologies/ADD_TECHNOLOGY';

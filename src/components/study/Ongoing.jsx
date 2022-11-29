@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addStudy, updateStudy } from '../../redux/reducers/studyXer';
 
 import { fetchTechnologies } from '../../redux/reducers/technologyXer';
-import { returnCurrentUser } from '../services/cookie';
+import { returnCurrentUser } from '../../services/cookie';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 const Ongoing = ({ studies }) => {

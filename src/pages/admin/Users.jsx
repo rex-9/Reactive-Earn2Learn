@@ -6,23 +6,30 @@ import avatar from "../../assets/avatar.jpg";
 
 const Users = () => {
   const [edit, setEdit] = useState(false);
-  const [learner, setLearner] = useState({});
   const learners = useSelector((state) => state.learners);
+  let [learner, setLearner] = useState({});
   const dispatch = useDispatch();
 
   const handleEdit = (id) => {
-    // setEdit(!edit);
-    const temp = learners.find((learner) =>learner.id === id);
-    setLearner(temp);
+    // setEdit(!edit)
+    const temp = learners.find((learner) => learner.id === id);
+    setLearner(temp)
+    console.log(temp);
     console.log(learner);
+    // setLeanrerr(learner);
+    // console.log(learnerr);
   }
+
+  useEffect(() => {
+
+  }, [edit, learner])
 
   useEffect(() => {
     dispatch(fetchLearners())
   }, [dispatch])
   return (
     <section className="text-center flex flex-col items-center">
-      {edit ? (
+      {edit && (
         <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
           <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
             <EditProfile
@@ -31,9 +38,7 @@ const Users = () => {
             />
           </div>
         </div>
-      )
-        : <div />
-      }
+      )}
       <p className="my-4 font-bold text-xl">Users</p>
       <table className="table-auto">
         <thead>

@@ -5,7 +5,7 @@ import { fetchLearners } from '../../redux/reducers/learnerXer';
 import Nav from "../../components/Nav";
 import Learners from '../../components/Learners';
 import Panel from '../../components/Panel';
-import { isAdmin } from '../../components/services/cookie';
+import { isAdmin } from '../../services/cookie';
 
 const Home = () => {
   const dispatch = useDispatch();

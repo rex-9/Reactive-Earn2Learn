@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { endpoint, getWithToken, reqWithToken } from '../../api/axios';
+import { endpoint, getWithToken, reqWithToken } from '../../services/axios';
 
 const FETCH_STUDIES = 'e2l-fe/studies/FETCH_STUDIES';
 const FETCH_LEARNER_STUDIES = 'e2l-fe/studies/FETCH_LEARNER_STUDIES';

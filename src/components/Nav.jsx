@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { checkCookie, getCookie, removeCookie } from './services/cookie';
+import { checkCookie, getCookie, removeCookie } from '../services/cookie';
 import avatar from '../assets/avatar.jpg';
 
 const Nav = () => {

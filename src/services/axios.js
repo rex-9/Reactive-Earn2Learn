@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getCookie, setCookie } from '../components/services/cookie';
+import { getCookie, setCookie } from './cookie';
 
 class Endpoint {
   constructor() {

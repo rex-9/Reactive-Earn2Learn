@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { USERNAME_REGEX, PASSWORD_REGEX } from './auth_service';
-import { endpoint, authentication } from '../../api/axios';
+import { endpoint, authentication } from '../../services/axios';
 
 const Register = () => {
   const usernameRef = useRef();
