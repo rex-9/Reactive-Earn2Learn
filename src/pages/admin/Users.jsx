@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchLearners } from "../../redux/reducers/learnerXer";
 import EditLearner from "../../components/learner/EditLearner";
 import avatar from "../../assets/avatar.jpg";
+import Alert from "../../components/Alert";
 
 const Users = () => {
   const [edit, setEdit] = useState(false);
@@ -10,11 +11,20 @@ const Users = () => {
   const [learner, setLearner] = useState({});
   const dispatch = useDispatch();
 
+  const [alert, setAlert] = useState(false);
+  const [id, setId] = useState({});
+
+  const handleDelete = (id) => {
+    setAlert(true);
+    setId(id);
+  }
+
   const handleEdit = (id) => {
     setEdit(!edit)
     const temp = learners.find((learner) => learner.id === id);
     setLearner(temp)
   }
+  console.log(id);
 
   useEffect(() => {
     dispatch(fetchLearners())
@@ -27,6 +37,17 @@ const Users = () => {
             <EditLearner
               setEdit={setEdit}
               learner={learner}
+            />
+          </div>
+        </div>
+      )}
+      {alert && (
+        <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
+          <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
+            <Alert
+              setAlert={setAlert}
+              id={id}
+              obj={"learner"}
             />
           </div>
         </div>
@@ -68,7 +89,7 @@ const Users = () => {
                 <td className="border-r-[1px] border-gray-400 px-2">{learner.certificates.length}</td>
                 <td>
                   <button className="btn mx-2" onClick={() => handleEdit(learner.id)}>Edit</button>
-                  <button className="btn bg-red-400 mr-2 hover:bg-red-600">Delete</button>
+                  <button className="btn bg-red-400 mr-2 hover:bg-red-600" onClick={() => handleDelete(learner.id)}>Delete</button>
                 </td>
               </tr>
             ))

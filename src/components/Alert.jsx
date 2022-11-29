@@ -1,11 +1,16 @@
 import { useDispatch } from "react-redux";
+import { deleteLearner } from "../redux/reducers/learnerXer";
 import { deleteStudy } from "../redux/reducers/studyXer";
 
-const Alert = ({ id, setAlert }) => {
+const Alert = ({ id, setAlert, obj }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteStudy(id));
+    if (obj === "study") {
+      dispatch(deleteStudy(id));
+    } else if (obj === "learner") {
+      dispatch(deleteLearner(id));
+    }
     window.location.reload();
   };
 

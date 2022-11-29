@@ -2,17 +2,25 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EditStudy from "../../components/study/EditStudy";
 import { fetchStudies } from "../../redux/reducers/studyXer";
+import Alert from '../../components/Alert';
 
 const Studies = () => {
   const [edit, setEdit] = useState(false);
+  const [alert, setAlert] = useState(false);
   const studies = useSelector((state) => state.studies);
   const [study, setStudy] = useState({});
+  const [id, setId] = useState({});
   const dispatch = useDispatch();
 
   const handleEdit = (id) => {
     setEdit(!edit)
     const temp = studies.find((study) => study.id === id);
     setStudy(temp)
+  }
+
+  const handleDelete = (id) => {
+    setAlert(true);
+    setId(id);
   }
 
   useEffect(() => {
@@ -27,6 +35,17 @@ const Studies = () => {
             <EditStudy
               setEdit={setEdit}
               study={study}
+            />
+          </div>
+        </div>
+      )}
+      {alert && (
+        <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
+          <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
+            <Alert
+              setAlert={setAlert}
+              id={id}
+              obj={"study"}
             />
           </div>
         </div>
@@ -58,7 +77,7 @@ const Studies = () => {
                 <td className="border-r-[1px] border-gray-400 px-2">{study.technology.name}</td>
                 <td>
                   <button className="btn mx-2" onClick={() => handleEdit(study.id)}>Edit</button>
-                  <button className="btn bg-red-400 mr-2 hover:bg-red-600">Delete</button>
+                  <button className="btn bg-red-400 mr-2 hover:bg-red-600" onClick={() => handleDelete(study.id)}>Delete</button>
                 </td>
               </tr>
             ))

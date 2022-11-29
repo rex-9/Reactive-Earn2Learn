@@ -12,7 +12,7 @@ const Completed = ({ studies }) => {
 
   const [edit, setEdit] = useState();
   const [study, setStudy] = useState({});
-  const [ID, setID] = useState(false);
+  const [studyId, setStudyId] = useState(false);
   const [alert, setAlert] = useState(false);
 
   const handleEdit = (id) => {
@@ -22,7 +22,7 @@ const Completed = ({ studies }) => {
   }
 
   const handleDelete = (id) => {
-    setID(id);
+    setStudyId(id);
     setAlert(true);
   }
 
@@ -45,7 +45,7 @@ const Completed = ({ studies }) => {
               <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
                 <Alert
                   setAlert={setAlert}
-                  id={ID}
+                  id={studyId}
                 />
               </div>
             </div>
