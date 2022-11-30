@@ -65,7 +65,7 @@ const EditLearner = ({
               <label htmlFor="email">
                 <div className="form-field">
                   <span>Email:</span>
-                  <input defaultValue={learner.email} type="text" className="m-0 bg-box input w-96" placeholder="E.g. htetnaing0814@gmail.com" onChange={(e) => setEmail(e.target.value)} id="fullname" />
+                  <input defaultValue={learner.email} type="text" className="m-0 bg-box input w-96" placeholder="E.g. htetnaing0814@gmail.com" onChange={(e) => setEmail(e.target.value)} id="email" />
                 </div>
               </label>
               <label htmlFor="image">
@@ -77,7 +77,7 @@ const EditLearner = ({
               <label htmlFor="bio">
                 <div className="form-field">
                   <span>Bio:</span>
-                  <textarea defaultValue={learner.bio} type="text" className="m-0 bg-box w-96 input" placeholder="E.g. Hi! I am a Spiritual Full-Stack Developer." onChange={(e) => setBio(e.target.value)} id="image" />
+                  <textarea defaultValue={learner.bio} type="text" className="m-0 bg-box w-96 input" placeholder="E.g. Hi! I am a Spiritual Full-Stack Developer." onChange={(e) => setBio(e.target.value)} id="bio" />
                 </div>
               </label>
               <label htmlFor="birthdate">
@@ -101,7 +101,10 @@ const EditLearner = ({
               <label htmlFor="role">
                 <div className="form-field">
                   <span>Role:</span>
-                  <input defaultValue={learner.role} type="text" className="m-0 bg-box input w-96" placeholder="E.g. Admin" onChange={(e) => setRole(e.target.value)} id="phone" />
+                  <select defaultValue={learner.role} className="m-0 bg-box input w-96" onChange={(e) => setRole(e.target.value)} name="role" id="role">
+                    <option value="admin">Admin</option>
+                    <option value="learner">Learner</option>
+                  </select>
                 </div>
               </label>
               <label htmlFor="github">

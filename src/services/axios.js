@@ -84,5 +84,5 @@ const reqWithToken = (method, ep, obj) => axios({
 });
 
 export {
-  endpoint, authentication, get, getWithToken, reqWithToken, deleteWithToken
+  endpoint, authentication, get, getWithToken, reqWithToken, deleteWithToken,
 };
