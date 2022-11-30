@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Alert from "../../components/Alert";
 import EditCertificate from "../../components/certificate/EditCertificate";
 import { fetchCertificates } from "../../redux/reducers/certificateXer";
 
 const Certificates = () => {
   const [edit, setEdit] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const [id, setId] = useState(null);
   const certificates = useSelector((state) => state.certificates);
   const [certificate, setCertificate] = useState({});
   const dispatch = useDispatch();
@@ -15,6 +18,11 @@ const Certificates = () => {
     setCertificate(temp)
   };
 
+  const handleDelete = (id) => {
+    setId(id);
+    setAlert(true);
+  }
+
   useEffect(() => {
     dispatch(fetchCertificates());
   }, [dispatch]);
@@ -22,14 +30,16 @@ const Certificates = () => {
   return (
     <section className="text-center flex flex-col items-center">
       {edit && (
-        <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
-          <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
-            <EditCertificate
-              setEdit={setEdit}
-              certificate={certificate}
-            />
-          </div>
-        </div>
+        <EditCertificate
+          setEdit={setEdit}
+          certificate={certificate}
+        />
+      )}
+      {alert && (
+        <Alert
+          setAlert={setAlert}
+          id={id}
+        />
       )}
       <p className="my-4 font-bold text-xl">Certificates</p>
       <table className="table-auto">
@@ -58,7 +68,7 @@ const Certificates = () => {
                 <td className="border-r-[1px] border-gray-400 px-2">{certificate.technology.name}</td>
                 <td>
                   <button className="btn mx-2" onClick={() => handleEdit(certificate.id)}>Edit</button>
-                  <button className="btn bg-red-400 mr-2 hover:bg-red-600">Delete</button>
+                  <button className="btn bg-red-400 mr-2 hover:bg-red-600" onClick={() => handleDelete(certificate.id)}>Delete</button>
                 </td>
               </tr>
             ))

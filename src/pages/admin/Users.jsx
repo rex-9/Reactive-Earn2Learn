@@ -32,25 +32,17 @@ const Users = () => {
   return (
     <section className="text-center flex flex-col items-center">
       {edit && (
-        <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
-          <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
-            <EditLearner
-              setEdit={setEdit}
-              learner={learner}
-            />
-          </div>
-        </div>
+        <EditLearner
+          setEdit={setEdit}
+          learner={learner}
+        />
       )}
       {alert && (
-        <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
-          <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
-            <Alert
-              setAlert={setAlert}
-              id={id}
-              obj={"learner"}
-            />
-          </div>
-        </div>
+        <Alert
+          setAlert={setAlert}
+          id={id}
+          obj={"learner"}
+        />
       )}
       <p className="my-4 font-bold text-xl">Users</p>
       <table className="table-auto">

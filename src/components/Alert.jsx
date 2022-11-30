@@ -15,10 +15,12 @@ const Alert = ({ id, setAlert, obj }) => {
   };
 
   return (
-    <div>
-      <p>Alert</p>
-      <button onClick={() => handleDelete(id)}>Delete</button>
-      <button onClick={() => setAlert(false)}>Cancel</button>
+    <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
+      <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
+        <p>Alert</p>
+        <button onClick={() => handleDelete(id)}>Delete</button>
+        <button onClick={() => setAlert(false)}>Cancel</button>
+      </div>
     </div>
   )
 }

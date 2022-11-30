@@ -31,24 +31,16 @@ const Completed = ({ studies }) => {
       <div className="flex justify-center m-4 font-qs">
         <div className="w-[90%] flex justify-around flex-wrap">
           {edit && (
-            <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
-              <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
                 <EditStudy
                   setEdit={setEdit}
                   study={study}
                 />
-              </div>
-            </div>
           )}
           {alert && (
-            <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
-              <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
-                <Alert
-                  setAlert={setAlert}
-                  id={studyId}
-                />
-              </div>
-            </div>
+            <Alert
+              setAlert={setAlert}
+              id={studyId}
+            />
           )}
           {
             studies.map((study) => (

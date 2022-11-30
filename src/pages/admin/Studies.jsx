@@ -30,25 +30,17 @@ const Studies = () => {
   return (
     <section className="text-center flex flex-col items-center">
       {edit && (
-        <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
-          <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
-            <EditStudy
-              setEdit={setEdit}
-              study={study}
-            />
-          </div>
-        </div>
+        <EditStudy
+          setEdit={setEdit}
+          study={study}
+        />
       )}
       {alert && (
-        <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
-          <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
-            <Alert
-              setAlert={setAlert}
-              id={id}
-              obj={"study"}
-            />
-          </div>
-        </div>
+        <Alert
+          setAlert={setAlert}
+          id={id}
+          obj={"study"}
+        />
       )}
       <p className="my-4 font-bold text-xl">Studies</p>
       <table className="table-auto">
@@ -71,7 +63,7 @@ const Studies = () => {
                 <td className="border-r-[1px] border-gray-400 px-2">{study.id}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{study.topic}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{study.experience}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{study.completed ? true : false }</td>
+                <td className="border-r-[1px] border-gray-400 px-2">{study.completed ? true : false}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{study.hours_taken}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{study.user.username}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{study.technology.name}</td>
