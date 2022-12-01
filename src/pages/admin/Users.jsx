@@ -24,7 +24,6 @@ const Users = () => {
     const temp = learners.find((learner) => learner.id === id);
     setLearner(temp)
   }
-  console.log(id);
 
   useEffect(() => {
     dispatch(fetchLearners())

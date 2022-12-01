@@ -16,8 +16,6 @@ const Completed = ({ studies }) => {
   const [studyId, setStudyId] = useState(false);
   const [alert, setAlert] = useState(false);
 
-  const [like, setLike] = useState(0);
-
   const handleEdit = (id) => {
     setEdit(!edit)
     const temp = studies.find((study) => study.id === id);
@@ -32,6 +30,7 @@ const Completed = ({ studies }) => {
   const handleLike = async (id) => {
     setStudyId(id);
     await reqWithToken("POST", endpoint.likes(), { study_id: id, user_id: currentUser.id })
+    window.location.reload();
   };
 
   const handleComment = (id) => {
