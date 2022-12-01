@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { endpoint, reqWithToken } from '../../services/axios';
 import { getCookie, returnCurrentUser } from '../../services/cookie';
@@ -11,6 +12,8 @@ const Completed = ({ studies }) => {
   id = parseInt(id, 10);
   const currentUser = returnCurrentUser();
 
+  const learners = useSelector((state) => state.learners);
+  console.log('Learners', learners);
   const [edit, setEdit] = useState();
   const [study, setStudy] = useState({});
   const [studyId, setStudyId] = useState(false);
@@ -44,7 +47,7 @@ const Completed = ({ studies }) => {
   };
 
   const handleComment = async (id) => {
-    await reqWithToken("POST", endpoint.comments(), { study_id: id, user_id: currentUser.id, content })
+    await reqWithToken("POST", endpoint.comments(), { study_id: id, user_id: currentUser.id, username: currentUser.username, content })
     window.location.reload();
   }
 
@@ -107,13 +110,18 @@ const Completed = ({ studies }) => {
                 }
                 {
                   toggle && current === study.id &&
-                    <div>
-                      <input type="text" placeholder="Share your Opinion..." onChange={(e) => setContent(e.target.value)} />
-                      <button type="button" onClick={() => handleComment(study.id)}>Comment</button>
-                    </div>
+                  <div>
+                    <input type="text" placeholder="Share your Opinion..." onChange={(e) => setContent(e.target.value)} />
+                    <button type="button" onClick={() => handleComment(study.id)}>Comment</button>
+                  </div>
                 }
                 {
-                  study.comments.map((comment) => <div key={comment.id}>{comment.content}</div>)
+                  study.comments.map((comment) => (
+                    <div key={comment.id}>
+                      {comment.username}
+                      {comment.content}
+                    </div>
+                  ))
                 }
               </div>
             ))
