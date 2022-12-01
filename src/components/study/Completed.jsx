@@ -33,14 +33,20 @@ const Completed = ({ studies }) => {
     window.location.reload();
   };
 
-  const handleComment = (id) => {
-    console.log(id);
-    console.log("comment");
+  const [toggle, setToggle] = useState(false);
+  const [content, setContent] = useState('');
+  const [current, setCurrent] = useState(null);
+
+
+  const handleToggle = (id) => {
+    setToggle(!toggle);
+    setCurrent(id);
   };
 
-  useEffect(() => {
-
-  }, [handleLike, handleComment, studyId])
+  const handleComment = async (id) => {
+    await reqWithToken("POST", endpoint.comments(), { study_id: id, user_id: currentUser.id, content })
+    window.location.reload();
+  }
 
   return (
     <>
@@ -85,7 +91,7 @@ const Completed = ({ studies }) => {
                       <span>{study.likes.length}</span>
                     </div>
                     <div>
-                      <button type="button" onClick={() => handleComment(study.id)}>Comment</button>
+                      <button type="button" id={`comment: ${study.id}`} onClick={() => handleToggle(study.id)}>Comment</button>
                       <span>{study.comments.length}</span>
                     </div>
                   </div>
@@ -98,6 +104,16 @@ const Completed = ({ studies }) => {
                       <button type="button" onClick={() => handleDelete(study.id)}>Delete</button>
                     </div>
                   )
+                }
+                {
+                  toggle && current === study.id &&
+                    <div>
+                      <input type="text" placeholder="Share your Opinion..." onChange={(e) => setContent(e.target.value)} />
+                      <button type="button" onClick={() => handleComment(study.id)}>Comment</button>
+                    </div>
+                }
+                {
+                  study.comments.map((comment) => <div key={comment.id}>{comment.content}</div>)
                 }
               </div>
             ))
