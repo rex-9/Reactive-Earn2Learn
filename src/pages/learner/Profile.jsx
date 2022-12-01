@@ -16,7 +16,7 @@ const Profile = () => {
 
   const fetchLearner = async (id) => {
     const response = await get(endpoint.learner(id));
-    setLearner(response.data);
+    setLearner(response);
   };
 
   const studies = useSelector((state) => state.studies);
@@ -25,7 +25,7 @@ const Profile = () => {
 
   const [edit, setEdit] = useState(false);
   const [accomplished, setAccomplished] = useState(true);
-
+  console.log('learner', learner);
   useEffect(() => {
     fetchLearner(id);
     dispatch(fetchLearnerStudies(id));

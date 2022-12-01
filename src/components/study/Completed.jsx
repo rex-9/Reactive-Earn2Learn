@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { endpoint, reqWithToken } from '../../services/axios';
 import { getCookie, returnCurrentUser } from '../../services/cookie';
@@ -12,8 +11,6 @@ const Completed = ({ studies }) => {
   id = parseInt(id, 10);
   const currentUser = returnCurrentUser();
 
-  const learners = useSelector((state) => state.learners);
-  console.log('Learners', learners);
   const [edit, setEdit] = useState();
   const [study, setStudy] = useState({});
   const [studyId, setStudyId] = useState(false);
