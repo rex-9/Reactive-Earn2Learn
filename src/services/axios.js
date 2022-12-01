@@ -21,9 +21,23 @@ class Endpoint {
 
   technologies = () => `${this.url}technologies/`;
 
+  technology = (id) => `${this.url}technologies/${id}`;
+
   certificates = () => `${this.url}certificates/`;
 
   certificate = (id) => `${this.url}certificates/${id}`;
+
+  likes = () => `${this.url}likes/`;
+
+  studyLikes = (id) => `${this.url}studies/${id}/likes/`;
+
+  userLikes = (id) => `${this.url}users/${id}/likes/`;
+
+  comments = () => `${this.url}comments/`;
+
+  studyComments = (id) => `${this.url}studies/${id}/comments/`;
+
+  userComments = (id) => `${this.url}users/${id}/comments/`;
 }
 
 const endpoint = new Endpoint();

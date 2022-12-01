@@ -11,6 +11,7 @@ import { getCookie, isAdmin } from './services/cookie';
 import Users from './pages/admin/Users';
 import Studies from './pages/admin/Studies';
 import Certificates from './pages/admin/Certificates';
+import Technologies from './pages/admin/Technologies';
 
 const App = () => {
   const token = getCookie('token');
@@ -61,6 +62,12 @@ const App = () => {
           element={!isAdmin() ? (
             <Navigate to="/" replace />
           ) : <Certificates />}
+        />
+        <Route
+          path="/admin/technologies"
+          element={!isAdmin() ? (
+            <Navigate to="/" replace />
+          ) : <Technologies />}
         />
       </Routes>
     </>

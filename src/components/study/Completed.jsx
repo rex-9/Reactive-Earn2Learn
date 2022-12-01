@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { returnCurrentUser } from '../../services/cookie';
+import { endpoint, reqWithToken } from '../../services/axios';
+import { getCookie, returnCurrentUser } from '../../services/cookie';
 import Alert from '../Alert';
 import EditStudy from './EditStudy';
 
@@ -15,26 +16,42 @@ const Completed = ({ studies }) => {
   const [studyId, setStudyId] = useState(false);
   const [alert, setAlert] = useState(false);
 
+  const [like, setLike] = useState(0);
+
   const handleEdit = (id) => {
     setEdit(!edit)
     const temp = studies.find((study) => study.id === id);
     setStudy(temp)
-  }
+  };
 
   const handleDelete = (id) => {
     setStudyId(id);
     setAlert(true);
-  }
+  };
+
+  const handleLike = async (id) => {
+    setStudyId(id);
+    await reqWithToken("POST", endpoint.likes(), { study_id: id, user_id: currentUser.id })
+  };
+
+  const handleComment = (id) => {
+    console.log(id);
+    console.log("comment");
+  };
+
+  useEffect(() => {
+
+  }, [handleLike, handleComment, studyId])
 
   return (
     <>
       <div className="flex justify-center m-4 font-qs">
         <div className="w-[90%] flex justify-around flex-wrap">
           {edit && (
-                <EditStudy
-                  setEdit={setEdit}
-                  study={study}
-                />
+            <EditStudy
+              setEdit={setEdit}
+              study={study}
+            />
           )}
           {alert && (
             <Alert
@@ -62,9 +79,22 @@ const Completed = ({ studies }) => {
                   {study.experience}
                 </div>
                 {
+                  getCookie('token') &&
+                  <div className="w-full bg-green-300 flex justify-between">
+                    <div>
+                      <button type="button" onClick={() => handleLike(study.id)}>Like</button>
+                      <span>{study.likes.length}</span>
+                    </div>
+                    <div>
+                      <button type="button" onClick={() => handleComment(study.id)}>Comment</button>
+                      <span>{study.comments.length}</span>
+                    </div>
+                  </div>
+                }
+                {
                   currentUser.id === id
                   && (
-                    <div>
+                    <div className="w-full bg-red-300 flex justify-between">
                       <button type="button" onClick={() => handleEdit(study.id)}>Edit</button>
                       <button type="button" onClick={() => handleDelete(study.id)}>Delete</button>
                     </div>

@@ -19,6 +19,11 @@ const Panel = () => {
             Certificates
           </Link>
         </li>
+        <li>
+          <Link to="/admin/technologies" className="border-b-[1px] border-black hover:border-blue-200">
+            Technologies
+          </Link>
+        </li>
       </ul>
     </section>
   )

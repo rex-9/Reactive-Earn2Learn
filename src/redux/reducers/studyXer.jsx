@@ -49,8 +49,7 @@ const updateStudy = createAsyncThunk(UPDATE_STUDY, async (obj) => {
 });
 
 const deleteStudy = createAsyncThunk(DELETE_STUDY, async (id) => {
-  const response = await deleteWithToken(endpoint.study(id));
-  console.log('Delete Study response.data', response.data);
+  await deleteWithToken(endpoint.study(id));
 });
 
 export default studyXer;
