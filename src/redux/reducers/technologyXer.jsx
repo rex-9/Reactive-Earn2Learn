@@ -38,7 +38,8 @@ const addTechnology = createAsyncThunk(ADD_TECHNOLOGY, async (newTech) => {
 });
 
 const updateTechnology = createAsyncThunk(UPDATE_TECHNOLOGY, async (obj) => {
-  await reqWithToken('PUT', endpoint.technology(obj.id), obj);
+  const response = await reqWithToken('PUT', endpoint.technology(obj.id), obj);
+  return response.data;
 });
 
 const deleteTechnology = createAsyncThunk(DELETE_TECHNOLOGY, async (id) => {

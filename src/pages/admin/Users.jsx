@@ -51,6 +51,7 @@ const Users = () => {
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Image</th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Username</th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Full Name</th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Goal</th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Email</th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">City</th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Phone</th>
@@ -70,6 +71,7 @@ const Users = () => {
                 <td className="border-r-[1px] border-gray-400 px-2"><img className="w-20 h-20 object-cover" src={learner.image || avatar} /></td>
                 <td className="border-r-[1px] border-gray-400 px-2">{learner.username}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{learner.fullname}</td>
+                <td className="border-r-[1px] border-gray-400 px-2">{learner.goal}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{learner.email}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{learner.city}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{learner.phone}</td>

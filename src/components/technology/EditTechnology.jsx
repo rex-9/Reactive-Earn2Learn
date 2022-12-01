@@ -15,13 +15,13 @@ const EditTechnology = ({
   const [name, setName] = useState(technology.name);
 
   const saveChanges = () => {
-    setEdit(false);
     const techObj = {
       id: technology.id,
       name,
     };
     dispatch(updateTechnology(techObj));
-    window.location.reload();
+    setEdit(false);
+    // window.location.reload();
   };
 
   return (
@@ -55,7 +55,7 @@ const EditTechnology = ({
 
 EditTechnology.propTypes = {
   setEdit: PropTypes.func.isRequired,
-  study: PropTypes.shape({
+  technology: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,

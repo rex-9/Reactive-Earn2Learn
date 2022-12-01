@@ -47,6 +47,10 @@ const DisplayLearner = ({
               <span>)</span>
             </div>
             <div className="">
+              Goal - &nbsp;
+              {learner.goal}
+            </div>
+            <div className="">
               Email - &nbsp;
               {learner.email}
             </div>

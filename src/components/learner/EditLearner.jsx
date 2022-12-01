@@ -14,6 +14,7 @@ const EditLearner = ({
   const dispatch = useDispatch();
   const [username, setUsername] = useState(learner.username);
   const [fullname, setFullname] = useState(learner.fullname);
+  const [goal, setGoal] = useState(learner.goal);
   const [email, setEmail] = useState(learner.email);
   const [image, setImage] = useState(learner.image);
   const [bio, setBio] = useState(learner.bio);
@@ -30,6 +31,7 @@ const EditLearner = ({
       id: learner.id,
       username,
       fullname,
+      goal,
       email,
       image,
       bio,
@@ -60,6 +62,12 @@ const EditLearner = ({
                 <div className="form-field">
                   <span>Full Name:</span>
                   <input defaultValue={learner.fullname} type="text" className="m-0 bg-box input w-96" placeholder="E.g. Htet Naing" onChange={(e) => setFullname(e.target.value)} id="fullname" />
+                </div>
+              </label>
+              <label htmlFor="goal">
+                <div className="form-field">
+                  <span>Goal:</span>
+                  <input defaultValue={learner.goal} type="text" className="m-0 bg-box input w-96" placeholder="E.g. Full Stack Developer" onChange={(e) => setGoal(e.target.value)} id="goal" />
                 </div>
               </label>
               <label htmlFor="email">
