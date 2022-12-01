@@ -11,15 +11,15 @@ const technologyXer = (state = [], action) => {
     case `${FETCH_TECHNOLOGIES}/fulfilled`:
       return action.payload;
 
-    case ADD_TECHNOLOGY:
+    case `${ADD_TECHNOLOGY}/fulfilled`:
       return [...state, action.payload];
 
     case `${UPDATE_TECHNOLOGY}/fulfilled`:
       state[action.payload.id - 1] = action.payload;
       return state;
 
-    case DELETE_TECHNOLOGY:
-      return state;
+    case `${DELETE_TECHNOLOGY}/fulfilled`:
+      return state.filter((technology) => technology.id !== action.payload.id);
 
     default:
       return state;
@@ -32,7 +32,9 @@ const fetchTechnologies = createAsyncThunk(FETCH_TECHNOLOGIES, async () => {
 });
 
 const addTechnology = createAsyncThunk(ADD_TECHNOLOGY, async (newTech) => {
-  await reqWithToken('POST', endpoint.technologies(), newTech);
+  const response = await reqWithToken('POST', endpoint.technologies(), newTech);
+  console.log(response.data);
+  return response.data;
 });
 
 const updateTechnology = createAsyncThunk(UPDATE_TECHNOLOGY, async (obj) => {
@@ -40,7 +42,8 @@ const updateTechnology = createAsyncThunk(UPDATE_TECHNOLOGY, async (obj) => {
 });
 
 const deleteTechnology = createAsyncThunk(DELETE_TECHNOLOGY, async (id) => {
-  await deleteWithToken(endpoint.technology(id));
+  const response = await deleteWithToken(endpoint.technology(id));
+  return response.data;
 });
 
 export default technologyXer;

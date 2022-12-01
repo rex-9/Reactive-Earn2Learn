@@ -30,7 +30,7 @@ const EditTechnology = ({
         <div className="bg-white p-4 my-2 rounded-lg overflow-y-auto">
           <div className="flex items-start justify-around pt-8 w-[600px]">
             <div className="flex flex-col items-center">
-              <label htmlFor="topic">
+              <label htmlFor="name">
                 <div className="form-field">
                   <span>Name:</span>
                   <input defaultValue={technology.name} type="text" className="m-0 bg-box input w-96" placeholder="E.g. React" onChange={(e) => setName(e.target.value)} id="name" />

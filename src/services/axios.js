@@ -75,7 +75,7 @@ const deleteWithToken = (ep) => axios.delete(
       Authorization: `Bearer ${getCookie('token')}`,
     },
   },
-);
+).then((response) => response.data);
 
 const getWithToken = (ep) => axios.get(
   ep,
@@ -95,7 +95,7 @@ const reqWithToken = (method, ep, obj) => axios({
     'Content-Type': 'application/json',
     Authorization: `Bearer ${getCookie('token')}`,
   },
-});
+}).then((response) => response);
 
 export {
   endpoint, authentication, get, getWithToken, reqWithToken, deleteWithToken,

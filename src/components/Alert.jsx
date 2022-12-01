@@ -14,7 +14,8 @@ const Alert = ({ id, setAlert, obj }) => {
     } else if (obj === "technology") {
       dispatch(deleteTechnology(id));
     }
-    window.location.reload();
+    setAlert(false);
+    // window.location.reload();
   };
 
   return (
