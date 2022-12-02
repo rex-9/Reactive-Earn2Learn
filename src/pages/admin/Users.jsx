@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLearners } from "../../redux/reducers/learnerXer";
+import { fetchLearners, sortLearner } from "../../redux/reducers/learnerXer";
 import EditLearner from "../../components/learner/EditLearner";
 import avatar from "../../assets/avatar.jpg";
 import Alert from "../../components/Alert";
@@ -23,11 +23,19 @@ const Users = () => {
     setEdit(!edit)
     const temp = learners.find((learner) => learner.id === id);
     setLearner(temp)
+  };
+
+  const [asc, setAsc] = useState(true);
+
+  const sort = (attr) => {
+    dispatch(sortLearner({ attr, dir: asc ? "asc" : "desc" }));
+    setAsc(!asc);
   }
 
   useEffect(() => {
     dispatch(fetchLearners())
-  }, [dispatch])
+  }, [dispatch]);
+
   return (
     <section className="text-center flex flex-col items-center">
       {edit && (
@@ -49,17 +57,17 @@ const Users = () => {
           <tr>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">ID</th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Image</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Username</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Full Name</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Goal</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Email</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">City</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Phone</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Bio</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Role</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Technologies</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Studies</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Certificates</th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("username")}>Username</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("fullname")}>Full Name</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("goal")}>Goal</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("email")}>Email</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("city")}>City</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("phone")}>Phone</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("bio")}>Bio</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("role")}>Role</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("techs")}>Technologies</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("studies")}>Studies</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("certificates")}>Certificates</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Action</th>
           </tr>
         </thead>
