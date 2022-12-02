@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Alert from "../../components/Alert";
 import EditCertificate from "../../components/certificate/EditCertificate";
-import { fetchCertificates } from "../../redux/reducers/certificateXer";
+import { fetchCertificates, sortCertificates } from "../../redux/reducers/certificateXer";
 
 const Certificates = () => {
   const [edit, setEdit] = useState(false);
@@ -21,6 +21,13 @@ const Certificates = () => {
   const handleDelete = (id) => {
     setId(id);
     setAlert(true);
+  }
+
+  const [asc, setAsc] = useState(true);
+
+  const sort = (attr) => {
+    dispatch(sortCertificates({ attr, dir: asc ? "asc" : "desc" }));
+    setAsc(!asc);
   }
 
   useEffect(() => {
@@ -45,13 +52,13 @@ const Certificates = () => {
       <table className="table-auto">
         <thead>
           <tr>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">ID</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Title</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Link</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Achieved Date</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Expiration Date</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">User</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Technology</th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("title")}>Title</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("link")}>Link</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("achieved_date")}>Achieved Date</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("expiration_date")}>Expiration Date</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("user")}>User</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("tech")}>Technology</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Action</th>
           </tr>
         </thead>

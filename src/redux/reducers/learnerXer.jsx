@@ -7,7 +7,7 @@ const ADD_LEARNER = 'reactive-earn2learn/learners/ADD_LEARNER';
 const UPDATE_LEARNER = 'reactive-earn2learn/learners/UPDATE_LEARNER';
 const DELETE_LEARNER = 'reactive-earn2learn/learners/DELETE_LEARNER';
 
-const SORT_LEARNER = 'reactive-earn2learn/learners/SORT_LEARNER';
+const SORT_LEARNERS = 'reactive-earn2learn/learners/SORT_LEARNERS';
 
 const learnerXer = (state = [], action) => {
   switch (action.type) {
@@ -27,8 +27,12 @@ const learnerXer = (state = [], action) => {
     case DELETE_LEARNER:
       return state.filter((learner) => learner.id !== action.payload);
 
-    case SORT_LEARNER:
+    case SORT_LEARNERS:
       switch (action.payload.attr) {
+        case "id":
+          action.payload.dir === 'asc' ? state.sort((a, b) => a.id - b.id) : state.sort((a, b) => b.id - a.id);
+          break;
+
         case "username":
           action.payload.dir === 'asc' ? state.sort((a, b) => a.username.localeCompare(b.username)) : state.sort((a, b) => b.username.localeCompare(a.username));
           break;
@@ -83,27 +87,24 @@ const learnerXer = (state = [], action) => {
   }
 };
 
-const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
+export const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
   const response = await getWithToken(endpoint.learners());
   return response.data;
 });
 
-const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
+export const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
   const response = await reqWithToken('PUT', endpoint.learner(learner.id), learner);
   return response.data;
 });
 
-const deleteLearner = createAsyncThunk(DELETE_LEARNER, async (id) => {
+export const deleteLearner = createAsyncThunk(DELETE_LEARNER, async (id) => {
   const response = await deleteWithToken(endpoint.learner(id));
   return response.data;
 });
 
-const sortLearner = (obj) => ({
-  type: SORT_LEARNER,
+export const sortLearners = (obj) => ({
+  type: SORT_LEARNERS,
   payload: obj,
 });
 
 export default learnerXer;
-export {
-  fetchLearners, updateLearner, deleteLearner, sortLearner
-};

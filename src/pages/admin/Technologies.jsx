@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EditTechnology from "../../components/technology/EditTechnology";
 import AddTechnology from "../../components/technology/AddTechnology";
-import { fetchTechnologies } from "../../redux/reducers/technologyXer";
+import { fetchTechnologies, sortTechnologies } from "../../redux/reducers/technologyXer";
 import Alert from '../../components/Alert';
 
 const Technologies = () => {
@@ -23,6 +23,13 @@ const Technologies = () => {
   const handleDelete = (id) => {
     setAlert(true);
     setId(id);
+  }
+
+  const [asc, setAsc] = useState(true);
+
+  const sort = (attr) => {
+    dispatch(sortTechnologies({ attr, dir: asc ? "asc" : "desc" }));
+    setAsc(!asc);
   }
 
   useEffect(() => {
@@ -55,11 +62,11 @@ const Technologies = () => {
       <table className="table-auto">
         <thead>
           <tr>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">ID</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Name</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">User</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Studies</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Certificates</th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("name")}>Name</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("users")}>Users</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("studies")}>Studies</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("certificates")}>Certificates</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Action</th>
           </tr>
         </thead>

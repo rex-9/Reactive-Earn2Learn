@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLearners, sortLearner } from "../../redux/reducers/learnerXer";
+import { fetchLearners, sortLearners } from "../../redux/reducers/learnerXer";
 import EditLearner from "../../components/learner/EditLearner";
 import avatar from "../../assets/avatar.jpg";
 import Alert from "../../components/Alert";
@@ -28,7 +28,7 @@ const Users = () => {
   const [asc, setAsc] = useState(true);
 
   const sort = (attr) => {
-    dispatch(sortLearner({ attr, dir: asc ? "asc" : "desc" }));
+    dispatch(sortLearners({ attr, dir: asc ? "asc" : "desc" }));
     setAsc(!asc);
   }
 
@@ -55,7 +55,7 @@ const Users = () => {
       <table className="table-auto">
         <thead>
           <tr>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">ID</th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Image</th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("username")}>Username</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("fullname")}>Full Name</button></th>

@@ -6,6 +6,7 @@ const FETCH_LEARNER_STUDIES = 'reactive-earn2learn/studies/FETCH_LEARNER_STUDIES
 const ADD_STUDY = 'reactive-earn2learn/studies/ADD_STUDY';
 const UPDATE_STUDY = 'reactive-earn2learn/studies/UPDATE_STUDY';
 const DELETE_STUDY = 'reactive-earn2learn/studies/DELETE_STUDY';
+const SORT_STUDIES = 'reactive-earn2learn/studies/SORT_STUDIES';
 
 const studyXer = (state = [], action) => {
   switch (action.type) {
@@ -25,34 +26,75 @@ const studyXer = (state = [], action) => {
     case DELETE_STUDY:
       return state;
 
+    case SORT_STUDIES:
+      switch (action.payload.attr) {
+        case "id":
+          action.payload.dir === 'asc' ? state.sort((a, b) => a.id - b.id) : state.sort((a, b) => b.id - a.id);
+          break;
+
+        case "topic":
+          action.payload.dir === 'asc' ? state.sort((a, b) => a.topic.localeCompare(b.topic)) : state.sort((a, b) => b.topic.localeCompare(a.topic));
+          break;
+
+        case "experience":
+          action.payload.dir === 'asc' ? state.sort((a, b) => a.experience.localeCompare(b.experience)) : state.sort((a, b) => b.experience.localeCompare(a.experience));
+          break;
+
+        case "achieved_date":
+          action.payload.dir === 'asc' ? state.sort((a, b) => a.achieved_date.localeCompare(b.achieved_date)) : state.sort((a, b) => b.achieved_date.localeCompare(a.achieved_date));
+          break;
+
+        case "completed":
+          action.payload.dir === 'asc' ? state.sort((a, b) => a.completed.localeCompare(b.completed)) : state.sort((a, b) => b.completed.localeCompare(a.completed));
+          break;
+
+        case "hours_taken":
+          action.payload.dir === 'asc' ? state.sort((a, b) => a.hours_taken - b.hours_taken) : state.sort((a, b) => b.hours_taken - a.hours_taken);
+          break;
+
+        case "user":
+          action.payload.dir === 'asc' ? state.sort((a, b) => a.user.username.localeCompare(b.user.username)) : state.sort((a, b) => b.user.username.localeCompare(a.user.username));
+          break;
+
+        case "tech":
+          action.payload.dir === 'asc' ? state.sort((a, b) => a.technology.name.localeCompare(b.technology.name)) : state.sort((a, b) => b.technology.name.localeCompare(a.technology.name));
+          break;
+
+        default:
+          break;
+      }
+      return state;
+
     default:
       return state;
   }
 };
 
-const fetchStudies = createAsyncThunk(FETCH_STUDIES, async () => {
+export const fetchStudies = createAsyncThunk(FETCH_STUDIES, async () => {
   const response = await getWithToken(endpoint.studies());
   return response.data;
 });
 
-const fetchLearnerStudies = createAsyncThunk(FETCH_LEARNER_STUDIES, async (id) => {
+export const fetchLearnerStudies = createAsyncThunk(FETCH_LEARNER_STUDIES, async (id) => {
   const response = await getWithToken(endpoint.learnerStudies(id));
   return response.data;
 });
 
-const addStudy = createAsyncThunk(ADD_STUDY, async (newStudy) => {
+export const addStudy = createAsyncThunk(ADD_STUDY, async (newStudy) => {
   await reqWithToken('POST', endpoint.studies(), newStudy);
 });
 
-const updateStudy = createAsyncThunk(UPDATE_STUDY, async (obj) => {
+export const updateStudy = createAsyncThunk(UPDATE_STUDY, async (obj) => {
   await reqWithToken('PUT', endpoint.study(obj.id), obj);
 });
 
-const deleteStudy = createAsyncThunk(DELETE_STUDY, async (id) => {
+export const deleteStudy = createAsyncThunk(DELETE_STUDY, async (id) => {
   await deleteWithToken(endpoint.study(id));
 });
 
+export const sortStudies = (obj) => ({
+  type: SORT_STUDIES,
+  payload: obj,
+});
+
 export default studyXer;
-export {
-  fetchLearnerStudies, fetchStudies, addStudy, updateStudy, deleteStudy,
-};
