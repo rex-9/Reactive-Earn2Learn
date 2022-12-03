@@ -20,11 +20,15 @@ const studyXer = (state = [], action) => {
       return [...state, action.payload];
 
     case `${UPDATE_STUDY}/fulfilled`:
-      state[action.payload.id - 1] = action.payload;
-      return state;
+      const study = state.find((study) => study.id === action.payload.id);
+      study.topic = action.payload.topic;
+      study.experience = action.payload.experience;
+      study.completed = action.payload.completed;
+      study.hours_taken = action.payload.hours_taken;
+      return [...state];
 
-    case DELETE_STUDY:
-      return state;
+    case `${DELETE_STUDY}/fulfilled`:
+      return state.filter((study) => study.id !== action.payload.id);
 
     case SORT_STUDIES:
       switch (action.payload.attr) {
@@ -85,11 +89,13 @@ export const addStudy = createAsyncThunk(ADD_STUDY, async (newStudy) => {
 });
 
 export const updateStudy = createAsyncThunk(UPDATE_STUDY, async (obj) => {
-  await reqWithToken('PUT', endpoint.study(obj.id), obj);
+  const response = await reqWithToken('PUT', endpoint.study(obj.id), obj);
+  return response.data;
 });
 
 export const deleteStudy = createAsyncThunk(DELETE_STUDY, async (id) => {
-  await deleteWithToken(endpoint.study(id));
+  const response = await deleteWithToken(endpoint.study(id));
+  return response.data;
 });
 
 export const sortStudies = (obj) => ({

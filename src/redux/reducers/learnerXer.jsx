@@ -21,11 +21,19 @@ const learnerXer = (state = [], action) => {
       return [...state, action.payload];
 
     case `${UPDATE_LEARNER}/fulfilled`:
-      state[action.payload.id - 1] = action.payload;
+      const learner = state.find((learner) => learner.id === action.payload.id);
+      learner.username = action.payload.username;
+      learner.fullname = action.payload.fullname;
+      learner.goal = action.payload.goal;
+      learner.bio = action.payload.bio;
+      learner.email = action.payload.email;
+      learner.city = action.payload.city;
+      learner.phone = action.payload.phone;
+      learner.role = action.payload.role;
       return [...state];
 
-    case DELETE_LEARNER:
-      return state.filter((learner) => learner.id !== action.payload);
+    case `${DELETE_LEARNER}/fulfilled`:
+      return state.filter((learner) => learner.id !== action.payload.id);
 
     case SORT_LEARNERS:
       switch (action.payload.attr) {

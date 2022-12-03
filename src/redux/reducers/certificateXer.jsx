@@ -16,8 +16,15 @@ const certificateXer = (state = [], action) => {
       return [...action.payload];
 
     case `${UPDATE_CERTIFICATE}/fulfilled`:
-      state[action.payload.id - 1] = action.payload;
-      return state;
+      const certificate = state.find((certificate) => certificate.id === action.payload.id);
+      certificate.title = action.payload.title;
+      certificate.link = action.payload.link;
+      certificate.achieved_date = action.payload.achieved_date;
+      certificate.expiration_date = action.payload.expiration_date;
+      return [...state];
+
+    case `${DELETE_CERTIFICATE}/fulfilled`:
+      return state.filter((certificate) => certificate.id !== action.payload.id);
 
     case SORT_CERTIFICATES:
       switch (action.payload.attr) {
@@ -65,7 +72,8 @@ export const fetchCertificates = createAsyncThunk(FETCH_CERTIFICATES, async () =
 });
 
 export const updateCertificate = createAsyncThunk(UPDATE_CERTIFICATE, async (obj) => {
-  await reqWithToken('PUT', endpoint.certificate(obj.id), obj);
+  const response = await reqWithToken('PUT', endpoint.certificate(obj.id), obj);
+  return response.data;
 });
 
 export const deleteCertificate = createAsyncThunk(DELETE_CERTIFICATE, async (id) => {

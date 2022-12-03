@@ -43,7 +43,6 @@ const EditLearner = ({
       linkedin,
     };
     dispatch(updateLearner(learnerObj));
-    window.location.reload();
   };
 
   return (

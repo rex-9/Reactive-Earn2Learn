@@ -27,7 +27,6 @@ const EditStudy = ({
       hours_taken: hoursTaken,
     };
     dispatch(updateStudy(studyObj));
-    window.location.reload();
   };
 
   return (

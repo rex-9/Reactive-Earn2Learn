@@ -56,7 +56,6 @@ const Studies = () => {
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("topic")}>Topic</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("experience")}>Experience</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("completed")}>Completed</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("hours_taken")}>Hours Taken</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("user")}>User</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("tech")}>Technology</button></th>
@@ -70,10 +69,9 @@ const Studies = () => {
                 <td className="border-r-[1px] border-gray-400 px-2">{study.id}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{study.topic}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{study.experience}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{study.completed ? true : false}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{study.hours_taken}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{study.user.username}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{study.technology.name}</td>
+                <td className="border-r-[1px] border-gray-400 px-2">{study.user?.username}</td>
+                <td className="border-r-[1px] border-gray-400 px-2">{study.technology?.name}</td>
                 <td>
                   <button className="btn mx-2" onClick={() => handleEdit(study.id)}>Edit</button>
                   <button className="btn bg-red-400 mr-2 hover:bg-red-600" onClick={() => handleDelete(study.id)}>Delete</button>

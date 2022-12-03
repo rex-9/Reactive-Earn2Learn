@@ -21,7 +21,6 @@ const EditTechnology = ({
     };
     dispatch(updateTechnology(techObj));
     setEdit(false);
-    // window.location.reload();
   };
 
   return (

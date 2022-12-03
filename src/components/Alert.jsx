@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { deleteCertificate } from "../redux/reducers/certificateXer";
 import { deleteLearner } from "../redux/reducers/learnerXer";
 import { deleteStudy } from "../redux/reducers/studyXer";
 import { deleteTechnology } from "../redux/reducers/technologyXer";
@@ -13,9 +14,10 @@ const Alert = ({ id, setAlert, obj }) => {
       dispatch(deleteLearner(id));
     } else if (obj === "technology") {
       dispatch(deleteTechnology(id));
+    } else if (obj === "certificate") {
+      dispatch(deleteCertificate(id));
     }
     setAlert(false);
-    // window.location.reload();
   };
 
   return (

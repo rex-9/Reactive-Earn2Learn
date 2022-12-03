@@ -76,9 +76,9 @@ const Technologies = () => {
               <tr key={tech.id} className="even:bg-red-200 odd:bg-blue-200">
                 <td className="border-r-[1px] border-gray-400 px-2">{tech.id}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{tech.name}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{tech.users.length}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{tech.studies.length}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{tech.certificates.length}</td>
+                <td className="border-r-[1px] border-gray-400 px-2">{tech.users ? tech.users.length : 0}</td>
+                <td className="border-r-[1px] border-gray-400 px-2">{tech.users ? tech.studies.length : 0}</td>
+                <td className="border-r-[1px] border-gray-400 px-2">{tech.users ? tech.certificates.length : 0}</td>
                 <td>
                   <button className="btn mx-2" onClick={() => handleEdit(tech.id)}>Edit</button>
                   <button className="btn bg-red-400 mr-2 hover:bg-red-600" onClick={() => handleDelete(tech.id)}>Delete</button>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
@@ -10,6 +10,7 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 const EditCertificate = ({
   setEdit,
   certificate,
+  setCertificate,
 }) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState(certificate.title);
@@ -18,7 +19,6 @@ const EditCertificate = ({
   const [expirationDate, setExpirationDate] = useState(certificate.expiration_date);
 
   const saveChanges = () => {
-    setEdit(false);
     const obj = {
       id: certificate.id,
       title,
@@ -27,8 +27,12 @@ const EditCertificate = ({
       expiration_date: expirationDate,
     };
     dispatch(updateCertificate(obj));
-    window.location.reload();
+    setEdit(false);
   };
+
+  useEffect(() => {
+
+  }, [certificate])
 
   return (
     <>

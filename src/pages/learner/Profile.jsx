@@ -25,7 +25,6 @@ const Profile = () => {
 
   const [edit, setEdit] = useState(false);
   const [accomplished, setAccomplished] = useState(true);
-  console.log('learner', learner);
   useEffect(() => {
     fetchLearner(id);
     dispatch(fetchLearnerStudies(id));

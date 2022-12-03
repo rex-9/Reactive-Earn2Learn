@@ -13,22 +13,22 @@ const Certificates = () => {
   const dispatch = useDispatch();
 
   const handleEdit = (id) => {
-    setEdit(!edit)
+    setEdit(!edit);
     const temp = certificates.find((certificate) => certificate.id === id);
-    setCertificate(temp)
+    setCertificate(temp);
   };
 
   const handleDelete = (id) => {
     setId(id);
     setAlert(true);
-  }
+  };
 
   const [asc, setAsc] = useState(true);
 
   const sort = (attr) => {
     dispatch(sortCertificates({ attr, dir: asc ? "asc" : "desc" }));
     setAsc(!asc);
-  }
+  };
 
   useEffect(() => {
     dispatch(fetchCertificates());
@@ -46,9 +46,11 @@ const Certificates = () => {
         <Alert
           setAlert={setAlert}
           id={id}
+          obj={"certificate"}
         />
       )}
       <p className="my-4 font-bold text-xl">Certificates</p>
+      <h3>{certificates[0]?.title}</h3>
       <table className="table-auto">
         <thead>
           <tr>
