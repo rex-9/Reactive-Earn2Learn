@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchLearners } from '../redux/reducers/learnerXer';
+
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -7,6 +11,11 @@ import linkedin from '../assets/linkedin.svg';
 
 const Learners = () => {
   const learners = useSelector((state) => state.learners);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchLearners());
+  }, [dispatch]);
 
   return (
     <section className="flex flex-wrap justify-center" >

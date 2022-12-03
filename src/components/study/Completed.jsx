@@ -88,11 +88,11 @@ const Completed = ({ studies }) => {
                   <div className="w-full bg-green-300 flex justify-between">
                     <div>
                       <button type="button" onClick={() => handleLike(study.id)}>Like</button>
-                      <span>{study.likes.length}</span>
+                      <span>{study.like_count}</span>
                     </div>
                     <div>
                       <button type="button" id={`comment: ${study.id}`} onClick={() => handleToggle(study.id)}>Comment</button>
-                      <span>{study.comments.length}</span>
+                      <span>{study.comment_count}</span>
                     </div>
                   </div>
                 }

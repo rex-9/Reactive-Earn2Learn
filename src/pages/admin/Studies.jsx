@@ -59,6 +59,8 @@ const Studies = () => {
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("hours_taken")}>Hours Taken</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("user")}>User</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("tech")}>Technology</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("likes")}>Likes</button></th>
+            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("comments")}>Comments</button></th>
             <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Action</th>
           </tr>
         </thead>
@@ -72,6 +74,8 @@ const Studies = () => {
                 <td className="border-r-[1px] border-gray-400 px-2">{study.hours_taken}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{study.user?.username}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{study.technology?.name}</td>
+                <td className="border-r-[1px] border-gray-400 px-2">{study.like_count}</td>
+                <td className="border-r-[1px] border-gray-400 px-2">{study.comment_count}</td>
                 <td>
                   <button className="btn mx-2" onClick={() => handleEdit(study.id)}>Edit</button>
                   <button className="btn bg-red-400 mr-2 hover:bg-red-600" onClick={() => handleDelete(study.id)}>Delete</button>
