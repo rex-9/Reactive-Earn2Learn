@@ -133,11 +133,16 @@ Completed.propTypes = {
   studies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
+      topic: PropTypes.string.isRequired,
+      hours_taken: PropTypes.number.isRequired,
+      like_count: PropTypes.number.isRequired,
+      comment_count: PropTypes.number.isRequired,
       technology: PropTypes.shape({
         name: PropTypes.string.isRequired,
       }).isRequired,
-      topic: PropTypes.string.isRequired,
-      hours_taken: PropTypes.number.isRequired,
+      comment: PropTypes.shape({
+        content: PropTypes.string.isRequired,
+      }),
     }),
   ).isRequired,
 };
