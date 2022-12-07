@@ -62,7 +62,6 @@ const Ongoing = ({ studies }) => {
     };
     dispatch(updateStudy(completeStudy));
     setUpdateStatus(false);
-    window.location.reload();
   };
 
   const openUpdate = (id) => {
