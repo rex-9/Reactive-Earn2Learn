@@ -55,6 +55,7 @@ const Ongoing = ({ studies }) => {
   const updateStudyHandle = () => {
     const completeStudy = {
       id: currentStudyID,
+      topic:
       experience,
       hours_taken: hoursTaken,
       completed: true,
