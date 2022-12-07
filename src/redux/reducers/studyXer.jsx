@@ -85,7 +85,8 @@ export const fetchLearnerStudies = createAsyncThunk(FETCH_LEARNER_STUDIES, async
 });
 
 export const addStudy = createAsyncThunk(ADD_STUDY, async (newStudy) => {
-  await reqWithToken('POST', endpoint.studies(), newStudy);
+  const response = await reqWithToken('POST', endpoint.studies(), newStudy);
+  return response.data;
 });
 
 export const updateStudy = createAsyncThunk(UPDATE_STUDY, async (obj) => {

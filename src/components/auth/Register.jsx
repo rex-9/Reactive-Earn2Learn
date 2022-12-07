@@ -24,6 +24,7 @@ const Register = () => {
 
   const [errMsges, setErrMsges] = useState('');
   const [fullname, setFullname] = useState('');
+  const [goal, setGoal] = useState('');
   const [city, setCity] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [phone, setPhone] = useState('');
@@ -61,6 +62,7 @@ const Register = () => {
     const newLearner = {
       fullname,
       username,
+      goal,
       city,
       birthdate,
       phone,
@@ -132,6 +134,17 @@ const Register = () => {
               />
             </label>
 
+            <label htmlFor="goal">
+              <div>Goal:</div>
+              <input
+                type="text"
+                className="mt-2 mb-4 input"
+                placeholder="E.g. Data Scientist"
+                onChange={(e) => setGoal(e.target.value)}
+                id="goal"
+              />
+            </label>
+
             <label htmlFor="email">
               <div>Email:</div>
               <input
@@ -139,7 +152,7 @@ const Register = () => {
                 className="mt-2 mb-4 input"
                 placeholder="E.g. htetnaing0814@gmail.com"
                 onChange={(e) => setEmail(e.target.value)}
-                id="fullname"
+                id="email"
               />
             </label>
 
