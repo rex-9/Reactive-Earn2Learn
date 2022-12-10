@@ -4,10 +4,7 @@ import { fetchLearners } from '../redux/reducers/learnerXer';
 
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
-import avatar from '../assets/avatar.jpg';
-import github from '../assets/github.svg';
-import linkedin from '../assets/linkedin.svg';
+import { assets } from '../assets/assets';
 
 const Learners = () => {
   const learners = useSelector((state) => state.learners);
@@ -21,7 +18,7 @@ const Learners = () => {
     <section className="flex flex-wrap justify-center" >
       {learners.map((learner) => (
         <div key={learner.id} className="flex flex-col items-center py-2 m-2 bg-white rounded-lg w-80 h-fit hover:shadow-2xl">
-          <img className="object-cover w-24 h-24 rounded-full" src={learner.image ? learner.image : avatar} alt="" />
+          <img className="object-cover w-24 h-24 rounded-full" src={learner.image ? learner.image : assets.avatar} alt="" />
           <div className="name">
             Hi! I am&nbsp;
             <span className="text-btn">
@@ -51,17 +48,17 @@ const Learners = () => {
               learner.github
                 ? (
                   <Link to={learner.github} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
-                    <img src={github} alt="GitHub Profile" />
+                    <img src={assets.github} alt="GitHub Profile" />
                   </Link>
-                ) : <img src={github} alt="GitHub Profile" />
+                ) : <img src={assets.github} alt="GitHub Profile" />
             }
             {
               learner.linkedin
                 ? (
                   <Link to={learner.linkedin} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
-                    <img src={linkedin} alt="LinkedIn Profile" />
+                    <img src={assets.linkedin} alt="LinkedIn Profile" />
                   </Link>
-                ) : <img src={linkedin} alt="LinkedIn Profile" />
+                ) : <img src={assets.linkedin} alt="LinkedIn Profile" />
             }
           </div>
         </div>

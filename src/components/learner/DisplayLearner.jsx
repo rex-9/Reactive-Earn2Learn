@@ -2,11 +2,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import avatar from '../../assets/avatar.jpg';
-import githubIcon from '../../assets/github-black.svg';
-import linkedinIcon from '../../assets/linkedin-black.svg';
 import { isAdmin, returnCurrentUser } from '../../services/cookie';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { assets } from '../../assets/assets';
 
 const DisplayLearner = ({
   setEdit, learner,
@@ -16,23 +14,23 @@ const DisplayLearner = ({
     <>
       <div className="flex items-start justify-between w-full">
         <div>
-          <img className="object-cover w-48 h-48" src={learner.image || avatar} alt="Profile of the Learner" />
+          <img className="object-cover w-48 h-48" src={learner.image || assets.avatar} alt="Profile of the Learner" />
           <div className="flex justify-around w-48 mt-2">
             {
               learner.github
                 ? (
                   <Link to={learner.github} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
-                    <img src={githubIcon} alt="GitHub Profile" />
+                    <img src={assets.githubBlack} alt="GitHub Profile" />
                   </Link>
-                ) : <img src={githubIcon} alt="GitHub Profile" />
+                ) : <img src={assets.githubBlack} alt="GitHub Profile" />
             }
             {
               learner.linkedin
                 ? (
                   <Link to={learner.linkedin} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
-                    <img src={linkedinIcon} alt="LinkedIn Profile" />
+                    <img src={assets.linkedinBlack} alt="LinkedIn Profile" />
                   </Link>
-                ) : <img src={linkedinIcon} alt="LinkedIn Profile" />
+                ) : <img src={assets.linkedinBlack} alt="LinkedIn Profile" />
             }
           </div>
         </div>
