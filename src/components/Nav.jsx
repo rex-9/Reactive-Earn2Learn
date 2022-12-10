@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
+import { assets } from '../assets/assets';
 import { checkCookie, getCookie, removeCookie } from '../services/cookie';
-import avatar from '../assets/avatar.jpg';
 
 const Nav = () => {
   let user = {}
@@ -14,8 +14,11 @@ const Nav = () => {
   };
 
   return (
-    <nav className="sticky top-0 h-[10%] w-full flex items-center justify-between px-24 py-3 bg-dark">
-      <div className="text-white header">E2L</div>
+    <nav className="sticky top-0 h-[12%] w-full flex items-center justify-between px-24 py-3 shadow-lg mb-2">
+      <div>
+        <img src={assets.logo} className="h-10 w-32 object-cover" alt="Robust and Best Logo" />
+        <p className="font-bold font-qs">Earn To Learn Program</p>
+      </div>
       {
         Object.keys(user).length !== 0
           ? (
@@ -23,7 +26,7 @@ const Nav = () => {
               <div className="flex w-96 justify-between items-center">
                 <Link to={`/profile/${user.id}`}>
                   <div className="flex items-center justify-around px-2 py-1 bg-gray-200 rounded-lg w-52">
-                    <img className="object-cover w-12 h-12 rounded-full" src={user.image ? user.image : avatar} alt="" />
+                    <img className="object-cover w-12 h-12 rounded-full" src={user.image ? user.image : assets.avatar} alt="" />
                     <div className="font-bold font-qs">{user.username}</div>
                   </div>
                 </Link>

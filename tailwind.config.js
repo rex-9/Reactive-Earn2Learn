@@ -5,8 +5,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'bestBg': "url('/assets/bg.svg')",
+      },
       colors: {
-        bg: '#ADE8F4',
+        bg: '#F5FE8E',
+        bg2: '#FF8888',
         dark: '#0a0502',
         btn: '#0fbbbb',
         'btn-hover': '#0fbfff',
