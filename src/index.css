@@ -7,7 +7,7 @@
 
 @layer components {
   body {
-    @apply bg-gradient-to-br from-white to-bg;
+    @apply bg-gradient-to-br from-white to-bg bg-no-repeat bg-cover bg-fixed;
   }
 
   .header {

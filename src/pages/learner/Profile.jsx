@@ -43,34 +43,45 @@ const Profile = () => {
 
   return (
     <>
-      {/* Learner Profile Data Section */}
-      <section id="learner-data">
-        <div className="flex justify-center m-4 font-qs">
-          <div className="bg-box rounded-md shadow-inner shadow-black p-4 w-[90%] flex items-start">
-            <DisplayLearner
-              setEdit={setEdit}
-              learner={learner}
-            />
-            {edit && (
-              <EditLearner
-                setEdit={setEdit}
-                learner={learner}
-              />
-            )}
-          </div>
-        </div>
-      </section>
+      <section className="flex flex-col h-screen">
+        <div className="flex h-[90%]">
 
-      {/* Learning Fields Section */}
-      <section id="learning-field">
-        <div className="flex justify-center m-4">
-          <div className="w-[90%] p-4">
-            <button type="button" className="mr-4 rounded-xl btn" style={accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(true)}>Completed</button>
-            <button type="button" className="mr-4 rounded-xl btn" style={!accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(false)}>On Going</button>
+          {/* Learner Profile Data Section */}
+          <section id="learner-data">
+            <div className="m-4 font-qs w-96">
+              <div className="flex flex-col items-center bg-box rounded-md shadow-inner shadow-black p-4 h-[95vh]">
+                <DisplayLearner
+                  setEdit={setEdit}
+                  learner={learner}
+                />
+                {edit && (
+                  <EditLearner
+                    setEdit={setEdit}
+                    learner={learner}
+                  />
+                )}
+              </div>
+            </div>
+          </section>
+
+
+          <div className="flex-1 flex overflow-hidden">
+            {/* <!-- Scrollable container --> */}
+            <div className="flex-1 overflow-y-scroll">
+              {/* Learning Fields Section */}
+              <section id="learning-field">
+                <div className="flex justify-center m-4">
+                  <div className="w-[90%] p-4">
+                    <button type="button" className="mr-4 rounded-xl btn" style={accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(true)}>Completed</button>
+                    <button type="button" className="mr-4 rounded-xl btn" style={!accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(false)}>On Going</button>
+                  </div>
+                </div>
+                {accomplished ? <Completed studies={completed} />
+                  : <Ongoing studies={ongoing} />}
+              </section>
+            </div>
           </div>
         </div>
-        {accomplished ? <Completed studies={completed} />
-          : <Ongoing studies={ongoing} />}
       </section>
     </>
   );
