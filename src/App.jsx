@@ -7,11 +7,7 @@ import ForgotPassword from './components/auth/ForgotPassword';
 
 import Home from './pages/learner/Home';
 import Profile from './pages/learner/Profile';
-import { getCookie, isAdmin } from './services/cookie';
-import Users from './pages/admin/Users';
-import Studies from './pages/admin/Studies';
-import Certificates from './pages/admin/Certificates';
-import Technologies from './pages/admin/Technologies';
+import { getCookie } from './services/cookie';
 
 const App = () => {
   const token = getCookie('token');
@@ -44,30 +40,6 @@ const App = () => {
         <Route
           path="/profile/:id"
           element={<Profile />}
-        />
-        <Route
-          path="/admin/users"
-          element={!isAdmin() ? (
-            <Navigate to="/" replace />
-          ) : <Users />}
-        />
-        <Route
-          path="/admin/studies"
-          element={!isAdmin() ? (
-            <Navigate to="/" replace />
-          ) : <Studies />}
-        />
-        <Route
-          path="/admin/certificates"
-          element={!isAdmin() ? (
-            <Navigate to="/" replace />
-          ) : <Certificates />}
-        />
-        <Route
-          path="/admin/technologies"
-          element={!isAdmin() ? (
-            <Navigate to="/" replace />
-          ) : <Technologies />}
         />
       </Routes>
     </>

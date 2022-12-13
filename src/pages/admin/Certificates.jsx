@@ -50,7 +50,6 @@ const Certificates = () => {
         />
       )}
       <p className="my-4 font-bold text-xl">Certificates</p>
-      <h3>{certificates[0]?.title}</h3>
       <table className="table-auto">
         <thead>
           <tr>
