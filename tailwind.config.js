@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'bestBg': "url('/assets/bg.svg')",
+        bestBg: "url('/assets/bg.svg')",
       },
       colors: {
         bg: '#F5FE8E',

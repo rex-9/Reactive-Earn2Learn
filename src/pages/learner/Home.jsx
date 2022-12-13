@@ -11,12 +11,12 @@ import Certificates from "../admin/Certificates";
 const Home = () => {
   const [selected, setSelected] = useState('learners');
   return (
-    <section className="flex flex-col h-screen">
+    <section className="flex flex-col h-screen" >
       <Nav />
       <div className="flex h-[90%]">
         {
           isAdmin() &&
-          <Panel setSelected={setSelected} />
+          <Panel selected={selected} setSelected={setSelected} />
         }
         {/* <!-- Scroll wrapper --> */}
         <div className="flex-1 flex overflow-hidden">
