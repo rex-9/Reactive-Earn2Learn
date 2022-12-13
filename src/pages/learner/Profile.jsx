@@ -8,11 +8,15 @@ import EditLearner from '../../components/learner/EditLearner';
 import Completed from '../../components/study/Completed';
 import Ongoing from '../../components/study/Ongoing';
 import { endpoint, get } from '../../services/axios';
+import { returnCurrentUser } from '../../services/cookie';
+import { updateLearner } from '../../redux/reducers/learnerXer';
 
 const Profile = () => {
   const [learner, setLearner] = useState({});
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  const currentUser = returnCurrentUser();
 
   const fetchLearner = async (id) => {
     const response = await get(endpoint.learner(id));
@@ -30,16 +34,13 @@ const Profile = () => {
     dispatch(fetchLearnerStudies(id));
   }, [dispatch, id]);
 
-  const activeStyle = {
-    boxShadow: 'inset 0 0 5px #f8a100',
-    backgroundColor: 'lightgreen',
-    color: '#1a202c',
-  };
-
-  const inactiveStyle = {
-    backgroundColor: 'lightgray',
-    color: '#1a202c',
-  };
+  if (Object.keys(learner).length !== 0) {
+    const learnerObj = {
+      id: learner.id,
+      views: learner.views + 1,
+    };
+    currentUser.id !== parseInt(id) && dispatch(updateLearner(learnerObj));
+  }
 
   return (
     <>
@@ -49,7 +50,7 @@ const Profile = () => {
           {/* Learner Profile Data Section */}
           <section id="learner-data">
             <div className="m-4 font-qs w-96">
-              <div className="flex flex-col items-center bg-white/25 rounded-md shadow-inner shadow-black p-4 h-[95vh]">
+              <div className="flex flex-col items-center bg-white/25 rounded-md shadow-inner shadow-black py-4 h-[95vh]">
                 <DisplayLearner
                   setEdit={setEdit}
                   learner={learner}
@@ -68,17 +69,17 @@ const Profile = () => {
           <div className="flex-1 flex overflow-hidden">
             {/* <!-- Scrollable container --> */}
             <div className="flex-1 overflow-y-scroll">
-              <div className="my-4 bg-white/25 rounded-md border-2 border-gray-300 p-4 ">
+              <div className="mt-4 bg-white/25 rounded-md border-2 border-gray-300 p-4 ">
                 <h1 className="font-bold text-lg font-qs">About Me</h1>
                 <p>{learner.bio || "I'm a super learner"}</p>
               </div>
               {/* Learning Fields Section */}
-              <section id="learning-field" className="px-4 py-4">
+              <section id="learning-field" className="px-4 py-4 mt-2">
                 <h1 className="font-bold text-lg font-qs">My Learning Journey</h1>
                 <div className="flex justify-center my-4">
                   <div className="w-full">
-                    <button type="button" className="mr-4 text-base btn" style={accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(true)}>Completed</button>
-                    <button type="button" className="mr-4 text-base btn" style={!accomplished ? activeStyle : inactiveStyle} onClick={() => setAccomplished(false)}>On Going</button>
+                    <button type="button" className={accomplished ? "bg-gradient-to-br from-white to-bg bg-no-repeat text-black shadow-inner shadow-gray-300 mr-4 rounded-md px-2 py-1" : "mr-4 text-gray-700 px-2 py-1"} onClick={() => setAccomplished(true)}>Completed</button>
+                    <button type="button" className={!accomplished ? "bg-gradient-to-br from-white to-bg bg-no-repeat text-black shadow-inner shadow-gray-300 mr-4 rounded-md px-2 py-1" : "mr-4 text-gray-700 px-2 py-1"} onClick={() => setAccomplished(false)}>On Going</button>
                   </div>
                 </div>
                 {accomplished ? <Completed studies={completed} />

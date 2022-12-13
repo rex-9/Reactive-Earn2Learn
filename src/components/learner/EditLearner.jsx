@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { updateLearner } from '../../redux/reducers/learnerXer';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { isAdmin } from '../../services/cookie';
 
 const EditLearner = ({
   setEdit,
@@ -113,15 +114,18 @@ const EditLearner = ({
                   <input defaultValue={learner.phone} type="text" className="m-0 bg-box input w-96" placeholder="E.g. +959443112251" onChange={(e) => setPhone(e.target.value)} id="phone" />
                 </div>
               </label>
-              <label htmlFor="role">
-                <div className="form-field">
-                  <span>Role:</span>
-                  <select defaultValue={learner.role} className="m-0 bg-box input w-96" onChange={(e) => setRole(e.target.value)} name="role" id="role">
-                    <option value="admin">Admin</option>
-                    <option value="learner">Learner</option>
-                  </select>
-                </div>
-              </label>
+              {
+                isAdmin() &&
+                <label htmlFor="role">
+                  <div className="form-field">
+                    <span>Role:</span>
+                    <select defaultValue={learner.role} className="m-0 bg-box input w-96" onChange={(e) => setRole(e.target.value)} name="role" id="role">
+                      <option value="admin">Admin</option>
+                      <option value="learner">Learner</option>
+                    </select>
+                  </div>
+                </label>
+              }
               <label htmlFor="github">
                 <div className="form-field">
                   <span>GitHub:</span>

@@ -15,6 +15,8 @@ import linkedin from './linkedin.svg';
 import mail from './mail.svg';
 import phone from './phone.svg';
 import date from './date.svg';
+import eye from './eye.svg';
+import pin from './pin.svg';
 
 const assets = {
   rnb,
@@ -34,6 +36,8 @@ const assets = {
   mail,
   phone,
   date,
+  eye,
+  pin,
 };
 
 export default assets;

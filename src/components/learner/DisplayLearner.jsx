@@ -13,6 +13,7 @@ const DisplayLearner = ({
     <>
       {/* Learner Image and Links */}
       <div className="flex flex-col items-center">
+        <p className="flex justify-end w-full">{learner.role}</p>
         <img className="object-cover w-48 h-48 rounded-full pb-2" src={learner.image || assets.avatar} alt="Profile of the Learner" />
         <div className="flex justify-around w-48">
           {
@@ -36,7 +37,7 @@ const DisplayLearner = ({
       {/* Learner Profile Data */}
       <div className="flex justify-between items-start">
         <div>
-          <div className="text-xl font-bold text-center pt-2">
+          <div className="text-xl font-bold text-center py-4">
             {learner.fullname}
             <span> </span>
             <span>(</span>
@@ -44,34 +45,23 @@ const DisplayLearner = ({
             <span>)</span>
             <p className="font-bold text-gray-800 text-base">{learner.goal}</p>
           </div>
-          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
-            <img src={assets.mail} alt="Mail Logo" />
+          <div className="flex items-center gap-4 w-56 px-8 mb-2 border-gray-400 border-b-2 py-2 font-bold">
+            <img src={assets.eye} alt="Profile Views Logo" />
             <p>{learner.views} views</p>
           </div>
-          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
+          <div className="flex items-center gap-4 w-56 px-8 mb-2 border-gray-400 border-b-2 py-2 font-bold">
             <img src={assets.mail} alt="Mail Logo" />
             {learner.email}
           </div>
-          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
-            Catchphrase - &nbsp;
-            {learner.catchphrase || "I'm a super learner"}
-          </div>
-          {
-            isAdmin() &&
-            <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
-              Role - &nbsp;
-              {learner.role}
-            </div>
-          }
-          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
+          <div className="flex items-center gap-4 w-56 px-8 mb-2 border-gray-400 border-b-2 py-2 font-bold">
             <img src={assets.date} alt="Date Logo" />
             {learner.birthdate}
           </div>
-          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
-            City - &nbsp;
+          <div className="flex items-center gap-4 w-56 px-8 mb-2 border-gray-400 border-b-2 py-2 font-bold">
+          <img src={assets.pin} alt="City Logo" />
             {learner.city}
           </div>
-          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
+          <div className="flex items-center gap-4 w-56 px-8 mb-2 border-gray-400 border-b-2 py-2 font-bold">
             <img src={assets.phone} alt="Phone Icon" />
             {learner.phone}
           </div>
