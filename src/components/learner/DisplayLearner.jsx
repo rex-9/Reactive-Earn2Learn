@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { isAdmin, returnCurrentUser } from '../../services/cookie';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { assets } from '../../assets/assets';
+import assets from '../../assets/assets';
 
 const DisplayLearner = ({
   setEdit, learner,
@@ -13,24 +12,24 @@ const DisplayLearner = ({
   return (
     <>
       {/* Learner Image and Links */}
-      <div className="flex flex-col items-center mb-4">
+      <div className="flex flex-col items-center">
         <img className="object-cover w-48 h-48 rounded-full pb-2" src={learner.image || assets.avatar} alt="Profile of the Learner" />
-        <div className="flex justify-around w-48 mt-2">
+        <div className="flex justify-around w-48">
           {
             learner.github
-              ? (
-                <Link to={learner.github} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
-                  <img src={assets.githubBlack} alt="GitHub Profile" />
-                </Link>
-              ) : <img src={assets.githubBlack} alt="GitHub Profile" />
+            && (
+              <Link to={learner.github} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
+                <img src={assets.github} alt="GitHub Profile" />
+              </Link>
+            )
           }
           {
             learner.linkedin
-              ? (
-                <Link to={learner.linkedin} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
-                  <img src={assets.linkedinBlack} alt="LinkedIn Profile" />
-                </Link>
-              ) : <img src={assets.linkedinBlack} alt="LinkedIn Profile" />
+            && (
+              <Link to={learner.linkedin} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
+                <img src={assets.linkedin} alt="LinkedIn Profile" />
+              </Link>
+            )
           }
         </div>
       </div>
@@ -45,31 +44,35 @@ const DisplayLearner = ({
             <span>)</span>
             <p className="font-bold text-gray-800 text-base">{learner.goal}</p>
           </div>
-          <div className="border-gray-400 border-b-2 py-2 font-bold">
-            Email - &nbsp;
+          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
+            <img src={assets.mail} alt="Mail Logo" />
+            <p>{learner.views} views</p>
+          </div>
+          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
+            <img src={assets.mail} alt="Mail Logo" />
             {learner.email}
           </div>
-          <div className="border-gray-400 border-b-2 py-2 font-bold">
-            Bio - &nbsp;
-            {learner.bio || "I'm a super learner"}
+          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
+            Catchphrase - &nbsp;
+            {learner.catchphrase || "I'm a super learner"}
           </div>
           {
             isAdmin() &&
-            <div className="border-gray-400 border-b-2 py-2 font-bold">
+            <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
               Role - &nbsp;
               {learner.role}
             </div>
           }
-          <div className="border-gray-400 border-b-2 py-2 font-bold">
-            Birthdate - &nbsp;
+          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
+            <img src={assets.date} alt="Date Logo" />
             {learner.birthdate}
           </div>
-          <div className="border-gray-400 border-b-2 py-2 font-bold">
+          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
             City - &nbsp;
             {learner.city}
           </div>
-          <div className="border-gray-400 border-b-2 py-2 font-bold">
-            Phone - &nbsp;
+          <div className="flex items-center gap-4 border-gray-400 border-b-2 py-2 font-bold">
+            <img src={assets.phone} alt="Phone Icon" />
             {learner.phone}
           </div>
           {

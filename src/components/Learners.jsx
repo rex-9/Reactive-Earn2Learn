@@ -4,7 +4,7 @@ import { fetchLearners } from '../redux/reducers/learnerXer';
 
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { assets } from '../assets/assets';
+import assets from '../assets/assets';
 
 const Learners = () => {
   const learners = useSelector((state) => state.learners);
@@ -17,15 +17,23 @@ const Learners = () => {
   return (
     <section className="flex flex-wrap justify-center" >
       {learners.map((learner) => (
-        <div key={learner.id} className="flex flex-col items-center py-2 m-2 bg-white rounded-lg w-80 h-fit hover:shadow-2xl">
-          <img className="object-cover w-24 h-24 rounded-full" src={learner.image ? learner.image : assets.avatar} alt="" />
-          <div className="name">
-            Hi! I am&nbsp;
-            <span className="text-btn">
-              {learner.username}
-            </span>
-          </div>
-          <div className="mt-1 text-center">
+        <Link to={`/profile/${learner.id}`}>
+          <div key={learner.id} className="transition ease-linear py-2 m-2 h-fit bg-white hover:bg-gradient-to-br from-white to-bg bg-no-repeat border-2 border-gray-300 rounded-lg w-80 hover:shadow-2xl">
+            <div className="flex px-6">
+              <img className="object-cover w-24 h-24 rounded-full" src={learner.image ? learner.image : assets.avatar} alt="" />
+              <div className="font-qs pl-2 pt-2">
+                <p className="text-btn font-bold text-xl">
+                  {learner.username}
+                </p>
+                <p>
+                  {learner.goal}
+                </p>
+              </div>
+            </div>
+            <p className="text-center py-2">
+              {learner.catchphrase}
+            </p>
+            {/* <div className="mt-1 text-center">
             <div className="mb-3">Specializing in</div>
             {
               learner.technologies.length === 0 ?
@@ -36,14 +44,12 @@ const Learners = () => {
                   </span>
                 ))
             }
-          </div>
-          <button type="button" className="mt-4 btn">
-            <Link to={`/profile/${learner.id}`}>
+          </div> */}
+            {/* <button type="button" className="btn hidden group-hover:inline">
               Explore
               {learner.name}
-            </Link>
-          </button>
-          <div className="flex flex-wrap justify-center w-40 gap-4">
+          </button> */}
+            {/* <div className="flex flex-wrap justify-center w-40 gap-4">
             {
               learner.github
                 ? (
@@ -60,8 +66,9 @@ const Learners = () => {
                   </Link>
                 ) : <img src={assets.linkedin} alt="LinkedIn Profile" />
             }
+          </div> */}
           </div>
-        </div>
+        </Link>
       ))}
     </section>
   );
