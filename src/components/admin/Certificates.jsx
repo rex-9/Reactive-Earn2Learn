@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Alert from "../../components/Alert";
-import EditCertificate from "../../components/certificate/EditCertificate";
+import Alert from "../Alert";
+import EditCertificate from "../certificate/EditCertificate";
 import { fetchCertificates, sortCertificates } from "../../redux/reducers/certificateXer";
 
 const Certificates = () => {
@@ -53,20 +53,20 @@ const Certificates = () => {
       <table className="table-auto">
         <thead>
           <tr>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("title")}>Title</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("link")}>Link</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("achieved_date")}>Achieved Date</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("expiration_date")}>Expiration Date</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("user")}>User</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("tech")}>Technology</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Action</th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("title")}>Title</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("link")}>Link</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("achieved_date")}>Achieved Date</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("expiration_date")}>Expiration Date</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("user")}>User</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("tech")}>Technology</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1">Action</th>
           </tr>
         </thead>
         <tbody>
           {
             certificates.map((certificate) => (
-              <tr key={certificate.id} className="even:bg-red-200 odd:bg-blue-200">
+              <tr key={certificate.id} className="even:bg-white/20 odd:bg-black/5 font-semibold">
                 <td className="border-r-[1px] border-gray-400 px-2">{certificate.id}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{certificate.title}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{certificate.link}</td>

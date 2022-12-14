@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLearners, sortLearners } from "../../redux/reducers/learnerXer";
-import EditLearner from "../../components/learner/EditLearner";
+import EditLearner from "../learner/EditLearner";
 import avatar from "../../assets/avatar.jpg";
-import Alert from "../../components/Alert";
+import Alert from "../Alert";
 
 const Users = () => {
   const [edit, setEdit] = useState(false);
@@ -55,26 +55,26 @@ const Users = () => {
       <table className="table-auto">
         <thead>
           <tr>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Image</th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("username")}>Username</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("fullname")}>Full Name</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("goal")}>Goal</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("email")}>Email</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("city")}>City</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("phone")}>Phone</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("bio")}>Bio</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("role")}>Role</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("techs")}>Technologies</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("studies")}>Studies</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("certificates")}>Certificates</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Action</th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1">Image</th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("username")}>Username</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("fullname")}>Full Name</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("goal")}>Goal</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("email")}>Email</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("city")}>City</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("phone")}>Phone</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("bio")}>Bio</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("role")}>Role</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("techs")}>Technologies</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("studies")}>Studies</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("certificates")}>Certificates</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1">Action</th>
           </tr>
         </thead>
         <tbody>
           {
             learners.map((learner) => (
-              <tr key={learner.id} className="even:bg-red-200 odd:bg-blue-200">
+              <tr key={learner.id} className="even:bg-white/20 odd:bg-black/5 font-semibold">
                 <td className="border-r-[1px] border-gray-400 px-2">{learner.id}</td>
                 <td className="border-r-[1px] border-gray-400 px-2"><img className="w-20 h-20 object-cover" src={learner.image || avatar} /></td>
                 <td className="border-r-[1px] border-gray-400 px-2">{learner.username}</td>

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import EditTechnology from "../../components/technology/EditTechnology";
-import AddTechnology from "../../components/technology/AddTechnology";
+import EditTechnology from "../technology/EditTechnology";
+import AddTechnology from "../technology/AddTechnology";
 import { fetchTechnologies, sortTechnologies } from "../../redux/reducers/technologyXer";
-import Alert from '../../components/Alert';
+import Alert from '../Alert';
 
 const Technologies = () => {
   const [edit, setEdit] = useState(false);
@@ -62,18 +62,18 @@ const Technologies = () => {
       <table className="table-auto">
         <thead>
           <tr>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("name")}>Name</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("users")}>Users</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("studies")}>Studies</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("certificates")}>Certificates</button></th>
-            <th className="border-2 bg-slate-300 border-slate-200 px-2 py-1">Action</th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("name")}>Name</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("users")}>Users</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("studies")}>Studies</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("certificates")}>Certificates</button></th>
+            <th className="border-2 bg-white border-slate-200 px-2 py-1">Action</th>
           </tr>
         </thead>
         <tbody>
           {
             technologies.map((tech) => (
-              <tr key={tech.id} className="even:bg-red-200 odd:bg-blue-200">
+              <tr key={tech.id} className="even:bg-white/20 odd:bg-black/5 font-semibold">
                 <td className="border-r-[1px] border-gray-400 px-2">{tech.id}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{tech.name}</td>
                 <td className="border-r-[1px] border-gray-400 px-2">{tech.users ? tech.users.length : 0}</td>
