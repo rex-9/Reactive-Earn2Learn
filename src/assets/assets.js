@@ -9,6 +9,8 @@ import studies from './studies.svg';
 import studiesWhite from './studies-white.svg';
 import certificates from './certificates.svg';
 import certificatesWhite from './certificates-white.svg';
+import techs from './techs.svg';
+import techsWhite from './techs-white.svg';
 import avatar from './avatar.jpg';
 import github from './github.svg';
 import linkedin from './linkedin.svg';
@@ -27,10 +29,12 @@ const assets = {
   users,
   studies,
   certificates,
+  techs,
   learnersWhite,
   usersWhite,
   studiesWhite,
   certificatesWhite,
+  techsWhite,
   github,
   linkedin,
   mail,

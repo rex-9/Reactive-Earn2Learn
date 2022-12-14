@@ -62,23 +62,23 @@ const Technologies = () => {
       <table className="table-auto">
         <thead>
           <tr>
-            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("id")}>ID</button></th>
-            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("name")}>Name</button></th>
-            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("users")}>Users</button></th>
-            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("studies")}>Studies</button></th>
-            <th className="border-2 bg-white border-slate-200 px-2 py-1"><button type="button" onClick={() => sort("certificates")}>Certificates</button></th>
-            <th className="border-2 bg-white border-slate-200 px-2 py-1">Action</th>
+            <th className="table-head"><button type="button" onClick={() => sort("id")}>ID</button></th>
+            <th className="table-head"><button type="button" onClick={() => sort("name")}>Name</button></th>
+            <th className="table-head"><button type="button" onClick={() => sort("users")}>Users</button></th>
+            <th className="table-head"><button type="button" onClick={() => sort("studies")}>Studies</button></th>
+            <th className="table-head"><button type="button" onClick={() => sort("certificates")}>Certificates</button></th>
+            <th className="table-head">Action</th>
           </tr>
         </thead>
         <tbody>
           {
             technologies.map((tech) => (
-              <tr key={tech.id} className="even:bg-white/20 odd:bg-black/5 font-semibold">
-                <td className="border-r-[1px] border-gray-400 px-2">{tech.id}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{tech.name}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{tech.users ? tech.users.length : 0}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{tech.users ? tech.studies.length : 0}</td>
-                <td className="border-r-[1px] border-gray-400 px-2">{tech.users ? tech.certificates.length : 0}</td>
+              <tr key={tech.id} className="table-stripe font-semibold">
+                <td className="table-data">{tech.id}</td>
+                <td className="table-data">{tech.name}</td>
+                <td className="table-data">{tech.users ? tech.users.length : 0}</td>
+                <td className="table-data">{tech.users ? tech.studies.length : 0}</td>
+                <td className="table-data">{tech.users ? tech.certificates.length : 0}</td>
                 <td>
                   <button className="btn mx-2" onClick={() => handleEdit(tech.id)}>Edit</button>
                   <button className="btn bg-red-400 mr-2 hover:bg-red-600" onClick={() => handleDelete(tech.id)}>Delete</button>

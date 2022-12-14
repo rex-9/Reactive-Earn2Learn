@@ -35,7 +35,7 @@ const Panel = ({ selected, setSelected }) => {
         </li>
         <li className={handleSelected('technologies')}>
           <button type="button" className="flex items-center" onClick={() => setSelected('technologies')}>
-            <img src={selected === 'technologies' ? assets.usersWhite : assets.certificates} className="mr-2" alt="Technologies Dashboard" />
+            <img src={selected === 'technologies' ? assets.techsWhite : assets.techs} className="mr-2" alt="Technologies Dashboard" />
             Technologies
           </button>
         </li>

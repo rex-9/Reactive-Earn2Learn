@@ -43,7 +43,7 @@
   }
 
   .btn {
-    @apply px-4 py-1 text-lg text-white rounded bg-btn;
+    @apply px-4 py-1 text-lg text-black bg-gradient-to-br from-white to-bg;
   }
 
   .btn:hover {
@@ -56,5 +56,17 @@
 
   .vertical-line {
     @apply h-5 mx-4 border-l-2 border-gray-300;
+  }
+
+  .table-head {
+    @apply border-2 bg-white border-slate-200 px-2 py-1
+  }
+
+  .table-data {
+    @apply border-2 border-slate-200 px-2 py-1
+  }
+
+  .table-stripe {
+    @apply even:bg-white/20 odd:bg-black/5
   }
 }
