@@ -69,7 +69,7 @@ const DisplayLearner = ({
             learner.id === currentUser.id
             && (
               <div className="flex justify-center mt-4">
-                <button type="button" className="flex items-center gap-4 text-lg font-bold text-white bg-black hover:bg-blue-500 rounded-lg px-2 py-1" onClick={() => setEdit(true)}>
+                <button type="button" className="flex items-center gap-4 text-lg font-bold text-white bg-black/80 hover:bg-gray-800/80 rounded-lg px-2 py-1" onClick={() => setEdit(true)}>
                   <FontAwesomeIcon icon={faEdit} />
                   Edit Profile
                 </button>

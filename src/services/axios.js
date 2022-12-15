@@ -3,8 +3,8 @@ import { getCookie, setCookie } from './cookie';
 
 class Endpoint {
   constructor() {
-    this.url = 'http://127.0.0.1:3000/';
-    // this.url = 'https://earn2learn.onrender.com/';
+    // this.url = 'http://127.0.0.1:3000/';
+    this.url = 'https://earn2learn.onrender.com/';
   }
 
   login = () => `${this.url}users/login`;
@@ -97,6 +97,16 @@ const reqWithToken = (method, ep, obj) => axios({
   },
 }).then((response) => response.data);
 
+const createStudy = (method, ep, obj) => axios({
+  method,
+  url: ep,
+  data: JSON.stringify(obj),
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${getCookie('token')}`,
+  },
+}).then((response) => response);
+
 export {
-  endpoint, authentication, get, getWithToken, reqWithToken, deleteWithToken,
+  endpoint, authentication, get, getWithToken, reqWithToken, createStudy, deleteWithToken,
 };

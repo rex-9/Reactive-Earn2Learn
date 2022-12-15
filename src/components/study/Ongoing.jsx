@@ -49,7 +49,7 @@ const Ongoing = ({ studies }) => {
   const handleAdd = () => {
     addStudyHandle();
     setAddStatus(false);
-    window.location.reload();
+    // window.location.reload();
   };
 
   const updateStudyHandle = () => {

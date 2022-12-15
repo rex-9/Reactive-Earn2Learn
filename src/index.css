@@ -43,7 +43,7 @@
   }
 
   .btn {
-    @apply px-4 py-1 text-lg text-black bg-gradient-to-br from-white to-bg;
+    @apply px-4 py-1 font-semibold text-black bg-gradient-to-br from-white to-bg hover:bg-gradient-to-br hover:from-bg hover:to-white;
   }
 
   .btn:hover {
