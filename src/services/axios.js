@@ -3,8 +3,8 @@ import { getCookie, setCookie } from './cookie';
 
 class Endpoint {
   constructor() {
-    this.url = 'http://127.0.0.1:3000/';
-    // this.url = 'https://earn2learn.onrender.com/';
+    // this.url = 'http://127.0.0.1:3000/';
+    this.url = 'https://earn2learn.onrender.com/';
   }
 
   login = () => `${this.url}users/login`;
