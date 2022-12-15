@@ -66,11 +66,11 @@ const Profile = () => {
           </section>
 
 
-          <div className="flex-1 flex overflow-hidden">
+          <div className="flex-1 flex overflow-hidden h-screen">
             {/* <!-- Scrollable container --> */}
             <div className="flex-1 overflow-y-scroll">
               <div className="mt-4 bg-white/25 rounded-md border-2 border-gray-300 p-4 ">
-                <h1 className="font-bold text-lg font-qs">About Me</h1>
+                <h1 className="font-bold text-lg font-qs">Bio</h1>
                 <p>{learner.bio || "I'm a super learner"}</p>
               </div>
               {/* Learning Fields Section */}
