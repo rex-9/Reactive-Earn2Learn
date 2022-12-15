@@ -19,6 +19,7 @@ const Ongoing = ({ studies }) => {
 
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
+  const [error, setError] = useState(null);
 
   const [currentStudyID, setCurrentStudyID] = useState('');
   const [topic, setTopic] = useState('');
@@ -44,11 +45,11 @@ const Ongoing = ({ studies }) => {
       technology_id: techId,
     };
     dispatch(addStudy(newStudy));
+    setAddStatus(false);
   };
 
   const handleAdd = () => {
-    addStudyHandle();
-    setAddStatus(false);
+    topic && topic.length > 2 ? addStudyHandle() : setError('Topic should be minimum of 3 character.')
   };
 
   const updateStudyHandle = () => {
@@ -102,6 +103,9 @@ const Ongoing = ({ studies }) => {
                   <div className="flex justify-center">
                     <button type="button" className="btn" onClick={handleAdd}>Add</button>
                   </div>
+                  {
+                    error && <p className="text-red-400 text-center mt-4">{error}</p>
+                  }
                 </div>
               </div>
             )
