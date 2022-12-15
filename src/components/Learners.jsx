@@ -33,40 +33,6 @@ const Learners = () => {
             <p className="text-center py-2">
               {learner.catchphrase}
             </p>
-            {/* <div className="mt-1 text-center">
-            <div className="mb-3">Specializing in</div>
-            {
-              learner.technologies.length === 0 ?
-                <span>No profession yet</span> :
-                learner.technologies.map((technology) => (
-                  <span key={technology.id} className="px-2 py-1 m-1 text-gray-600 bg-green-300 border-2 border-gray-300 rounded-md shadow-lg cursor-default hover:bg-green-100 hover:text-gray-800 hover:shadow-inner">
-                    {technology.name}
-                  </span>
-                ))
-            }
-          </div> */}
-            {/* <button type="button" className="btn hidden group-hover:inline">
-              Explore
-              {learner.name}
-          </button> */}
-            {/* <div className="flex flex-wrap justify-center w-40 gap-4">
-            {
-              learner.github
-                ? (
-                  <Link to={learner.github} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
-                    <img src={assets.github} alt="GitHub Profile" />
-                  </Link>
-                ) : <img src={assets.github} alt="GitHub Profile" />
-            }
-            {
-              learner.linkedin
-                ? (
-                  <Link to={learner.linkedin} className="p-1 rounded-lg hover:bg-gray-200" target="_blank">
-                    <img src={assets.linkedin} alt="LinkedIn Profile" />
-                  </Link>
-                ) : <img src={assets.linkedin} alt="LinkedIn Profile" />
-            }
-          </div> */}
           </div>
         </Link>
       ))}
