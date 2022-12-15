@@ -8,11 +8,16 @@ const AddTechnology = ({ setAdd }) => {
 
   const dispatch = useDispatch();
   const [name, setName] = useState('');
+  const [error, setError] = useState(null);
 
   const saveChanges = () => {
-    setAdd(false);
     dispatch(addTechnology({ name }));
+    setAdd(false);
   };
+
+  const validates = () => {
+    name ? saveChanges() : setError('Please enter the name.');
+  }
 
   return (
     <div className="bg-black/40 w-full flex justify-center h-screen items-center fixed top-0 left-0">
@@ -26,10 +31,13 @@ const AddTechnology = ({ setAdd }) => {
               </div>
             </label>
             <div className="text-right w-[500px]">
-              <button type="button" className="btn" onClick={saveChanges}>
+              <button type="button" className="btn" onClick={validates}>
                 Save Changes
               </button>
             </div>
+            {
+              error && <p className="text-red-400 text-center mt-4">{error}</p>
+            }
           </div>
 
           <button type="button" onClick={() => setAdd(false)}>
