@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { updateLearner } from '../../redux/reducers/learnerXer';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { isAdmin } from '../../services/cookie';
+import assets from '../../assets/assets';
 
 const EditLearner = ({
   setEdit,
@@ -54,6 +55,22 @@ const EditLearner = ({
         <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
           <div className="flex items-start justify-around pt-8 w-[600px]">
             <div className="flex flex-col items-center">
+              <label htmlFor="image">
+                <div className="form-field">
+                  <img className="object-cover w-24 h-24 rounded-full pb-2" src={learner.image || assets.avatar} alt="Profile of the Learner" />
+                  <input type="file" id="image" name="image" onChange={(e) => {
+                    console.log(e.target.value);
+                    setImage(e.target.value)
+                  }}
+                    class="w-96 text-sm text-slate-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-violet-50 file:text-violet-700
+                    hover:file:bg-violet-100
+                  "/>
+                </div>
+              </label>
               <label htmlFor="username">
                 <div className="form-field">
                   <span>Username:</span>
@@ -84,12 +101,12 @@ const EditLearner = ({
                   <input defaultValue={learner.email} type="text" className="m-0 bg-box input w-96" placeholder="E.g. htetnaing0814@gmail.com" onChange={(e) => setEmail(e.target.value)} id="email" />
                 </div>
               </label>
-              <label htmlFor="image">
+              {/* <label htmlFor="image">
                 <div className="form-field">
                   <span>Image:</span>
                   <input defaultValue={learner.image} type="text" className="m-0 bg-box input w-96" placeholder="E.g. https://www.unsplash.com/hello.jpg" onChange={(e) => setImage(e.target.value)} id="image" />
                 </div>
-              </label>
+              </label> */}
               <label htmlFor="bio">
                 <div className="form-field">
                   <span>Bio:</span>

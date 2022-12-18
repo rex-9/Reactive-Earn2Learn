@@ -17,7 +17,7 @@ const Nav = () => {
     <nav className="sticky top-0 font-qs h-[12%] w-full flex items-center justify-between px-24 py-3 shadow-lg mb-2">
       <div>
         <img src={assets.rnb} className="h-10 w-32 object-cover" alt="Robust and Best Logo" />
-        <p className="font-bold">Earn To Learn Program</p>
+        <p className="font-bold">Earn To Learn</p>
       </div>
       {
         Object.keys(user).length !== 0

@@ -11,11 +11,11 @@
   }
 
   .header {
-    @apply text-3xl italic font-bold font-lato;
+    @apply text-2xl font-bold font-qs;
   }
 
   .selected {
-    @apply bg-blue-500 text-white rounded-lg mx-4 pl-4 py-3;
+    @apply bg-gradient-to-br from-selected-start to-selected-end text-white rounded-lg mx-4 pl-4 py-3;
   }
 
   .unselected {
@@ -31,7 +31,7 @@
   }
 
   .input {
-    @apply px-4 py-2 my-2 rounded-lg w-80 bg-input;
+    @apply px-4 py-2 my-2 w-80 bg-input focus:outline-none focus:ring focus:ring-violet-300;
   }
 
   .input * {
@@ -51,7 +51,7 @@
   }
 
   .link {
-    @apply my-2 text-white underline;
+    @apply my-2 underline;
   }
 
   .vertical-line {

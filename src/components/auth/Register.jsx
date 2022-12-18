@@ -79,10 +79,12 @@ const Register = () => {
 
   return (
     <>
-      <section className="flex justify-center pt-12 text-white h-fit bg-dark">
+      <section className="flex justify-center pt-12 h-fit">
         <div className="flex flex-col items-center my-8">
 
-          <div className="header">Register</div>
+          <div className="header text-blue-500 text-3xl">Earn To Learn</div>
+          <div className="my-2 header">Welcome Back Champion!</div>
+          <div className="mb-4 header">Register</div>
 
           <form>
             <label htmlFor="username">

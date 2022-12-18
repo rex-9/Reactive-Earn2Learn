@@ -14,8 +14,10 @@ module.exports = {
         dark: '#0a0502',
         btn: '#0fbbbb',
         'btn-hover': '#0fbfff',
-        input: '#111111',
+        input: '#DEE2E6',
         box: '#DEE2E6',
+        'selected-start': '#0fbfff',
+        'selected-end': '#aaa',
       },
       fontFamily: {
         qs: ['Quicksand'],

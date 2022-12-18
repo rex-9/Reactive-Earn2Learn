@@ -28,8 +28,10 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex justify-center h-screen pt-12 text-white bg-dark">
+      <div className="flex justify-center h-screen pt-12">
         <div className="flex flex-col items-center">
+          <div className="mt-8 header text-blue-500 text-3xl">Earn To Learn</div>
+          <div className="my-2 header">Welcome Back Champion!</div>
           <div className="my-8 header">Log In</div>
           <form onSubmit={handleSubmit} ref={formRef}>
             <input
