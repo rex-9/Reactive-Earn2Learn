@@ -8,7 +8,6 @@ import { updateLearner } from '../../redux/reducers/learnerXer';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { isAdmin } from '../../services/cookie';
 import assets from '../../assets/assets';
-import { useEffect } from 'react';
 
 const EditLearner = ({
   setEdit,
@@ -21,7 +20,7 @@ const EditLearner = ({
   const [goal, setGoal] = useState(learner.goal);
   const [email, setEmail] = useState(learner.email);
   const [image, setImage] = useState(learner.image);
-  const [preview, setPreview] = useState(null);
+  const [preview, setPreview] = useState(learner.image);
   const [bio, setBio] = useState(learner.bio);
   const [birthdate, setBirthdate] = useState(learner.birthdate);
   const [city, setCity] = useState(learner.city);
