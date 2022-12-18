@@ -97,6 +97,17 @@ const reqWithToken = (method, ep, obj) => axios({
   },
 }).then((response) => response.data);
 
+const reqWithFile = (ep, obj) => axios({
+  method: "PUT",
+  url: ep,
+  data: obj,
+  headers: {
+    'Content-Type': 'multipart/form-data',
+    Authorization: `Bearer ${getCookie('token')}`,
+  },
+}).then((response) => response)
+.catch((error) => error);
+
 const createStudy = (method, ep, obj) => axios({
   method,
   url: ep,
@@ -108,5 +119,5 @@ const createStudy = (method, ep, obj) => axios({
 }).then((response) => response);
 
 export {
-  endpoint, authentication, get, getWithToken, reqWithToken, createStudy, deleteWithToken,
+  endpoint, authentication, get, getWithToken, reqWithToken, reqWithFile, createStudy, deleteWithToken,
 };

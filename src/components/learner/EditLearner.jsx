@@ -8,6 +8,7 @@ import { updateLearner } from '../../redux/reducers/learnerXer';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { isAdmin } from '../../services/cookie';
 import assets from '../../assets/assets';
+import { useEffect } from 'react';
 
 const EditLearner = ({
   setEdit,
@@ -20,6 +21,7 @@ const EditLearner = ({
   const [goal, setGoal] = useState(learner.goal);
   const [email, setEmail] = useState(learner.email);
   const [image, setImage] = useState(learner.image);
+  const [preview, setPreview] = useState(null);
   const [bio, setBio] = useState(learner.bio);
   const [birthdate, setBirthdate] = useState(learner.birthdate);
   const [city, setCity] = useState(learner.city);
@@ -30,24 +32,32 @@ const EditLearner = ({
 
   const saveChanges = () => {
     setEdit(false);
-    const learnerObj = {
-      id: learner.id,
-      username,
-      fullname,
-      catchphrase,
-      goal,
-      email,
-      image,
-      bio,
-      birthdate,
-      city,
-      phone,
-      role,
-      github,
-      linkedin,
-    };
-    dispatch(updateLearner(learnerObj));
+    const formData = new FormData();
+    formData.append('id', learner.id);
+    formData.append('username', username);
+    formData.append('fullname', fullname);
+    formData.append('catchphrase', catchphrase);
+    formData.append('goal', goal);
+    formData.append('email', email);
+    formData.append('image', image);
+    formData.append('bio', bio);
+    formData.append('birthdate', birthdate);
+    formData.append('city', city);
+    formData.append('phone', phone);
+    formData.append('role', role);
+    formData.append('github', github);
+    formData.append('linkedin', linkedin);
+    dispatch(updateLearner(formData));
   };
+
+  const handleImage = ((e) => {
+    setImage(e.target.files[0])
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      setPreview(reader.result);
+    };
+  });
 
   return (
     <>
@@ -57,12 +67,10 @@ const EditLearner = ({
             <div className="flex flex-col items-center">
               <label htmlFor="image">
                 <div className="form-field">
-                  <img className="object-cover w-24 h-24 rounded-full pb-2" src={learner.image || assets.avatar} alt="Profile of the Learner" />
-                  <input type="file" id="image" name="image" onChange={(e) => {
-                    console.log(e.target.value);
-                    setImage(e.target.value)
-                  }}
-                    class="w-96 text-sm text-slate-500
+                  <img className="object-cover w-24 h-24 rounded-full pb-2" src={preview || assets.avatar} alt="Profile of the Learner" />
+                  <input type="file" id="image" name="image" accept="image/*" multiple={false}
+                    onChange={(e) => handleImage(e)}
+                    className="w-96 text-sm text-slate-500
                     file:mr-4 file:py-2 file:px-4
                     file:rounded-full file:border-0
                     file:text-sm file:font-semibold

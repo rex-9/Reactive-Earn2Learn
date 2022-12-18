@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { endpoint, getWithToken, reqWithToken, deleteWithToken } from '../../services/axios';
+import { endpoint, getWithToken, reqWithFile, deleteWithToken } from '../../services/axios';
 
 const FETCH_LEARNERS = 'reactive-earn2learn/learners/FETCH_LEARNERS';
 const FETCH_LEARNER = 'reactive-earn2learn/learners/FETCH_LEARNER';
@@ -24,12 +24,17 @@ const learnerXer = (state = [], action) => {
       const learner = state.find((learner) => learner.id === action.payload.id);
       learner.username = action.payload.username;
       learner.fullname = action.payload.fullname;
+      learner.catchphrase = action.payload.catchphrase;
       learner.goal = action.payload.goal;
-      learner.bio = action.payload.bio;
       learner.email = action.payload.email;
+      learner.image = action.payload.image;
+      learner.bio = action.payload.bio;
+      learner.birthdate = action.payload.birthdate;
       learner.city = action.payload.city;
       learner.phone = action.payload.phone;
       learner.role = action.payload.role;
+      learner.github = action.payload.github;
+      learner.linkedin = action.payload.linkedin;
       return [...state];
 
     case `${DELETE_LEARNER}/fulfilled`:
@@ -101,7 +106,9 @@ export const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
 });
 
 export const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
-  const response = await reqWithToken('PUT', endpoint.learner(learner.id), learner);
+  const id = learner.get('id');
+  const response = await reqWithFile(endpoint.learner(id), learner);
+  // const response = await reqWithToken('PUT', endpoint.learner(learner.get('id')), learner);
   return response.data;
 });
 
