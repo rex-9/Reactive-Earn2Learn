@@ -38,14 +38,14 @@ const EditLearner = ({
     formData.append('catchphrase', catchphrase);
     formData.append('goal', goal);
     formData.append('email', email);
-    formData.append('image', image);
-    formData.append('bio', bio);
+    image && formData.append('image', image);
+    bio && formData.append('bio', bio);
     formData.append('birthdate', birthdate);
     formData.append('city', city);
     formData.append('phone', phone);
     formData.append('role', role);
-    formData.append('github', github);
-    formData.append('linkedin', linkedin);
+    github && formData.append('github', github);
+    linkedin && formData.append('linkedin', linkedin);
     dispatch(updateLearner(formData));
   };
 
