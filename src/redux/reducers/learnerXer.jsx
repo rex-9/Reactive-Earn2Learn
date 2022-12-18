@@ -21,6 +21,7 @@ const learnerXer = (state = [], action) => {
       return [...state, action.payload];
 
     case `${UPDATE_LEARNER}/fulfilled`:
+      console.log(action.payload);
       const learner = state.find((learner) => learner.id === action.payload.id);
       learner.username = action.payload.username;
       learner.fullname = action.payload.fullname;
@@ -108,6 +109,7 @@ export const fetchLearners = createAsyncThunk(FETCH_LEARNERS, async () => {
 export const updateLearner = createAsyncThunk(UPDATE_LEARNER, async (learner) => {
   const id = learner.get('id');
   const response = await reqWithFile(endpoint.learner(id), learner);
+  console.log(response);
   // const response = await reqWithToken('PUT', endpoint.learner(learner.get('id')), learner);
   return response.data;
 });

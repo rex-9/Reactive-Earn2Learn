@@ -98,7 +98,7 @@ const reqWithToken = (method, ep, obj) => axios({
 }).then((response) => response.data);
 
 const reqWithFile = (ep, obj) => axios({
-  method: "PUT",
+  method: 'PUT',
   url: ep,
   data: obj,
   headers: {
