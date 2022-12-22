@@ -38,7 +38,7 @@ const EditStudy = ({
               <label htmlFor="topic">
                 <div className="form-field">
                   <span>Topic:</span>
-                  <input defaultValue={study.topic} type="text" className="m-0 bg-box input w-96" placeholder="E.g. Rex" onChange={(e) => setTopic(e.target.value)} id="topic" />
+                  <input defaultValue={study.topic} type="text" className="m-0 bg-box text-black input w-96" placeholder="E.g. State Management" onChange={(e) => setTopic(e.target.value)} id="topic" />
                 </div>
               </label>
               <label htmlFor="experience">

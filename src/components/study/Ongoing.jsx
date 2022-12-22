@@ -87,11 +87,11 @@ const Ongoing = ({ studies }) => {
                   <div className="mb-4 text-lg font-bold text-center">Add a new Topic to learn</div>
                   <label htmlFor="topic">
                     <div>Topic:</div>
-                    <textarea id="topic" className="text-white input" type="text" placeholder="Topic" onChange={(e) => setTopic(e.target.value)} />
+                    <textarea id="topic" className="input" type="text" placeholder="Topic" onChange={(e) => setTopic(e.target.value)} />
                   </label>
                   <label htmlFor="technology">
                     <div>Technology:</div>
-                    <select id="technology" className="text-white input" onChange={(e) => setTechId(e.target.value)}>
+                    <select id="technology" className="input" onChange={(e) => setTechId(e.target.value)}>
                       {techs.map((tech) => (
                         <option value={tech.id} key={tech.id}>
                           {tech.name}
@@ -130,11 +130,11 @@ const Ongoing = ({ studies }) => {
                   </label>
                   <label htmlFor="experience">
                     <div>Experience:</div>
-                    <textarea id="experience" className="text-white input" type="text" placeholder="Experience" onChange={(e) => setExperience(e.target.value)} />
+                    <textarea id="experience" className="input" type="text" placeholder="Experience" onChange={(e) => setExperience(e.target.value)} />
                   </label>
                   <label htmlFor="hoursTaken">
                     <div>Hours Taken:</div>
-                    <input id="hoursTaken" className="text-white input" type="number" placeholder="Hours taken to complete" onChange={(e) => setHoursTaken(e.target.value)} />
+                    <input id="hoursTaken" className="input" type="number" placeholder="Hours taken to complete" onChange={(e) => setHoursTaken(e.target.value)} />
                   </label>
                   <br />
                   <div className="flex justify-center">
