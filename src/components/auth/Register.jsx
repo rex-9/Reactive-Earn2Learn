@@ -22,13 +22,14 @@ const Register = () => {
   const [validConfirm, setValidConfirm] = useState(false);
   const [focusConfirm, setFocusConfirm] = useState(false);
 
-  const [errMsges, setErrMsges] = useState('');
   const [fullname, setFullname] = useState('');
   const [goal, setGoal] = useState('');
   const [city, setCity] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+
+  const [errMsges, setErrMsges] = useState('');
 
   useEffect(() => {
     usernameRef.current.focus();
