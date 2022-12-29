@@ -1,10 +1,10 @@
-import axios from 'axios';
-import { getCookie, setCookie } from './cookie';
+import axios from "axios";
+import { getCookie, setCookie } from "./cookie";
 
 class Endpoint {
   constructor() {
-    this.url = 'http://127.0.0.1:3000/api/';
-    // this.url = 'http://etl.robust.best/api/';
+    // this.url = 'http://127.0.0.1:3000/api/';
+    this.url = "https://etl.robust.best/api/";
     // this.url = 'https://earn2learn.onrender.com/';
   }
 
@@ -43,85 +43,95 @@ class Endpoint {
 
 const endpoint = new Endpoint();
 
-const authentication = (ep, credentials) => axios.post(
-  ep,
-  JSON.stringify(credentials),
-  {
-    headers: { 'Content-Type': 'application/json' },
-  },
-).then((response) => {
-  const { token, user } = response.data;
-  if (ep === endpoint.login()) {
-    setCookie('token', token);
-    setCookie('user', JSON.stringify(user));
-  }
-  return response.data;
-}).catch((error) => {
-  if (error.response) {
-    return error.response.data;
-  } else {
-    return { status: 'failure', error: 'Check Your Connection' };
-  }
-});
+const authentication = (ep, credentials) =>
+  axios
+    .post(ep, JSON.stringify(credentials), {
+      headers: { "Content-Type": "application/json" },
+    })
+    .then((response) => {
+      const { token, user } = response.data;
+      if (ep === endpoint.login()) {
+        setCookie("token", token);
+        setCookie("user", JSON.stringify(user));
+      }
+      return response.data;
+    })
+    .catch((error) => {
+      if (error.response) {
+        return error.response.data;
+      } else {
+        return { status: "failure", error: "Check Your Connection" };
+      }
+    });
 
-const get = (ep) => axios.get(
-  ep,
-).then((response) => response.data);
+const get = (ep) => axios.get(ep).then((response) => response.data);
 
-const deleteWithToken = (ep) => axios.delete(
-  ep,
-  {
+const deleteWithToken = (ep) =>
+  axios
+    .delete(ep, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("token")}`,
+      },
+    })
+    .then((response) => response.data);
+
+const getWithToken = (ep) =>
+  axios
+    .get(ep, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getCookie("token")}`,
+      },
+    })
+    .then((response) => response);
+
+const reqWithToken = (method, ep, obj) =>
+  axios({
+    method,
+    url: ep,
+    data: JSON.stringify(obj),
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${getCookie('token')}`,
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getCookie("token")}`,
     },
-  },
-).then((response) => response.data);
+  }).then((response) => response.data);
 
-const getWithToken = (ep) => axios.get(
-  ep,
-  {
+const reqWithFile = (ep, obj) =>
+  axios({
+    method: "PUT",
+    url: ep,
+    data: obj,
     headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${getCookie('token')}`,
+      // 'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${getCookie("token")}`,
     },
-  },
-).then((response) => response);
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-const reqWithToken = (method, ep, obj) => axios({
-  method,
-  url: ep,
-  data: JSON.stringify(obj),
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${getCookie('token')}`,
-  },
-}).then((response) => response.data);
-
-const reqWithFile = (ep, obj) => axios({
-  method: 'PUT',
-  url: ep,
-  data: obj,
-  headers: {
-    // 'Content-Type': 'multipart/form-data',
-    Authorization: `Bearer ${getCookie('token')}`,
-  },
-}).then((response) => {
-  // console.log(response)
-  return response.data;
-})
-.catch((error) => {console.log(error)});
-
-const createStudy = (method, ep, obj) => axios({
-  method,
-  url: ep,
-  data: JSON.stringify(obj),
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${getCookie('token')}`,
-  },
-}).then((response) => response);
+const createStudy = (method, ep, obj) =>
+  axios({
+    method,
+    url: ep,
+    data: JSON.stringify(obj),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getCookie("token")}`,
+    },
+  }).then((response) => response);
 
 export {
-  endpoint, authentication, get, getWithToken, reqWithToken, reqWithFile, createStudy, deleteWithToken,
+  endpoint,
+  authentication,
+  get,
+  getWithToken,
+  reqWithToken,
+  reqWithFile,
+  createStudy,
+  deleteWithToken,
 };
