@@ -11,7 +11,7 @@ import Certificates from "../../components/admin/Certificates";
 const Home = () => {
   const [selected, setSelected] = useState("learners");
   return (
-    <section className="flex flex-col h-screen font-qs">
+    <section className="flex flex-col h-[80vh] font-qs">
       <div className="flex h-[90%]">
         {isAdmin() && <Panel selected={selected} setSelected={setSelected} />}
         {/* <!-- Scroll wrapper --> */}

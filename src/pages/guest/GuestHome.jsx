@@ -103,7 +103,10 @@ const GuestHome = () => {
 
           <div className="flex justify-end ">
             <Link to="/all">
-              <button className="bg-blue-600 text-white px-6 py-3 rounded-lg">
+              <button
+                className="text-white px-6 py-3 rounded-lg"
+                style={{ backgroundColor: "#4E46CE" }}
+              >
                 View All
               </button>
             </Link>
