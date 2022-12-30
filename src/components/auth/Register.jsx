@@ -1,34 +1,38 @@
-import { useRef, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-
-import { USERNAME_REGEX, PASSWORD_REGEX } from './auth_service';
-import { endpoint, authentication } from '../../services/axios';
+import { useRef, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheck,
+  faTimes,
+  faInfoCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import "../../pages/guest/GuestHome.styles.css";
+import { USERNAME_REGEX, PASSWORD_REGEX } from "./auth_service";
+import { endpoint, authentication } from "../../services/axios";
 
 const Register = () => {
   const usernameRef = useRef();
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [validUsername, setValidUsername] = useState(false);
   const [focusUsername, setFocusUsername] = useState(false);
 
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [validPassword, setValidPassword] = useState(false);
   const [focusPassword, setFocusPassword] = useState(false);
 
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [validConfirm, setValidConfirm] = useState(false);
   const [focusConfirm, setFocusConfirm] = useState(false);
 
-  const [errMsges, setErrMsges] = useState('');
-  const [fullname, setFullname] = useState('');
-  const [goal, setGoal] = useState('');
-  const [city, setCity] = useState('');
-  const [birthdate, setBirthdate] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
+  const [errMsges, setErrMsges] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [goal, setGoal] = useState("");
+  const [city, setCity] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     usernameRef.current.focus();
@@ -47,7 +51,7 @@ const Register = () => {
   }, [password, confirmPassword]);
 
   useEffect(() => {
-    setErrMsges('');
+    setErrMsges("");
   }, [username, password, confirmPassword]);
 
   const handleSubmit = async (e) => {
@@ -70,18 +74,17 @@ const Register = () => {
       password,
     };
     const result = await authentication(endpoint.learners(), newLearner);
-    if (result.status === 'success') {
-      navigate('/login');
-    } else if (result.status === 'failure') {
+    if (result.status === "success") {
+      navigate("/login");
+    } else if (result.status === "failure") {
       setErrMsges(result.error);
     }
   };
 
   return (
     <>
-      <section className="flex justify-center pt-12 h-fit">
+      <section className="flex justify-center pt-12 h-[85vh] overflow-y-auto scrollremove">
         <div className="flex flex-col items-center my-8">
-
           <div className="header text-blue-500 text-3xl">Earn To Learn</div>
           <div className="my-2 header">Welcome Back Champion!</div>
           <div className="mb-4 header">Register</div>
@@ -89,10 +92,20 @@ const Register = () => {
           <form>
             <label htmlFor="username">
               Username:
-              <span className={validUsername ? 'inline ml-4 text-green-500' : 'hidden'}>
+              <span
+                className={
+                  validUsername ? "inline ml-4 text-green-500" : "hidden"
+                }
+              >
                 <FontAwesomeIcon icon={faCheck} />
               </span>
-              <span className={!validUsername && username ? 'inline ml-4 text-red-500' : 'hidden'}>
+              <span
+                className={
+                  !validUsername && username
+                    ? "inline ml-4 text-red-500"
+                    : "hidden"
+                }
+              >
                 <FontAwesomeIcon icon={faTimes} />
               </span>
               <br />
@@ -107,24 +120,24 @@ const Register = () => {
                 onFocus={() => setFocusUsername(true)}
                 onBlur={() => setFocusUsername(false)}
                 required
-                aria-invalid={validUsername ? 'false' : 'true'}
+                aria-invalid={validUsername ? "false" : "true"}
                 aria-describedby="uidnote"
               />
-              <p id="uidnote" className={focusUsername && username && !validUsername ? 'block' : 'hidden'}>
-                <FontAwesomeIcon icon={faInfoCircle} />
-                3 to 25 characters,
-                {' '}
+              <p
+                id="uidnote"
+                className={
+                  focusUsername && username && !validUsername
+                    ? "block"
+                    : "hidden"
+                }
+              >
+                <FontAwesomeIcon icon={faInfoCircle} />3 to 25 characters,{" "}
                 <br />
-                Must start with a letter,
-                {' '}
-                <br />
-                No special characters,
-                {' '}
-                <br />
+                Must start with a letter, <br />
+                No special characters, <br />
                 Letters, Numbers, Underscores, and Hyphens only
               </p>
             </label>
-
             <label htmlFor="fullname">
               <div>Full Name:</div>
               <input
@@ -135,7 +148,6 @@ const Register = () => {
                 id="fullname"
               />
             </label>
-
             <label htmlFor="goal">
               <div>Goal:</div>
               <input
@@ -146,7 +158,6 @@ const Register = () => {
                 id="goal"
               />
             </label>
-
             <label htmlFor="email">
               <div>Email:</div>
               <input
@@ -157,7 +168,6 @@ const Register = () => {
                 id="email"
               />
             </label>
-
             <label htmlFor="birthdate">
               <div>Birthdate:</div>
               <input
@@ -168,7 +178,6 @@ const Register = () => {
                 id="birthdate"
               />
             </label>
-
             <label htmlFor="city">
               <div>City:</div>
               <input
@@ -179,7 +188,6 @@ const Register = () => {
                 id="city"
               />
             </label>
-
             <label htmlFor="phone">
               <div>Phone:</div>
               <input
@@ -191,13 +199,22 @@ const Register = () => {
               />
             </label>
             <br />
-
             <label htmlFor="password">
               Password:
-              <span className={validPassword ? 'inline ml-4 text-green-500' : 'hidden'}>
+              <span
+                className={
+                  validPassword ? "inline ml-4 text-green-500" : "hidden"
+                }
+              >
                 <FontAwesomeIcon icon={faCheck} />
               </span>
-              <span className={!validPassword && password ? 'inline ml-4 text-red-500' : 'hidden'}>
+              <span
+                className={
+                  !validPassword && password
+                    ? "inline ml-4 text-red-500"
+                    : "hidden"
+                }
+              >
                 <FontAwesomeIcon icon={faTimes} />
               </span>
               <br />
@@ -210,21 +227,21 @@ const Register = () => {
                 onFocus={() => setFocusPassword(true)}
                 onBlur={() => setFocusPassword(false)}
                 required
-                aria-invalid={validPassword ? 'false' : 'true'}
+                aria-invalid={validPassword ? "false" : "true"}
                 aria-describedby="pwdnote"
               />
-              <p id="pwdnote" className={focusPassword && password && !validPassword ? 'block' : 'hidden'}>
+              <p
+                id="pwdnote"
+                className={
+                  focusPassword && password && !validPassword
+                    ? "block"
+                    : "hidden"
+                }
+              >
                 <FontAwesomeIcon icon={faInfoCircle} />
-                Minimum of 8 characters,
-                {' '}
-                <br />
-                Must include Uppercase and Lowercase letters,
-                {' '}
-                <br />
-                {' '}
-                a Number and a Special Character
-                {' '}
-                <br />
+                Minimum of 8 characters, <br />
+                Must include Uppercase and Lowercase letters, <br /> a Number
+                and a Special Character <br />
                 Allowed special characters:
                 <br />
                 <span aria-label="exclamation mark">! </span>
@@ -250,13 +267,24 @@ const Register = () => {
               </p>
               <br />
             </label>
-
             <label htmlFor="confirm_password">
               Confirm Password:
-              <span className={validConfirm && confirmPassword ? 'inline ml-4 text-green-500' : 'hidden'}>
+              <span
+                className={
+                  validConfirm && confirmPassword
+                    ? "inline ml-4 text-green-500"
+                    : "hidden"
+                }
+              >
                 <FontAwesomeIcon icon={faCheck} />
               </span>
-              <span className={!validConfirm && confirmPassword ? 'inline ml-4 text-red-500' : 'hidden'}>
+              <span
+                className={
+                  !validConfirm && confirmPassword
+                    ? "inline ml-4 text-red-500"
+                    : "hidden"
+                }
+              >
                 <FontAwesomeIcon icon={faTimes} />
               </span>
               <br />
@@ -269,25 +297,35 @@ const Register = () => {
                 onFocus={() => setFocusConfirm(true)}
                 onBlur={() => setFocusConfirm(false)}
                 required
-                aria-invalid={validPassword ? 'false' : 'true'}
+                aria-invalid={validPassword ? "false" : "true"}
                 aria-describedby="confirmnote"
               />
-              <p id="confirmnote" className={focusConfirm && !validConfirm ? 'block' : 'hidden'}>
+              <p
+                id="confirmnote"
+                className={focusConfirm && !validConfirm ? "block" : "hidden"}
+              >
                 <FontAwesomeIcon icon={faInfoCircle} />
                 Must match the first password input field.
               </p>
             </label>
             <br />
-
             <input type="checkbox" className="checkbox" />
-            <span>Remember me</span>
-            {' '}
-            <br />
-
+            <span>Remember me</span> <br />
             <div className="flex justify-center w-full my-2">
               <button
                 type="button"
-                disabled={!!(!validUsername || !validPassword || !validConfirm || !fullname || !city || !birthdate || !phone || !email)}
+                disabled={
+                  !!(
+                    !validUsername ||
+                    !validPassword ||
+                    !validConfirm ||
+                    !fullname ||
+                    !city ||
+                    !birthdate ||
+                    !phone ||
+                    !email
+                  )
+                }
                 className="btn hover:shadow-gray-600 disabled:opacity-60 disabled:bg-btn disabled:shadow-none"
                 onClick={handleSubmit}
               >
@@ -296,14 +334,21 @@ const Register = () => {
             </div>
           </form>
 
-          {
-            errMsges && errMsges.map((msg) => <p key={msg} className="text-red-400" aria-live="assertive">{msg}</p>)
-          }
+          {errMsges &&
+            errMsges.map((msg) => (
+              <p key={msg} className="text-red-400" aria-live="assertive">
+                {msg}
+              </p>
+            ))}
 
           <div className="flex items-center justify-center">
-            <Link to="/login" className="link">Log in</Link>
+            <Link to="/login" className="link">
+              Log in
+            </Link>
             <div className="vertical-line" />
-            <Link to="/forgot-password" className="link">Forgot your password</Link>
+            <Link to="/forgot-password" className="link">
+              Forgot your password
+            </Link>
           </div>
         </div>
       </section>
