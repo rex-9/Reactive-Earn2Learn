@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +7,7 @@
 
 @layer components {
   body {
-    @apply bg-[url('./assets/bg.svg')];
+    @apply bg-slate-100;
   }
 
   .header {
@@ -59,14 +59,14 @@
   }
 
   .table-head {
-    @apply border-2 bg-white border-slate-200 px-2 py-1
+    @apply border-2 bg-white border-slate-200 px-2 py-1;
   }
 
   .table-data {
-    @apply border-2 border-slate-200 px-2 py-1
+    @apply border-2 border-slate-200 px-2 py-1;
   }
 
   .table-stripe {
-    @apply even:bg-white/20 odd:bg-black/5
+    @apply even:bg-white/20 odd:bg-black/5;
   }
 }

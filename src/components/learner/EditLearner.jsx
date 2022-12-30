@@ -50,6 +50,7 @@ const EditLearner = ({ setEdit, learner }) => {
   const handleImage = async (e) => {
     const imageURL = await Uploadfile(e.target.files[0]);
     const downladLink = await DownloadFile(imageURL);
+    console.log(downladLink);
     setPreview(downladLink);
     setImage(downladLink);
   };

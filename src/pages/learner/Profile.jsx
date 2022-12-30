@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
-import { fetchLearnerStudies } from '../../redux/reducers/studyXer';
-import DisplayLearner from '../../components/learner/DisplayLearner';
-import EditLearner from '../../components/learner/EditLearner';
-import Completed from '../../components/study/Completed';
-import Ongoing from '../../components/study/Ongoing';
-import { endpoint, get } from '../../services/axios';
-import { returnCurrentUser } from '../../services/cookie';
-import { updateLearner } from '../../redux/reducers/learnerXer';
+import { fetchLearnerStudies } from "../../redux/reducers/studyXer";
+import DisplayLearner from "../../components/learner/DisplayLearner";
+import EditLearner from "../../components/learner/EditLearner";
+import Completed from "../../components/study/Completed";
+import Ongoing from "../../components/study/Ongoing";
+import { endpoint, get } from "../../services/axios";
+import { returnCurrentUser } from "../../services/cookie";
+import { updateLearner } from "../../redux/reducers/learnerXer";
+import ViewLearner from "../../components/learner/ViewLearner";
+import Nav from "../../components/Nav";
+import "./profile.styles.css";
 
 const Profile = () => {
   const [learner, setLearner] = useState({});
@@ -44,46 +47,32 @@ const Profile = () => {
 
   return (
     <>
-      <section className="flex flex-col h-screen">
+      <section className="flex flex-col h-[80vh] scrollremove">
         <div className="flex h-[90%]">
-
           {/* Learner Profile Data Section */}
           <section id="learner-data">
             <div className="m-4 font-qs w-96">
-              <div className="flex flex-col items-center bg-white/25 rounded-md shadow-inner shadow-black py-4 h-[95vh]">
-                <DisplayLearner
-                  setEdit={setEdit}
-                  learner={learner}
-                />
-                {edit && (
-                  <EditLearner
-                    setEdit={setEdit}
-                    learner={learner}
-                  />
-                )}
+              <div className="flex flex-col items-center bg-white/25 rounded-md  py-4 h-[90%]">
+                <DisplayLearner setEdit={setEdit} learner={learner} />
+                {edit && <EditLearner setEdit={setEdit} learner={learner} />}
               </div>
             </div>
           </section>
 
-
-          <div className="flex-1 flex overflow-hidden h-screen">
-            {/* <!-- Scrollable container --> */}
-            <div className="flex-1 overflow-y-scroll">
-              <div className="mt-4 bg-white/25 rounded-md border-2 border-gray-300 p-4 ">
-                <h1 className="font-bold text-lg font-qs">Bio</h1>
+          <div className="flex-1 flex  h-[80vh] ">
+            <div className="flex-1 overflow-y-scroll scrollremove">
+              <div className="mx-4 my-5 bg-white/25 rounded-md border-2 border-gray-300 p-4 ">
+                <h1 className="font-bold text-lg font-qs">About Me</h1>
                 <p>{learner.bio || "I'm a super learner"}</p>
               </div>
               {/* Learning Fields Section */}
-              <section id="learning-field" className="px-4 py-4 mt-2">
-                <h1 className="font-bold text-lg font-qs">My Learning Journey</h1>
-                <div className="flex justify-center my-4">
-                  <div className="w-full">
-                    <button type="button" className={accomplished ? "bg-gradient-to-br from-white to-bg bg-no-repeat text-black shadow-inner shadow-gray-300 mr-4 rounded-md px-2 py-1" : "mr-4 text-gray-700 px-2 py-1"} onClick={() => setAccomplished(true)}>Completed</button>
-                    <button type="button" className={!accomplished ? "bg-gradient-to-br from-white to-bg bg-no-repeat text-black shadow-inner shadow-gray-300 mr-4 rounded-md px-2 py-1" : "mr-4 text-gray-700 px-2 py-1"} onClick={() => setAccomplished(false)}>On Going</button>
-                  </div>
-                </div>
-                {accomplished ? <Completed studies={completed} />
-                  : <Ongoing studies={ongoing} />}
+              <section id="learning-field" className="px-4 mt-2">
+                <h1 className="font-bold text-lg font-qs">
+                  My Learning Journey
+                </h1>
+
+                <Completed studies={completed} />
+                <Ongoing studies={ongoing} />
               </section>
             </div>
           </div>

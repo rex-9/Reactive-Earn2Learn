@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { endpoint, reqWithToken } from '../../services/axios';
-import { getCookie, returnCurrentUser } from '../../services/cookie';
-import Alert from '../Alert';
-import EditStudy from './EditStudy';
+import PropTypes from "prop-types";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { endpoint, reqWithToken } from "../../services/axios";
+import { getCookie, returnCurrentUser } from "../../services/cookie";
+import Alert from "../Alert";
+import EditStudy from "./EditStudy";
 
 const Completed = ({ studies }) => {
   let { id } = useParams();
@@ -17,9 +17,9 @@ const Completed = ({ studies }) => {
   const [alert, setAlert] = useState(false);
 
   const handleEdit = (id) => {
-    setEdit(!edit)
+    setEdit(!edit);
     const temp = studies.find((study) => study.id === id);
-    setStudy(temp)
+    setStudy(temp);
   };
 
   const handleDelete = (id) => {
@@ -29,14 +29,16 @@ const Completed = ({ studies }) => {
 
   const handleLike = async (id) => {
     setStudyId(id);
-    await reqWithToken("POST", endpoint.likes(), { study_id: id, user_id: currentUser.id })
+    await reqWithToken("POST", endpoint.likes(), {
+      study_id: id,
+      user_id: currentUser.id,
+    });
     window.location.reload();
   };
 
   const [toggle, setToggle] = useState(false);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [current, setCurrent] = useState(null);
-
 
   const handleToggle = (id) => {
     setToggle(!toggle);
@@ -44,89 +46,112 @@ const Completed = ({ studies }) => {
   };
 
   const handleComment = async (id) => {
-    await reqWithToken("POST", endpoint.comments(), { study_id: id, user_id: currentUser.id, username: currentUser.username, content })
+    await reqWithToken("POST", endpoint.comments(), {
+      study_id: id,
+      user_id: currentUser.id,
+      username: currentUser.username,
+      content,
+    });
     window.location.reload();
-  }
+  };
 
   return (
     <>
-      <div className="flex justify-center m-4 font-qs">
-        <div className="w-[90%] flex justify-around flex-wrap">
-          {edit && (
-            <EditStudy
-              setEdit={setEdit}
-              study={study}
-            />
-          )}
-          {alert && (
-            <Alert
-              setAlert={setAlert}
-              id={studyId}
-            />
-          )}
-          {
-            studies.map((study) => (
-              <div key={study.id} className="p-4 text-gray-700 bg-white mb-4 rounded-lg w-[500px] hover:shadow-lg">
-                <div className="mb-2 text-lg font-bold">
-                  {study.topic}
+      <div className="flex  mx-16 font-qs w-[90%] my-8">
+        <div className="w-full">
+          {edit && <EditStudy setEdit={setEdit} study={study} />}
+          {alert && <Alert setAlert={setAlert} id={studyId} />}
+          {studies.map((study) => (
+            <div
+              key={study.id}
+              className="p-4 text-white-400 mb-4 rounded-lg w-[90%] bg-slate-200"
+            >
+              <div className="mb-2 text-normal">{study.topic}</div>
+              <div className="flex justify-between mb-5">
+                <div className="text-blue-600">
+                  {study.hours_taken} hours taken
                 </div>
-                <div className="flex justify-between">
-                  <div className="text-green-500">
-                    {study.hours_taken}
-                    {' '}
-                    hours
-                  </div>
-                  <div className="px-2 py-1 text-gray-100 bg-green-500 rounded-lg hover:text-green-500 hover:bg-gray-100 w-fit">
-                    {study.technology.name}
-                  </div>
+                <div className="px-2 py-1 text-gray-100 bg-slate-400 rounded-lg hover:text-green-500 hover:bg-gray-100 w-fit">
+                  {study.technology.name}
                 </div>
-                <div>
-                  {study.experience}
-                </div>
-                {
-                  getCookie('token') &&
-                  <div className="w-full bg-green-300 flex justify-between">
-                    <div>
-                      <button type="button" onClick={() => handleLike(study.id)}>Like</button>
-                      <span>{study.like_count}</span>
-                    </div>
-                    <div>
-                      <button type="button" id={`comment: ${study.id}`} onClick={() => handleToggle(study.id)}>Comment</button>
-                      <span>{study.comment_count}</span>
-                    </div>
-                  </div>
-                }
-                {
-                  currentUser.id === id
-                  && (
-                    <div className="w-full bg-red-300 flex justify-between">
-                      <button type="button" onClick={() => handleEdit(study.id)}>Edit</button>
-                      <button type="button" onClick={() => handleDelete(study.id)}>Delete</button>
-                    </div>
-                  )
-                }
-                {
-                  toggle && current === study.id &&
-                  <div>
-                    <input type="text" placeholder="Share your Opinion..." onChange={(e) => setContent(e.target.value)} />
-                    <button type="button" onClick={() => handleComment(study.id)}>Comment</button>
-                  </div>
-                }
-                {
-                  study.comments.map((comment) => (
-                    <div key={comment.id}>
-                      {comment.username}
-                      {comment.content}
-                    </div>
-                  ))
-                }
               </div>
-            ))
-          }
+              <div className="w-full">{study.experience}</div>
+              {getCookie("token") && (
+                <div className="w-full flex justify-between">
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => handleLike(study.id)}
+                      className="px-6 py-3 bg-slate-400 rounded-lg text-white"
+                    >
+                      Like
+                    </button>
+                    <span className="text-green-600">
+                      &nbsp; {study.like_count}&nbsp;
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-green-600">
+                      {study.comment_count}&nbsp; &nbsp;
+                    </span>
+                    <button
+                      type="button"
+                      id={`comment: ${study.id}`}
+                      onClick={() => handleToggle(study.id)}
+                      className="px-6 py-3 bg-slate-400 rounded-lg text-white"
+                    >
+                      Comment
+                    </button>
+                  </div>
+                </div>
+              )}
+              {currentUser.id === id && (
+                <div className="w-full flex justify-between mt-5">
+                  <button
+                    type="button"
+                    onClick={() => handleEdit(study.id)}
+                    className="px-6 py-3 bg-slate-400 rounded-lg text-white"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(study.id)}
+                    className="px-6 py-3 bg-slate-400 rounded-lg text-white"
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+              {toggle && current === study.id && (
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Share your Opinion..."
+                    onChange={(e) => setContent(e.target.value)}
+                  />
+                  <button type="button" onClick={() => handleComment(study.id)}>
+                    Comment
+                  </button>
+                </div>
+              )}
+              <div className="mt-5">
+                {" "}
+                {study.comments.map((comment) => (
+                  <div key={comment.id}>
+                    <span className="text-blue-500">
+                      {comment.username}&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+                    </span>
+                    {comment.content}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
-  )
+  );
 };
 
 Completed.propTypes = {
@@ -143,7 +168,7 @@ Completed.propTypes = {
       comment: PropTypes.shape({
         content: PropTypes.string.isRequired,
       }),
-    }),
+    })
   ).isRequired,
 };
 

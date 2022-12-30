@@ -1,25 +1,27 @@
-import rnb from './rnb.png';
-import best from './best.png';
-import bg from './bg.svg';
-import learners from './learners.svg';
-import learnersWhite from './learners-white.svg';
-import users from './users.svg';
-import usersWhite from './users-white.svg';
-import studies from './studies.svg';
-import studiesWhite from './studies-white.svg';
-import certificates from './certificates.svg';
-import certificatesWhite from './certificates-white.svg';
-import techs from './techs.svg';
-import techsWhite from './techs-white.svg';
-import avatar from './avatar.jpg';
-import github from './github.svg';
-import linkedin from './linkedin.svg';
-import mail from './mail.svg';
-import phone from './phone.svg';
-import date from './date.svg';
-import eye from './eye.svg';
-import pin from './pin.svg';
-
+import rnb from "./rnb.png";
+import best from "./best.png";
+import bg from "./bg.svg";
+import learners from "./learners.svg";
+import learnersWhite from "./learners-white.svg";
+import users from "./users.svg";
+import usersWhite from "./users-white.svg";
+import studies from "./studies.svg";
+import studiesWhite from "./studies-white.svg";
+import certificates from "./certificates.svg";
+import certificatesWhite from "./certificates-white.svg";
+import techs from "./techs.svg";
+import techsWhite from "./techs-white.svg";
+import avatar from "./avatar.jpg";
+import github from "./github.svg";
+import linkedin from "./linkedin.svg";
+import mail from "./mail.svg";
+import phone from "./phone.svg";
+import date from "./date.svg";
+import eye from "./eye.svg";
+import pin from "./pin.svg";
+import funny from "./funny.png";
+import forward from "./forward.svg";
+import backward from "./backward.svg";
 const assets = {
   rnb,
   avatar,
@@ -42,6 +44,9 @@ const assets = {
   date,
   eye,
   pin,
+  funny,
+  forward,
+  backward,
 };
 
 export default assets;
