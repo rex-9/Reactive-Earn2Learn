@@ -103,6 +103,11 @@ const AboutUs = () => {
         className="container "
         style={{ marginLeft: "auto", marginTop: "50px" }}
       ></div>
+      <div>
+        <video autoplay controls>
+          <source src="https://storage.googleapis.com/rnb-assets/intro.mp4" />
+        </video>
+      </div>
     </div>
   );
 };
