@@ -5,17 +5,19 @@ import { fetchLearners } from "../redux/reducers/learnerXer";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import assets from "../assets/assets";
+import Loading from "./loading/loading.component";
 
 const Learners = () => {
   const learners = useSelector((state) => state.learners);
   const dispatch = useDispatch();
-
+  const loadingCount = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   useEffect(() => {
     dispatch(fetchLearners());
   }, [dispatch]);
 
   return (
     <section className="flex flex-wrap justify-center">
+      {learners.length <= 0 ? loadingCount.map((loading) => <Loading />) : null}
       {learners.map((learner) => (
         <Link to={`/profile/${learner.id}`}>
           <div

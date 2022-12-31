@@ -28,16 +28,14 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex justify-center h-[80vh] pt-12">
-        <div className="flex flex-col items-center">
-          <div className="mt-8 header text-blue-500 text-3xl">
-            Earn To Learn
-          </div>
-          <div className="my-2 header">Welcome Back Champion!</div>
+      <div className="flex justify-center h-screen pt-12 bg-slate-300">
+        <div className="flex flex-col">
+          <div className="my-2 header text-blue-600">Welcome Back!</div>
+          <p>Nice to meet you again. Let explore the program together!</p>
           <div className="my-8 header">Log In</div>
           <form onSubmit={handleSubmit} ref={formRef}>
             <input
-              className="input"
+              className="input rounded-lg text-gray-500"
               ref={authRef}
               type="text"
               placeholder="Username or Email"
@@ -45,7 +43,7 @@ const Login = () => {
             />{" "}
             <br />
             <input
-              className="input"
+              className="input rounded-lg text-gray-500"
               type="password"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}

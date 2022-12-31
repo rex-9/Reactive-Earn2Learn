@@ -14,8 +14,8 @@ const Nav = () => {
   };
 
   return (
-    <Fragment className="mb-5">
-      <nav className="sticky top-0 font-qs h-[12%] w-full flex items-center justify-between px-24 py-3 shadow-lg mb-2">
+    <Fragment className="mb-5 z-40">
+      <nav className="sticky top-0 font-qs h-[12%] w-full flex items-center justify-between px-12 py-5 shadow-lg mb-2">
         <Link to="/">
           <img
             src={assets.rnb}
@@ -26,9 +26,9 @@ const Nav = () => {
         </Link>
         {Object.keys(user).length !== 0 ? (
           <>
-            <div className="flex w-96 justify-between items-center">
+            <div className="flex w-96 justify-between">
               <Link to={`/profile/${user.id}`}>
-                <div className="flex items-center justify-around px-2 py-1 border-2 border-gray-200 rounded-lg w-52">
+                <div className="flex items-center justify-around px-2 py-1  w-52">
                   <img
                     className="object-cover w-12 h-12 rounded-full"
                     src={user.image ? user.image : assets.avatar}
@@ -47,7 +47,10 @@ const Nav = () => {
             </div>
           </>
         ) : (
-          <div className="flex justify-between w-40">
+          <div className="flex justify-between w-80">
+            <Link to="/aboutus" className="px-2 py-2 text-black  rounded-lg ">
+              About Us
+            </Link>
             <Link to="/login" className="px-2 py-2 text-black  rounded-lg ">
               Login
             </Link>

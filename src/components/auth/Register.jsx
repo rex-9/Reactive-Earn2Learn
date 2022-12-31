@@ -83,12 +83,13 @@ const Register = () => {
 
   return (
     <>
-      <section className="flex justify-center pt-12 h-[85vh] overflow-y-auto scrollremove">
-        <div className="flex flex-col items-center my-8">
-          <div className="header text-blue-500 text-3xl">Earn To Learn</div>
-          <div className="my-2 header">Welcome Back Champion!</div>
-          <div className="mb-4 header">Register</div>
-
+      <section className="flex justify-center pt-12 h-fit overflow-y-auto scrollremove bg-slate-300">
+        <div className="flex flex-col  my-8">
+          <div className="my-5 header text-blue-600 ">
+            Let's Explore Together!
+          </div>
+          <p>Study To Achieve Your Goal Today</p>
+          <div className="my-8 header">Register</div>
           <form>
             <label htmlFor="username">
               Username:

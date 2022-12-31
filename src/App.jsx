@@ -8,6 +8,7 @@ import Profile from "./pages/learner/Profile";
 import { getCookie } from "./services/cookie";
 import GuestHome from "./pages/guest/GuestHome";
 import Nav from "./components/Nav";
+import AboutUs from "./components/AboutUs/AboutUs.component";
 
 const App = () => {
   const token = getCookie("token");
@@ -17,22 +18,23 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Nav />}>
           <Route index element={<GuestHome />} />
-          <Route
-            path="/login"
-            element={token ? <Navigate to="/" replace /> : <Login />}
-          />
-          <Route
-            path="/register"
-            element={token ? <Navigate to="/" replace /> : <Register />}
-          />
-          <Route
-            path="/forgot-password"
-            element={token ? <Navigate to="/" replace /> : <ForgotPassword />}
-          />
 
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/all" element={<Home />} />
+          <Route path="/aboutus" element={<AboutUs />} />
         </Route>
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/" replace /> : <Login />}
+        />
+        <Route
+          path="/register"
+          element={token ? <Navigate to="/" replace /> : <Register />}
+        />
+        <Route
+          path="/forgot-password"
+          element={token ? <Navigate to="/" replace /> : <ForgotPassword />}
+        />
       </Routes>
     </>
   );

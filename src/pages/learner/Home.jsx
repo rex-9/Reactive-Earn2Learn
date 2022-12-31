@@ -1,4 +1,3 @@
-import Nav from "../../components/Nav";
 import Learners from "../../components/Learners";
 import Panel from "../../components/Panel";
 import { isAdmin } from "../../services/cookie";

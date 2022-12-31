@@ -1,5 +1,3 @@
-import Nav from "../../components/Nav";
-
 import assets from "../../assets/assets";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -58,46 +56,51 @@ const GuestHome = () => {
         </div>
 
         <div className="bg-gray-200 p-4  m-8 rounded-lg">
-          <span className="font-bold text-lg">Recent Users</span>
+          <span className="font-bold text-lg">Recent Students</span>
           <div>
             <div className="overflow-x-auto flex scrollremove justify-center">
               {learners.length <= 0
                 ? loadingCount.map((loading) => <Loading />)
                 : null}
-
-              <img
-                src={assets.backward}
-                className={`w-8 ${startIndex == 0 ? "hidden" : "visible"}`}
-                onClick={() => {
-                  const newStart = startIndex - 3;
-                  const newEnd = endIndex - 3;
-                  if (newStart < 0) {
-                    setStartIndex(0);
-                    setEndIndex(3);
-                  } else {
-                    setStartIndex(newStart);
-                    setEndIndex(newEnd);
-                  }
-                }}
-              />
+              <div className="py-20">
+                <img
+                  src={assets.backward}
+                  className={`w-8 h-8 ${
+                    startIndex == 0 ? "hidden" : "visible"
+                  }`}
+                  onClick={() => {
+                    const newStart = startIndex - 3;
+                    const newEnd = endIndex - 3;
+                    if (newStart < 0) {
+                      setStartIndex(0);
+                      setEndIndex(3);
+                    } else {
+                      setStartIndex(newStart);
+                      setEndIndex(newEnd);
+                    }
+                  }}
+                />
+              </div>
 
               {learners.slice(startIndex, endIndex).map((learner) => (
                 <GuestLearner learner={learner} />
               ))}
-              <img
-                src={assets.forward}
-                className={`w-8 ${
-                  startIndex + 3 < learners.length ? "visible" : "hidden"
-                }`}
-                onClick={() => {
-                  const newStart = startIndex + 3;
-                  const newEnd = endIndex + 3;
-                  if (newStart < learners.length) {
-                    setStartIndex(newStart);
-                    setEndIndex(newEnd);
-                  }
-                }}
-              />
+              <div className="py-20">
+                <img
+                  src={assets.forward}
+                  className={`w-8 h-8  ${
+                    startIndex + 3 < learners.length ? "visible" : "hidden"
+                  }`}
+                  onClick={() => {
+                    const newStart = startIndex + 3;
+                    const newEnd = endIndex + 3;
+                    if (newStart < learners.length) {
+                      setStartIndex(newStart);
+                      setEndIndex(newEnd);
+                    }
+                  }}
+                />
+              </div>
             </div>
           </div>
 
