@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { fetchLearnerStudies } from '../../redux/reducers/studyXer';
-import DisplayLearner from '../../components/learner/DisplayLearner';
-import EditLearner from '../../components/learner/EditLearner';
-import Completed from '../../components/study/Completed';
-import Ongoing from '../../components/study/Ongoing';
-import { endpoint, get } from '../../services/axios';
-import { returnCurrentUser } from '../../services/cookie';
-import { updateLearner } from '../../redux/reducers/learnerXer';
+import { fetchLearnerStudies } from '../redux/reducers/studyXer';
+import DisplayLearner from '../components/learner/DisplayLearner';
+import EditLearner from '../components/learner/EditLearner';
+import Completed from '../components/study/Completed';
+import Ongoing from '../components/study/Ongoing';
+import { endpoint, get } from '../services/axios';
+import { returnCurrentUser } from '../services/cookie';
+import { updateLearner } from '../redux/reducers/learnerXer';
 
 const Profile = () => {
   const [learner, setLearner] = useState({});
@@ -41,7 +41,6 @@ const Profile = () => {
     };
     currentUser.id !== parseInt(id) && dispatch(updateLearner(learnerObj));
   }
-
   return (
     <>
       <section className="flex flex-col h-screen">

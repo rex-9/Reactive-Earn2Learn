@@ -4,7 +4,7 @@ import { getCookie, setCookie } from './cookie';
 class Endpoint {
   constructor() {
     this.url = 'http://127.0.0.1:3000/api/';
-    // this.url = 'http://etl.robust.best/api/';
+    // this.url = 'https://etl.robust.best/api/';
     // this.url = 'https://earn2learn.onrender.com/';
   }
 
@@ -103,7 +103,7 @@ const reqWithFile = (ep, obj) => axios({
   url: ep,
   data: obj,
   headers: {
-    // 'Content-Type': 'multipart/form-data',
+    'Content-Type': 'multipart/form-data',
     Authorization: `Bearer ${getCookie('token')}`,
   },
 }).then((response) => {

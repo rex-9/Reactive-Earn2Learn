@@ -108,12 +108,6 @@ const EditLearner = ({
                   <input defaultValue={learner.email} type="text" className="m-0 bg-box input w-96" placeholder="E.g. htetnaing0814@gmail.com" onChange={(e) => setEmail(e.target.value)} id="email" />
                 </div>
               </label>
-              {/* <label htmlFor="image">
-                <div className="form-field">
-                  <span>Image:</span>
-                  <input defaultValue={learner.image} type="text" className="m-0 bg-box input w-96" placeholder="E.g. https://www.unsplash.com/hello.jpg" onChange={(e) => setImage(e.target.value)} id="image" />
-                </div>
-              </label> */}
               <label htmlFor="bio">
                 <div className="form-field">
                   <span>Bio:</span>

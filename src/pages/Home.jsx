@@ -1,12 +1,12 @@
-import Nav from "../../components/Nav";
-import Learners from '../../components/Learners';
-import Panel from '../../components/Panel';
-import { isAdmin } from '../../services/cookie';
+import Nav from "../components/Nav";
+import Learners from '../components/Learners';
+import Panel from '../components/Panel';
+import { isAdmin } from '../services/cookie';
 import { useState } from "react";
-import Users from "../../components/admin/Users";
-import Studies from "../../components/admin/Studies";
-import Technologies from "../../components/admin/Technologies";
-import Certificates from "../../components/admin/Certificates";
+import Users from "../components/admin/Users";
+import Studies from "../components/admin/Studies";
+import Technologies from "../components/admin/Technologies";
+import Certificates from "../components/admin/Certificates";
 
 const Home = () => {
   const [selected, setSelected] = useState('learners');
