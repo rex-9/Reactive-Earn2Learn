@@ -51,19 +51,65 @@ const AboutUs = () => {
             </u>
             &nbsp;Organization,started at October/1/2022. A total of 3 students
             have been supported for four month terms. More students are going to
-            be supported in upcoming months. If you want to get support from
-            Organization, you can apply{" "}
-            <u>
-              {" "}
-              <a
-                href="https://example.com"
-                style={{ color: "#4E46CE" }}
-                className="font-bold"
-              >
-                here.
-              </a>
-            </u>
+            be supported in upcoming months.
             <br />
+            <br />
+            <br />
+            <h2
+              style={{ color: "#4E46CE", fontSize: "22px" }}
+              className="font-bold"
+            >
+              Requirement and Expectations
+            </h2>
+            <p>
+              You MUST,
+              <br />- Be a lifelong learner <br />- Need assistance in financial
+              and/or learning materials <br />- Be able to read/listen lectures
+              and instructions in English <br />- Not be in association with any
+              of human rights oppression groups <br />- Be in Myanmar while
+              applying for this program <br />- Commit to learn and develop
+              24~60 hours a week Our expectation, <br />- Make impact for
+              both/either Robust & Best and/or the community <br />- To support
+              the organization needs during the term, but it is voluntary.
+            </p>
+            <h2
+              style={{ color: "#4E46CE", fontSize: "22px", marginTop: "35px" }}
+              className="font-bold"
+            >
+              How To Apply?
+            </h2>
+            <p>
+              If you are interested, send an email to alex@robust.best with the
+              following information,
+              <br /> - Introduction to yourself <br />- Topic/field of interest
+              <br /> - Previous learning experience (prefer self-paced learning)
+              <br /> - What assistance you need and why
+              <br />
+              We are sorry that we can only provide
+              <br />
+              STEM (Science, Technology, Engineering, and Mathematics) learners
+              during the initiation process.
+              <br />
+              We are expected to provide more topics in the future. <br />
+              Follow our Facebook page or subscribe to our newsletters on the
+              website{" "}
+              <u>
+                <a href="https://robust.best">robust&best</a>
+              </u>{" "}
+              for future updates. A total of 2~4 learners will be chosen for
+              this program with 4 months terms. There is no guarantee that the
+              learner will be employed or not by Robust & Best after the term.
+              There is a potential for the continuation after 4 months but it
+              will certainly depend on the organization funding and the learner
+              motivation. Robust & Best is not associating with any organization
+              for this program (yet). By applying in this program, you are
+              agreeing to Robust & Best’s {""}
+              <u>
+                {" "}
+                <a href="https://robust.best/legal/policy">privacy policy</a>
+              </u>{" "}
+              .
+            </p>
             <br />
             <br />
             <span
@@ -72,7 +118,6 @@ const AboutUs = () => {
             >
               What is Robust and Best?
             </span>
-            <br />
             <br />
             Robust and Best bring technological advancement in NLP (Natural
             Language Processing) and CV (Computer Vision).
@@ -89,14 +134,31 @@ const AboutUs = () => {
           </p>
         </div>
 
-        <div className="flex flex-col">
-          <Lottie options={defaultOptions} height={250} width={250} />
-          <Lottie
+        <div className="flex flex-col pl-48">
+          {/* <Lottie
             options={defaultOptions1}
             height={250}
             width={250}
             style={{ paddingTop: "50px" }}
-          />
+          /> */}
+          <iframe
+            src="https://embed.lottiefiles.com/animation/67934"
+            width={250}
+            height={250}
+            style={{ marginLeft: "50px" }}
+          ></iframe>
+          <iframe
+            src="https://embed.lottiefiles.com/animation/67928"
+            width={250}
+            height={250}
+            style={{ marginLeft: "50px" }}
+          ></iframe>
+          <iframe
+            src="https://embed.lottiefiles.com/animation/79960"
+            width={250}
+            height={250}
+            style={{ marginLeft: "50px" }}
+          ></iframe>
         </div>
       </div>
       <div

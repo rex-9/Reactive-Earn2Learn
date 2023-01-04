@@ -6,7 +6,7 @@ import Users from "../../components/admin/Users";
 import Studies from "../../components/admin/Studies";
 import Technologies from "../../components/admin/Technologies";
 import Certificates from "../../components/admin/Certificates";
-
+import Invites from "../../components/Invite/invite.component";
 const Home = () => {
   const [selected, setSelected] = useState("learners");
   return (
@@ -26,8 +26,10 @@ const Home = () => {
               <Studies />
             ) : selected === "technologies" ? (
               <Technologies />
-            ) : (
+            ) : selected === "certificates" ? (
               <Certificates />
+            ) : (
+              <Invites />
             )}
           </div>
         </div>

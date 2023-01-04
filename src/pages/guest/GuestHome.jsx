@@ -8,7 +8,7 @@ import hero from "../../assets/hero.json";
 import { fetchLearners } from "../../redux/reducers/learnerXer";
 import GuestLearner from "../../components/GuestLearner/GuestLearner.component";
 import Loading from "../../components/loading/loading.component";
-
+import student from "../../assets/second1.json";
 const GuestHome = () => {
   const learners = useSelector((state) => state.learners);
   const dispatch = useDispatch();
@@ -20,18 +20,18 @@ const GuestHome = () => {
     dispatch(fetchLearners());
   }, [dispatch]);
 
-  const defaultOptions = {
+  const defaultOptions1 = {
     loop: true,
     autoplay: true,
-    animationData: hero,
+    animationData: student,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
   return (
-    <div>
+    <div className="h-[80vh] overflow-y-auto">
       <div className="flex flex-col font-qs">
-        <div className="grid grid-cols-3">
+        <div className="grid  grid-cols-2 md:grid-cols-3">
           <div className="col-span-2 p-28 pl-12 ">
             <span
               style={{
@@ -43,15 +43,30 @@ const GuestHome = () => {
               Earn To Learn
             </span>
             <span className="leading-relaxed">
-              &nbsp; Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Eaque maxime sed optio laudantium. Reprehenderit id hic asperiores
-              exercitationem ad commodi odit quod, consequuntur ipsum tenetur
-              quae enim neque, ab dolor?
+              &nbsp;is the program to support lifelong learners in Myanmar those
+              in need of financial and/or learning materials (both hardware and
+              subscription). <br /> <br />
+              We will provide
+              <br />
+              - Financial support up to 250,000 MMK a month <br />
+              - Learning materials worth up to 50 USD a month
+              <br /> - A chance to make impact with our organization
             </span>
           </div>
 
           <div className="pt-14">
-            <Lottie options={defaultOptions} height={250} width={250} />
+            {/* <Lottie
+              options={defaultOptions1}
+              height={250}
+              width={250}
+              style={{ paddingTop: "50px" }}
+            /> */}
+            {/* <Lottite src="https://lottiefiles.com/67934-studyly" /> */}
+            <iframe
+              src="https://embed.lottiefiles.com/animation/67934"
+              width={250}
+              height={250}
+            ></iframe>
           </div>
         </div>
 

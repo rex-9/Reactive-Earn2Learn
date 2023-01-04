@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const GuestLearner = ({ learner }) => {
   return (
     <Link to={`/profile/${learner.id}`}>
-      <div className="border-2 border-white w-80 h-40 ml-12 mr-12 mt-5 mb-5 rounded-lg p-3 overflow-hidden leading-relaxed">
+      <div className="border-2 border-slate-800 w-80 h-40 ml-12 mr-12 mt-5 mb-5 rounded-lg p-3 overflow-hidden leading-relaxed hover:border-[#4E46CE]">
         <div className="flex">
           <img
             className="object-cover w-12 h-12 rounded-full inline-block"
