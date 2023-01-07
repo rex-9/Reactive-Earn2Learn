@@ -23,7 +23,7 @@ const Register = () => {
         <h2 className="font-bold " style={{ fontSize: "28px" }}>
           You don't hava access to register
         </h2>
-        <Link to="/">
+        <Link to="/dashboard">
           <button className="text-[#4E46CE] px-5 py-2 bg-gray-300 mt-[100px]">
             Go Back
           </button>

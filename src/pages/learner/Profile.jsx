@@ -10,8 +10,6 @@ import Ongoing from "../../components/study/Ongoing";
 import { endpoint, get } from "../../services/axios";
 import { returnCurrentUser } from "../../services/cookie";
 import { updateLearner } from "../../redux/reducers/learnerXer";
-import ViewLearner from "../../components/learner/ViewLearner";
-import Nav from "../../components/Nav";
 import "./profile.styles.css";
 
 const Profile = () => {

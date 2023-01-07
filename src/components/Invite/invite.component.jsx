@@ -1,6 +1,6 @@
 import { useState } from "react";
 import sendMail from "../../services/sendmail";
-import Loading from "../loading/loading.component";
+// import Loading from "../loading/loading.component";
 const Invites = () => {
   const defaultFormFields = { email: "", password: "" };
   const [loading, setLoading] = useState(false);
@@ -55,7 +55,6 @@ const Invites = () => {
             </div>
           </form>
         </div>
-        {loading && <Loading />}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import hero from "../../assets/hero.json";
 import { fetchLearners } from "../../redux/reducers/learnerXer";
 import GuestLearner from "../../components/GuestLearner/GuestLearner.component";
-import Loading from "../../components/loading/loading.component";
+// import Loading from "../../components/loading/loading.component";
 import student from "../../assets/second1.json";
 const GuestHome = () => {
   const learners = useSelector((state) => state.learners);
@@ -120,7 +120,7 @@ const GuestHome = () => {
           </div>
 
           <div className="flex justify-end ">
-            <Link to="/all">
+            <Link to="/dashboard">
               <button
                 className="text-white px-6 py-3 rounded-lg"
                 style={{ backgroundColor: "#4E46CE" }}

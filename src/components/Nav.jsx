@@ -16,7 +16,7 @@ const Nav = () => {
   return (
     <Fragment className="mb-5 z-40">
       <nav className="sticky top-0 font-qs h-[12%] w-full flex items-center justify-between px-12 py-5 shadow-lg mb-2">
-        <Link to="/">
+        <Link to="/dashboard">
           <img
             src={assets.rnb}
             className="h-10 w-32 object-cover"
