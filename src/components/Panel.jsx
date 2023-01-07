@@ -95,9 +95,10 @@ const Panel = ({ selected, setSelected }) => {
             onClick={() => setSelected("invites")}
           >
             <img
-              src={selected === "invites" ? assets.techsWhite : assets.techs}
+              src={selected === "invites" ? assets.invites : assets.invites}
               className="mr-2"
               alt="Invites invitees"
+              width="25px"
             />
             Invites
           </button>

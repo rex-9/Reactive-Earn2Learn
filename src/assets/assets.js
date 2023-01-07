@@ -19,7 +19,7 @@ import phone from "./phone.svg";
 import date from "./date.svg";
 import eye from "./eye.svg";
 import pin from "./pin.svg";
-
+import invites from "./invites.svg";
 import forward from "./forward.svg";
 import backward from "./backward.svg";
 const assets = {
@@ -44,7 +44,7 @@ const assets = {
   date,
   eye,
   pin,
-
+  invites,
   forward,
   backward,
 };

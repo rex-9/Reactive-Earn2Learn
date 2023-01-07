@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./GuestHome.styles.css";
 import { useDispatch, useSelector } from "react-redux";
-import Lottie from "react-lottie";
-import hero from "../../assets/hero.json";
+// import Lottie from "react-lottie";
+// import hero from "../../assets/hero.json";
 import { fetchLearners } from "../../redux/reducers/learnerXer";
 import GuestLearner from "../../components/GuestLearner/GuestLearner.component";
 import Loading from "../../components/loading/loading.component";
@@ -74,9 +74,9 @@ const GuestHome = () => {
           <span className="font-bold text-lg">Recent Students</span>
           <div>
             <div className="overflow-x-auto flex scrollremove justify-center">
-              {learners.length <= 0
+              {/* {learners.length <= 0
                 ? loadingCount.map((loading) => <Loading />)
-                : null}
+                : null} */}
               <div className="py-20">
                 <img
                   src={assets.backward}

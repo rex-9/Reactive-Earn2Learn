@@ -5,7 +5,7 @@ import { fetchLearners } from "../redux/reducers/learnerXer";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import assets from "../assets/assets";
-import Loading from "./loading/loading.component";
+// import Loading from "./loading/loading.component";
 
 const Learners = () => {
   const learners = useSelector((state) => state.learners);
@@ -17,7 +17,7 @@ const Learners = () => {
 
   return (
     <section className="flex flex-wrap justify-center">
-      {learners.length <= 0 ? loadingCount.map((loading) => <Loading />) : null}
+      {/* {learners.length <= 0 ? loadingCount.map((loading) => <Loading />) : null} */}
       {learners.map((learner) => (
         <Link to={`/profile/${learner.id}`}>
           <div

@@ -9,7 +9,6 @@ import { getCookie } from "./services/cookie";
 import GuestHome from "./pages/guest/GuestHome";
 import Nav from "./components/Nav";
 import AboutUs from "./components/AboutUs/AboutUs.component";
-import Laravel from "./components/laravel";
 
 const App = () => {
   const token = getCookie("token");
@@ -28,14 +27,12 @@ const App = () => {
           path="/login"
           element={token ? <Navigate to="/" replace /> : <Login />}
         />
-        <Route
-          path="/register"
-          element={token ? <Navigate to="/" replace /> : <Laravel />}
-        />
+
         <Route
           path="/forgot-password"
           element={token ? <Navigate to="/" replace /> : <ForgotPassword />}
         />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   );

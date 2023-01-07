@@ -1,6 +1,6 @@
 import study from "../../assets/first.json";
 import student from "../../assets/second1.json";
-import Lottie from "react-lottie";
+// import Lottie from "react-lottie";
 
 const AboutUs = () => {
   const defaultOptions = {

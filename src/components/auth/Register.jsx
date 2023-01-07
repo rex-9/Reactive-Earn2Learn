@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,6 +14,23 @@ import { endpoint, authentication } from "../../services/axios";
 const Register = () => {
   const usernameRef = useRef();
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const token = searchParams.get("token");
+  if (token != 12) {
+    return (
+      <div className="flex flex-col items-center mt-[200px]">
+        <h2 className="font-bold " style={{ fontSize: "28px" }}>
+          You don't hava access to register
+        </h2>
+        <Link to="/">
+          <button className="text-[#4E46CE] px-5 py-2 bg-gray-300 mt-[100px]">
+            Go Back
+          </button>
+        </Link>
+      </div>
+    );
+  }
 
   const [username, setUsername] = useState("");
   const [validUsername, setValidUsername] = useState(false);

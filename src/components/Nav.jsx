@@ -47,20 +47,24 @@ const Nav = () => {
             </div>
           </>
         ) : (
-          <div className="flex justify-between w-80">
+          <div className="flex justify-between w-48">
             <Link to="/aboutus" className="px-2 py-2 text-black  rounded-lg ">
               About Us
             </Link>
-            <Link to="/login" className="px-2 py-2 text-black  rounded-lg ">
+            <Link
+              to="/login"
+              className="px-5 py-2  rounded-lg  text-white font-bold hover:text-gray-300"
+              style={{ backgroundColor: "#4E46CE" }}
+            >
               Login
             </Link>
-            <Link
+            {/* <Link
               to="/Register"
               className="px-2 py-2 text-black rounded-lg  text-white font-bold"
               style={{ backgroundColor: "#4E46CE" }}
             >
               Register
-            </Link>
+            </Link> */}
           </div>
         )}
       </nav>
