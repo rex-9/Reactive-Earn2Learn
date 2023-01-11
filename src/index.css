@@ -70,3 +70,11 @@
     @apply even:bg-white/20 odd:bg-black/5;
   }
 }
+
+body {
+  background-color: #fafafa;
+}
+
+#root {
+  height: 100vh !important;
+}

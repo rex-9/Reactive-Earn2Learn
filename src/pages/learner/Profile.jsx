@@ -44,39 +44,34 @@ const Profile = () => {
   }
 
   return (
-    <>
-      <section className="flex flex-col h-[80vh] scrollremove">
-        <div className="flex h-[90%]">
-          {/* Learner Profile Data Section */}
-          <section id="learner-data">
-            <div className="m-4 font-qs w-96">
-              <div className="flex flex-col items-center bg-white/25 rounded-md  py-4 h-[90%]">
-                <DisplayLearner setEdit={setEdit} learner={learner} />
-                {edit && <EditLearner setEdit={setEdit} learner={learner} />}
-              </div>
-            </div>
-          </section>
+    <div className="flex mt-4 items-center justify-center overflow-y-hidden h-[80%]">
+      <div className="flex w-[95%]  gap-2 h-full">
+        {/* Learner Profile Data Section */}
 
-          <div className="flex-1 flex  h-[80vh] ">
-            <div className="flex-1 overflow-y-scroll scrollremove">
-              <div className="mx-4 my-5 bg-white/25 rounded-md border-2 border-gray-300 p-4 ">
-                <h1 className="font-bold text-lg font-qs">About Me</h1>
-                <p>{learner.bio || "I'm a super learner"}</p>
-              </div>
-              {/* Learning Fields Section */}
-              <section id="learning-field" className="px-4 mt-2">
-                <h1 className="font-bold text-lg font-qs">
-                  My Learning Journey
-                </h1>
+        <div id="learner-data" className=" font-qs h-full">
+          <DisplayLearner setEdit={setEdit} learner={learner} />
+          {edit && <EditLearner setEdit={setEdit} learner={learner} />}
+        </div>
 
-                <Completed studies={completed} />
-                <Ongoing studies={ongoing} />
-              </section>
+        <div className=" flex flex-1 h-full">
+          <div className="flex-1 h-full">
+            <h1 className="font-bold text-xl font-qs mx-4 mb-4">About Me</h1>
+            <div className="mx-4 my-2 bg-indigo-900 rounded-md text-white py-6 px-10 min-h-[25%] hover:bg-indigo-800">
+              <p>{learner.bio || "I'm a super learner"}</p>
             </div>
+            {/* Learning Fields Section */}
+            <section id="learning-field" className="px-4 mt-2">
+              <h1 className="font-bold text-xl font-qs mt-10">
+                My Learning Journey
+              </h1>
+
+              <Completed studies={completed} />
+              <Ongoing studies={ongoing} />
+            </section>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 };
 

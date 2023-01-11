@@ -7,7 +7,7 @@ module.exports = {
         bestBg: "url('/assets/bg.svg')",
       },
       colors: {
-        bg: "#F5FE8E",
+        bg: "#F5F5F5",
         bg2: "#FF8888",
         dark: "#0a0502",
         btn: "#0fbbbb",

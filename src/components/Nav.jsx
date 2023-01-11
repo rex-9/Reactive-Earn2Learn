@@ -14,8 +14,8 @@ const Nav = () => {
   };
 
   return (
-    <Fragment className="mb-5 z-40">
-      <nav className="sticky top-0 font-qs h-[12%] w-full flex items-center justify-between px-12 py-5 shadow-lg mb-2">
+    <Fragment className="z-50 ">
+      <nav className="sticky top-0 font-qs h-[12%] w-full flex items-center justify-between px-12 py-5 border-b-[1px] bg-white ">
         <Link to="/dashboard">
           <img
             src={assets.rnb}
@@ -47,16 +47,14 @@ const Nav = () => {
             </div>
           </>
         ) : (
-          <div className="flex justify-between w-48">
-            <Link to="/aboutus" className="px-2 py-2 text-black  rounded-lg ">
-              About Us
+          <div className="flex justify-between w-52 items-center">
+            <Link to="/aboutus" className="px-2 py-2 font-semibold rounded-lg ">
+              <p>About Us</p>
             </Link>
-            <Link
-              to="/login"
-              className="px-5 py-2  rounded-lg  text-white font-bold hover:text-gray-300"
-              style={{ backgroundColor: "#4E46CE" }}
-            >
-              Login
+            <Link to="/login">
+              <button class="bg-indigo-700 hover:bg-indigo-900 text-white font-medium py-2 px-6 rounded-lg">
+                Login
+              </button>
             </Link>
             {/* <Link
               to="/Register"

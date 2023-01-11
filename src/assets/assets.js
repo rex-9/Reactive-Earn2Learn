@@ -22,6 +22,7 @@ import pin from "./pin.svg";
 import invites from "./invites.svg";
 import forward from "./forward.svg";
 import backward from "./backward.svg";
+import undraw from "./undraw.svg";
 const assets = {
   rnb,
   avatar,
@@ -47,6 +48,7 @@ const assets = {
   invites,
   forward,
   backward,
+  undraw,
 };
 
 export default assets;
