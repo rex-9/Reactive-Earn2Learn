@@ -60,9 +60,9 @@ const GuestHome = () => {
           </div>
         </div>
 
-        <div className="border border-gray-300 p-8 bg-white  mx-10 mb-6 rounded-lg">
-          <span className="font-bold text-lg">Recent Students</span>
-          <div className="overflow-x-auto flex scrollremove justify-center items-center">
+        <div className="border border-gray-300 p-6 w-[85%] bg-white  mb-6 rounded-lg">
+          <p className="font-bold text-lg mb-4">Recent Students</p>
+          <div className="flex scrollremove justify-center items-center gap-6">
             {/* {learners.length <= 0
                 ? loadingCount.map((loading) => <Loading />)
                 : null} */}
@@ -105,7 +105,7 @@ const GuestHome = () => {
             </div>
           </div>
 
-          <div className="flex justify-end ">
+          <div className="flex justify-end mx-6">
             <Link to="/dashboard">
               <button className="bg-indigo-700 hover:bg-indigo-900 text-white font-medium py-2 px-6 rounded-lg">
                 View All

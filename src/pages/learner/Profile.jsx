@@ -11,6 +11,7 @@ import { endpoint, get } from "../../services/axios";
 import { returnCurrentUser } from "../../services/cookie";
 import { updateLearner } from "../../redux/reducers/learnerXer";
 import "./profile.styles.css";
+import { func } from "prop-types";
 
 const Profile = () => {
   const [learner, setLearner] = useState({});
@@ -30,6 +31,7 @@ const Profile = () => {
 
   const [edit, setEdit] = useState(false);
   const [accomplished, setAccomplished] = useState(true);
+  const [completeTask, setCompleteTask] = useState(true);
   useEffect(() => {
     fetchLearner(id);
     dispatch(fetchLearnerStudies(id));
@@ -43,8 +45,12 @@ const Profile = () => {
     currentUser.id !== parseInt(id) && dispatch(updateLearner(learnerObj));
   }
 
+  function handleTasks() {
+    setCompleteTask(!completeTask);
+  }
+
   return (
-    <div className="flex mt-4 items-center justify-center overflow-y-hidden h-[80%]">
+    <div className="flex mt-4 items-center justify-center overflow-y-hidden h-[84%] overflow-hidden ">
       <div className="flex w-[95%]  gap-2 h-full">
         {/* Learner Profile Data Section */}
 
@@ -53,20 +59,31 @@ const Profile = () => {
           {edit && <EditLearner setEdit={setEdit} learner={learner} />}
         </div>
 
-        <div className=" flex flex-1 h-full">
+        <div className=" flex flex-1  overflow-scroll overscroll-auto scroll-smooth scrollremove mb-6">
           <div className="flex-1 h-full">
-            <h1 className="font-bold text-xl font-qs mx-4 mb-4">About Me</h1>
-            <div className="mx-4 my-2 bg-indigo-900 rounded-md text-white py-6 px-10 min-h-[25%] hover:bg-indigo-800">
+            <h1 className="font-bold text-xl font-qs mx-5 mb-4">About Me</h1>
+            <div className="mx-4 my-2 bg-indigo-900 rounded-md text-white py-6 px-10 min-h-[25%] select-none">
               <p>{learner.bio || "I'm a super learner"}</p>
             </div>
             {/* Learning Fields Section */}
-            <section id="learning-field" className="px-4 mt-2">
-              <h1 className="font-bold text-xl font-qs mt-10">
-                My Learning Journey
-              </h1>
+            <section id="learning-field" className="px-4 mt-10">
+              <div className="flex justify-between items-center mt-8  ">
+                <h1 className="font-bold text-xl font-qs ">
+                  My Learning Journey
+                </h1>
+                <button
+                  onClick={handleTasks}
+                  className="font-medium bg-gray-100 hover:bg-indigo-800 hover:text-white border  rounded-xl px-3 py-1"
+                >
+                  {completeTask ? "On Progress" : "Completed "}
+                </button>
+              </div>
 
-              <Completed studies={completed} />
-              <Ongoing studies={ongoing} />
+              {completeTask ? (
+                <Completed studies={completed} />
+              ) : (
+                <Ongoing studies={ongoing} />
+              )}
             </section>
           </div>
         </div>

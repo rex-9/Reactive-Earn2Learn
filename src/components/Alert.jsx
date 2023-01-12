@@ -28,7 +28,7 @@ const Alert = ({ id, setAlert, obj }) => {
         <button onClick={() => setAlert(false)}>Cancel</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Alert
+export default Alert;

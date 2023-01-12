@@ -39,10 +39,14 @@ const Completed = ({ studies }) => {
   const [toggle, setToggle] = useState(false);
   const [content, setContent] = useState("");
   const [current, setCurrent] = useState(null);
+  const [commentToggle, setCommentToggle] = useState(false);
 
   const handleToggle = (id) => {
     setToggle(!toggle);
     setCurrent(id);
+  };
+  const handleCommentToggle = (id) => {
+    setCommentToggle(!commentToggle);
   };
 
   const handleComment = async (id) => {
@@ -57,50 +61,66 @@ const Completed = ({ studies }) => {
 
   return (
     <>
-      <div className="flex  mx-16 font-qs w-[90%] my-8">
+      <div className="flex  font-qs w-full my-6">
         <div className="w-full">
           {edit && <EditStudy setEdit={setEdit} study={study} />}
           {alert && <Alert setAlert={setAlert} id={studyId} />}
           {studies.map((study) => (
-            <div
-              key={study.id}
-              className="p-4 text-white-400 mb-4 rounded-lg w-[90%] bg-slate-200"
-            >
-              <div className="mb-2 text-normal">{study.topic}</div>
-              <div className="flex justify-between mb-5">
-                <div className="text-blue-600">
-                  {study.hours_taken} hours taken
-                </div>
-                <div className="px-2 py-1 text-gray-100 bg-slate-400 rounded-lg hover:text-green-500 hover:bg-gray-100 w-fit">
+            <div key={study.id} className="p-4 mb-4 rounded-lg bg-white border">
+              <div className="text-gray-500 font-medium text-lg">
+                Technology :{" "}
+                <span className="font-medium text-black">
                   {study.technology.name}
-                </div>
+                </span>
               </div>
-              <div className="w-full">{study.experience}</div>
+              <div className="text-gray-500 font-medium">
+                Topic :{" "}
+                <span className="font-medium text-black text-lg">
+                  {study.topic}
+                </span>
+              </div>
+
+              <div className="text-blue-500 font-medium text-xs my-2 border px-2 rounded-lg inline-block">
+                {study.hours_taken} hours taken
+              </div>
+
+              <div className="min-h-[100px] my-2 border">
+                <p className="p-2 text-gray-500 font-medium">
+                  Learning Experience :
+                  <p className="text-black indent-8">{study.experience}</p>
+                </p>
+              </div>
               {getCookie("token") && (
                 <div className="w-full flex justify-between">
                   <div>
                     <button
                       type="button"
                       onClick={() => handleLike(study.id)}
-                      className="px-6 py-3 bg-slate-400 rounded-lg text-white"
+                      className="text-gray-500 font-medium hover:text-black"
                     >
-                      Like
+                      Like{" "}
+                      <span className="border rounded-md text-center">
+                        &nbsp; {study.like_count} &nbsp;
+                      </span>
                     </button>
-                    <span className="text-green-600">
-                      &nbsp; {study.like_count}&nbsp;
-                    </span>
                   </div>
                   <div>
-                    <span className="text-green-600">
-                      {study.comment_count}&nbsp; &nbsp;
-                    </span>
+                    <button
+                      onClick={handleCommentToggle}
+                      className="text-gray-500 font-medium mx-4 hover:text-black"
+                    >
+                      View Comments
+                    </button>
                     <button
                       type="button"
                       id={`comment: ${study.id}`}
                       onClick={() => handleToggle(study.id)}
-                      className="px-6 py-3 bg-slate-400 rounded-lg text-white"
+                      className="text-gray-500 font-medium hover:text-black"
                     >
-                      Comment
+                      Add a comment{" "}
+                      {/* <span className="border rounded-md text-center">
+                        &nbsp; {study.comment_count} &nbsp;
+                      </span> */}
                     </button>
                   </div>
                 </div>
@@ -110,42 +130,45 @@ const Completed = ({ studies }) => {
                   <button
                     type="button"
                     onClick={() => handleEdit(study.id)}
-                    className="px-6 py-3 bg-slate-400 rounded-lg text-white"
+                    className="hover:border  px-2 py-1 rounded-lg  text-indigo-800"
                   >
-                    Edit
+                    Edit Post
                   </button>
                   <button
                     type="button"
                     onClick={() => handleDelete(study.id)}
-                    className="px-6 py-3 bg-slate-400 rounded-lg text-white"
+                    className=" text-red-500 hover:border  px-2 py-1 rounded-lg "
                   >
                     Delete
                   </button>
                 </div>
               )}
               {toggle && current === study.id && (
-                <div>
-                  <input
+                <div className="flex flex-col items-end">
+                  <textarea
                     type="text"
                     placeholder="Share your Opinion..."
                     onChange={(e) => setContent(e.target.value)}
+                    className="p-2 min-h-[100px] w-full my-2 border resize-none"
                   />
                   <button type="button" onClick={() => handleComment(study.id)}>
-                    Comment
+                    Add Comment
                   </button>
                 </div>
               )}
-              <div className="mt-5">
-                {" "}
-                {study.comments.map((comment) => (
-                  <div key={comment.id}>
-                    <span className="text-blue-500">
-                      {comment.username}&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-                    </span>
-                    {comment.content}
-                  </div>
-                ))}
-              </div>
+
+              {commentToggle && (
+                <div className="mt-5 border rounded-lg">
+                  {study.comments.map((comment) => (
+                    <div key={comment.id} className="">
+                      <p className="text-indigo-700 font-medium m-4   ">
+                        {comment.username} :{" "}
+                        <span className="text-black ">{comment.content}</span>{" "}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>

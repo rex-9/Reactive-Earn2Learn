@@ -1,16 +1,13 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { updateStudy } from '../../redux/reducers/studyXer';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { updateStudy } from "../../redux/reducers/studyXer";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-const EditStudy = ({
-  setEdit,
-  study,
-}) => {
+const EditStudy = ({ setEdit, study }) => {
   const dispatch = useDispatch();
   const [topic, setTopic] = useState(study.topic);
   const [experience, setExperience] = useState(study.experience);
@@ -38,25 +35,53 @@ const EditStudy = ({
               <label htmlFor="topic">
                 <div className="form-field">
                   <span>Topic:</span>
-                  <input defaultValue={study.topic} type="text" className="m-0 bg-box text-black input w-96" placeholder="E.g. State Management" onChange={(e) => setTopic(e.target.value)} id="topic" />
+                  <input
+                    defaultValue={study.topic}
+                    type="text"
+                    className="m-0 bg-box text-black input w-96"
+                    placeholder="E.g. State Management"
+                    onChange={(e) => setTopic(e.target.value)}
+                    id="topic"
+                  />
                 </div>
               </label>
               <label htmlFor="experience">
                 <div className="form-field">
                   <span>Experience:</span>
-                  <input defaultValue={study.experience} type="text" className="m-0 bg-box input w-96" placeholder="E.g. Htet Naing" onChange={(e) => setExperience(e.target.value)} id="experience" />
+                  <input
+                    defaultValue={study.experience}
+                    type="text"
+                    className="m-0 bg-box input w-96"
+                    placeholder="E.g. Htet Naing"
+                    onChange={(e) => setExperience(e.target.value)}
+                    id="experience"
+                  />
                 </div>
               </label>
               <label htmlFor="completed">
                 <div className="form-field">
                   <span>Completed:</span>
-                  <input defaultValue={study.completed} type="text" className="m-0 bg-box input w-96" placeholder="E.g. htetnaing0814@gmail.com" onChange={(e) => setCompleted(e.target.value)} id="completed" />
+                  <input
+                    defaultValue={study.completed}
+                    type="text"
+                    className="m-0 bg-box input w-96"
+                    placeholder="E.g. htetnaing0814@gmail.com"
+                    onChange={(e) => setCompleted(e.target.value)}
+                    id="completed"
+                  />
                 </div>
               </label>
               <label htmlFor="hoursTaken">
                 <div className="form-field">
                   <span>Hours Taken:</span>
-                  <input defaultValue={study.hours_taken} type="text" className="m-0 bg-box input w-96" placeholder="E.g. https://www.unsplash.com/hello.jpg" onChange={(e) => setHoursTaken(e.target.value)} id="hoursTaken" />
+                  <input
+                    defaultValue={study.hours_taken}
+                    type="text"
+                    className="m-0 bg-box input w-96"
+                    placeholder="E.g. https://www.unsplash.com/hello.jpg"
+                    onChange={(e) => setHoursTaken(e.target.value)}
+                    id="hoursTaken"
+                  />
                 </div>
               </label>
               <div className="text-right w-[500px]">

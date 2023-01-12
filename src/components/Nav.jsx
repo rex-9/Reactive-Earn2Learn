@@ -14,40 +14,59 @@ const Nav = () => {
   };
 
   return (
-    <Fragment className="z-50 ">
-      <nav className="sticky top-0 font-qs h-[12%] w-full flex items-center justify-between px-12 py-5 border-b-[1px] bg-white ">
+    <Fragment>
+      <nav className="sticky top-0 font-qs h-[14%] w-full flex items-center justify-between  py-5 border-b-[1px] bg-white z-50 ">
         <Link to="/dashboard">
-          <img
-            src={assets.rnb}
-            className="h-10 w-32 object-cover"
-            alt="Robust and Best Logo"
-          />
-          <p className="font-bold">Earn To Learn</p>
+          <div className="ml-12">
+            <img
+              src={assets.rnb}
+              className="h-10 w-32 object-cover"
+              alt="Robust and Best Logo"
+            />
+            <p className="font-bold">Earn To Learn</p>
+          </div>
         </Link>
+
+        <div className="self-end flex gap-24">
+          <Link to="/">
+            <div className="font-medium text-gray-500">Home</div>
+          </Link>{" "}
+          <Link to="/aboutus" className=" font-medium text-gray-500">
+            <p>About Us</p>
+          </Link>
+        </div>
+
         {Object.keys(user).length !== 0 ? (
-          <>
-            <div className="flex w-96 justify-between">
-              <Link to={`/profile/${user.id}`}>
-                <div className="flex items-center justify-around px-2 py-1  w-52">
-                  <img
-                    className="object-cover w-12 h-12 rounded-full"
-                    src={user.image ? user.image : assets.avatar}
-                    alt=""
-                  />
-                  <div className="font-bold">{user.username}</div>
-                </div>
-              </Link>
-              <button
-                type="button"
-                className="rounded-lg px-2 py-1 text-red-700 hover:bg-red-500 hover:font-bold hover:text-white"
-                onClick={logout}
+          <div className="flex  justify-between items-center mr-2">
+            <Link to={`/profile/${user.id}`}>
+              <div
+                className="flex items-center justify-around gap-4 border p-2 px-3 border border-black
+                            border-opacity-0 hover:border-opacity-5 hover:bg-gray-100 rounded-lg"
               >
-                Log Out
-              </button>
-            </div>
-          </>
+                <img
+                  className="object-cover w-12 h-12 rounded-full"
+                  src={user.image ? user.image : assets.avatar}
+                  alt=""
+                />
+                <p className="font-bold">{user.fullname}</p>
+              </div>
+            </Link>
+
+            <button
+              type="button"
+              className="text-red-600 hover:bg-red-600 hover:text-white font-bold  px-4 rounded-lg py-2"
+              onClick={logout}
+            >
+              Log Out
+            </button>
+          </div>
         ) : (
-          <div className="flex justify-between w-52 items-center">
+          <div className="flex justify-between gap-6 items-center mr-4">
+            <Link to="/">
+              <div className="mx-6">
+                <i className="fa-solid fa-house-chimney text-lg hover:text-indigo-700" />
+              </div>
+            </Link>
             <Link to="/aboutus" className="px-2 py-2 font-semibold rounded-lg ">
               <p>About Us</p>
             </Link>
