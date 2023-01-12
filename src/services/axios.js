@@ -106,11 +106,8 @@ const reqWithFile = (ep, obj) => axios({
     'Content-Type': 'multipart/form-data',
     Authorization: `Bearer ${getCookie('token')}`,
   },
-}).then((response) => {
-  // console.log(response)
-  return response.data;
-})
-.catch((error) => {console.log(error)});
+}).then((response) => response.data)
+  .catch((error) => { console.log(error); });
 
 const createStudy = (method, ep, obj) => axios({
   method,
