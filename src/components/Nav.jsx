@@ -2,6 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import assets from "../assets/assets";
 import { checkCookie, getCookie, removeCookie } from "../services/cookie";
 import { Fragment } from "react";
+import { isAdmin } from "../services/cookie";
 const Nav = () => {
   let user = {};
   if (checkCookie("user")) {
@@ -34,6 +35,11 @@ const Nav = () => {
           <Link to="/aboutus" className=" font-medium text-gray-500">
             <p>About Us</p>
           </Link>
+          {isAdmin() && (
+            <Link to="/dashboard" className=" font-medium text-gray-500">
+              <p>Dashboard</p>
+            </Link>
+          )}
         </div>
 
         {Object.keys(user).length !== 0 ? (
@@ -54,7 +60,7 @@ const Nav = () => {
 
             <button
               type="button"
-              className="text-red-600 hover:bg-red-600 hover:text-white font-bold  px-4 rounded-lg py-2"
+              className="text-red-600 hover:bg-red-600 text-sm hover:text-white font-bold  px-4 rounded-lg py-1"
               onClick={logout}
             >
               Log Out

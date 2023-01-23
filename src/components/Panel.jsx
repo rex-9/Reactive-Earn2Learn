@@ -8,22 +8,6 @@ const Panel = ({ selected, setSelected }) => {
   return (
     <section className="pt-24 h-full w-48 bg-white shadow-lg">
       <ul className="flex flex-col gap-4">
-        <li className={handleSelected("learners")}>
-          <button
-            type="button"
-            className="flex items-center"
-            onClick={() => setSelected("learners")}
-          >
-            <img
-              src={
-                selected === "learners" ? assets.learnersWhite : assets.learners
-              }
-              className="mr-2"
-              alt="Learners Dashboard"
-            />
-            Learners
-          </button>
-        </li>
         <li className={handleSelected("users")}>
           <button
             type="button"
@@ -94,12 +78,7 @@ const Panel = ({ selected, setSelected }) => {
             className="flex items-center"
             onClick={() => setSelected("invites")}
           >
-            <img
-              src={selected === "invites" ? assets.invites : assets.invites}
-              className="mr-2"
-              alt="Invites invitees"
-              width="25px"
-            />
+            <i className="fa-solid fa-user-plus mr-2"></i>
             Invites
           </button>
         </li>

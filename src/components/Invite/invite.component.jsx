@@ -26,35 +26,37 @@ const Invites = () => {
   };
 
   return (
-    <div className="h-[80vh] mt-10">
-      <div className="flex flex-col items-center justify-center ">
-        <div>
-          <form onSubmit={submitForm}>
-            <input
-              className="input rounded-lg text-gray-500"
-              type="text"
-              required
-              name="name"
-              placeholder="Invitee Name"
-              onChange={handleChange}
-            />{" "}
-            <br />
-            <input
-              name="email"
-              className="input rounded-lg text-gray-500"
-              type="email"
-              required
-              placeholder="Invitee Email"
-              onChange={handleChange}
-            />{" "}
-            <br />
-            <div className="flex justify-center w-full my-2">
-              <button type="submit" className="btn hover:shadow-gray-600">
-                Send
-              </button>
-            </div>
-          </form>
-        </div>
+    <div className="w-full flex justify-center mt-10 h-[70%]">
+      {" "}
+      <div class="relative  m-2 shadow-md sm:rounded-lg border h-[70%] w-[70%] flex justify-center items-center">
+        <form onSubmit={submitForm}>
+          <input
+            className="input rounded-lg text-gray-500"
+            type="text"
+            required
+            name="name"
+            placeholder="Invitee Name"
+            onChange={handleChange}
+          />{" "}
+          <br />
+          <input
+            name="email"
+            className="input rounded-lg text-gray-500"
+            type="email"
+            required
+            placeholder="Invitee Email"
+            onChange={handleChange}
+          />{" "}
+          <br />
+          <div className="flex justify-center w-full my-2">
+            <button
+              type="submit"
+              className="px-4 py-2 bg-indigo-700 text-white rounded-lg hover:bg-indigo-900"
+            >
+              Send
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

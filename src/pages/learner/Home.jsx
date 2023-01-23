@@ -10,17 +10,15 @@ import Invites from "../../components/Invite/invite.component";
 const Home = () => {
   const [selected, setSelected] = useState("learners");
   return (
-    <section className="flex flex-col h-[80vh] font-qs">
-      <div className="flex h-[90%]">
+    <section className="flex flex-col font-qs h-[86%]">
+      <div className="flex h-full">
         {isAdmin() && <Panel selected={selected} setSelected={setSelected} />}
         {/* <!-- Scroll wrapper --> */}
         <div className="flex-1 flex overflow-hidden">
           {/* <!-- Scrollable container --> */}
           <div className="flex-1 overflow-y-scroll">
             {/* <!-- Your content --> */}
-            {selected === "learners" ? (
-              <Learners />
-            ) : selected === "users" ? (
+            {selected === "users" ? (
               <Users />
             ) : selected === "studies" ? (
               <Studies />

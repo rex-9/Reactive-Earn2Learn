@@ -15,7 +15,7 @@
   }
 
   .selected {
-    @apply bg-gradient-to-br from-selected-start to-selected-end text-white rounded-lg mx-4 pl-4 py-3;
+    @apply bg-indigo-700 text-white from-selected-start to-selected-end text-white rounded-lg mx-4 pl-4 py-3;
   }
 
   .unselected {

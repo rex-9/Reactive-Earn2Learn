@@ -77,10 +77,10 @@ const Ongoing = ({ studies }) => {
   return (
     <>
       <div className="flex justify-center m-4 font-qs">
-        <div className="w-[90%]">
+        <div className="w-full">
           {/* Add Study Section */}
           {addStatus && (
-            <div className="fixed top-0 left-0 z-10 flex items-center justify-center w-screen h-screen bg-black/25">
+            <div className="fixed top-0 left-0 z-10 flex items-center justify-center w-screen h-screen ">
               <div className="absolute p-4 bg-white rounded-lg w-96 h-fit">
                 <button
                   className="float-right"
@@ -133,7 +133,7 @@ const Ongoing = ({ studies }) => {
           {updateStatus && (
             <div
               id="Update Study Form"
-              className="fixed top-0 left-0 z-10 flex items-center justify-center w-screen h-screen bg-black/25"
+              className="fixed top-0 left-0 z-10 flex items-center justify-center w-screen h-screen "
             >
               <div className="absolute p-4 bg-white rounded-lg w-96 h-fit">
                 <button
@@ -201,34 +201,23 @@ const Ongoing = ({ studies }) => {
               </div>
             </div>
           )}
-          {currentUser.id === id && (
-            <button
-              type="button"
-              className="mb-4 btn"
-              onClick={() => setAddStatus(true)}
-            >
-              Add a New Study
-            </button>
-          )}
 
           {/* Display Study List */}
-          <table className="w-full border-collapse">
+          {/* <table className="w-full border-collapse border border-gray-200">
             <thead>
               <tr>
-                <th className="w-[20%] table-head">Tech</th>
-                <th className="w-[60%] table-head">Topic</th>
-                {currentUser.id === id && (
-                  <th className="w-[20%] table-head">Action</th>
-                )}
+                <th className="w-[25%] ">Tech</th>
+                <th className="w-[55%] ">Topic</th>
+                {currentUser.id === id && <th className="w-[20%] ">Action</th>}
               </tr>
             </thead>
             <tbody>
               {studies.map((study) => (
-                <tr key={study.id} className="table-stripe text-center">
-                  <td className="table-data">{study.technology.name}</td>
-                  <td className="table-data">{study.topic}</td>
+                <tr key={study.id} className="text-center">
+                  <td className="">{study.technology.name}</td>
+                  <td className="">{study.topic}</td>
                   {currentUser.id === id && (
-                    <td className="table-data">
+                    <td className="">
                       {id === currentUser.id && (
                         <button
                           type="button"
@@ -243,7 +232,61 @@ const Ongoing = ({ studies }) => {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> */}
+          <div className=" ">
+            {" "}
+            {currentUser.id === id && (
+              <button
+                type="button"
+                className="mb-4 font-semibold px-2 py-1  rounded-lg  hover:bg-indigo-800 hover:text-white"
+                onClick={() => setAddStatus(true)}
+              >
+                Add a New Study
+              </button>
+            )}
+          </div>
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
+            <table class="w-full text-md text-left  ">
+              <thead class="text-sm text-gray-700  border bg-gray-100">
+                <tr>
+                  <th scope="col" class="px-4 py-3 w-[25%]">
+                    Technology
+                  </th>
+                  <th scope="col" class="px-4 py-3 w-[60%]">
+                    Topic
+                  </th>
+                  {currentUser.id === id && (
+                    <th className="w-[15%] px-4 py-3 text-center">Action</th>
+                  )}
+                </tr>
+              </thead>
+              <tbody class="border">
+                {studies.map((study) => (
+                  <tr key={study.id} className="bg-white border-b">
+                    <td className="px-4 py-4 text-gray-900 font-medium ">
+                      {study.technology.name}
+                    </td>
+                    <td className="px-4 py-4 font-medium text-gray-900">
+                      {study.topic}
+                    </td>
+                    {currentUser.id === id && (
+                      <td className="px-4 py-4  text-center">
+                        {id === currentUser.id && (
+                          <button
+                            class="font-medium text-indigo-600 hover:text-indigo-900 "
+                            type="button"
+                            onClick={() => openUpdate(study.id)}
+                          >
+                            Complete
+                          </button>
+                        )}
+                      </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>

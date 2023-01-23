@@ -57,9 +57,9 @@ const EditLearner = ({ setEdit, learner }) => {
 
   return (
     <>
-      <div className="bg-black/40 w-full flex justify-center fixed top-0 left-0">
-        <div className="bg-white p-4 my-2 rounded-lg h-screen overflow-y-auto">
-          <div className="flex items-start justify-around pt-8 w-[600px]">
+      <div className="bg-black/40 w-full h-full flex justify-center fixed top-0 left-0 z-50 py-6">
+        <div className="bg-white p-4 my-2 rounded-xl h-[100%] overflow-y-auto scrollremove">
+          <div className="flex items-start justify-around p-10  ">
             <div className="flex flex-col items-center">
               <label htmlFor="image">
                 <div className="form-field">
