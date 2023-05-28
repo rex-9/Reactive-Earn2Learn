@@ -1,0 +1,25 @@
+name: CICD with GitHub Actions
+
+on:
+  push:
+    branches:
+      - jerry
+      - main # Replace with your branch name
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Clone Repository and Build
+        run: |
+          rm -rf Reactive-Earn2Learn
+          git clone --branch jerry https://github.com/rex-9/Reactive-Earn2Learn.git 
+          cd Reactive-Earn2Learn
+          npm i
+          npm run build
+          pwd
+          cp -R /dist/. /var/www/e2l-fe
+          
+
+      
